@@ -5,4 +5,4 @@
 <p>代码段的字体使用了传统代码段的SFMono-Regular，Menlo，Monaco，Consolas（英文），辅以<a href="https://github.com/max32002/swei-gothic/blob/master">狮尾圆体Light</a>（中文）。</p>
 <p>建立于[x264-x265-QAAC-ffprobe-Ultimatetutorial](https://github.com/iAvoe/x264-x265-QAAC-ffprobe-Ultimatetutorial)的x265教程2024.60版</p>
 <p>解决了docx版的诸多规范性和阅读排版的问题，并且在重写为HTML教程</p>
-<p>原稿位于`/x265-tutorial-web`文件夹中，欢迎提交pull-request和issues指正</p>
+<p>原稿位于<code>/x265-tutorial-web</code>文件夹中，欢迎提交pull-request和issues指正</p>
