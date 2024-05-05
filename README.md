@@ -1,7 +1,3 @@
-<p><a href="https://github.com/iAvoe/iAvoe">iAvoe</a></p>
-
------
-
 ## 原创 x265 压制教程 HTML网页版
 <p><a href="x265-tutorial-web/index.html">点此打开</a></p>
 <p>建立于<a href="https://github.com/iAvoe/x264-x265-QAAC-ffprobe-Ultimatetutorial">x264-x265-QAAC-ffprobe-Ultimatetutorial</a>的x265教程2024.60版，并继续进行内容上的改进</p>
@@ -29,3 +25,7 @@
 ### 相对于docx版
 <p>解决了诸多文书规范性和阅读排版的问题，包括一些无法简单修复（如标题1被大版块用完）的历史遗留问题</p>
 <p>解决了难以通过git的变更跟踪系统检查更改内容的版本管理问题，尤其影响协作检查和撰写</p>
+
+-----
+
+<p>联系方式：<a href="https://github.com/iAvoe/iAvoe">Github：iAvoe</a>，<a href="https://jq.qq.com/?_wv=1027&k=5YJFXyf">QQ群</a></p>
