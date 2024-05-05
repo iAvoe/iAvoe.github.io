@@ -155,6 +155,10 @@ pre { overflow-x: scroll; }
 .pt-1 { padding-top: 0.25rem !important; }
 .pt-3 { padding-top: 1rem !important; }
 .pt-5 { padding-top: 3rem !important; }
+.px-0 {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+}
 .px-1 {
     padding-right: 0.25rem !important;
     padding-left: 0.25rem !important;
@@ -166,6 +170,14 @@ pre { overflow-x: scroll; }
 .px-5 {
     padding-right: 3rem !important;
     padding-left: 3rem !important;
+}
+.py-3 {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+}
+.my-3 {
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
 }
 
 /* Container and cols-rows system from bootstrap */
