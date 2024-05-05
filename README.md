@@ -1,4 +1,5 @@
 # 原创 x265 压制教程 HTML网页版
+<p><a href="x265-tutorial-web/index.html">点此打开</p>
 <p>建立于<a href="https://github.com/iAvoe/x264-x265-QAAC-ffprobe-Ultimatetutorial">x264-x265-QAAC-ffprobe-Ultimatetutorial</a>的x265教程2024.60版，并继续进行内容上的改进</p>
 <p>原稿位于<code>/x265-tutorial-web</code>文件夹中，欢迎提交pull-request和issues指正</p>
 
