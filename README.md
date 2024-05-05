@@ -10,14 +10,14 @@
 ### 字体系统
 <p>分为正文黑体，注解圆体和代码段字体共三套字体集。</p>
 <ul>
-    <li>正文黑体设置为首选<a href="https://github.com/Buernia/Zhudou-Sans">煮豆黑体 Zhudou Sans</a>（中文）附件</li>
+    <li>正文黑体为首选<a href="https://github.com/Buernia/Zhudou-Sans">煮豆黑体 Zhudou Sans</a>（中文）附件</li>
     <li>辅以系统Sans Serif（英文）</li>
 </ul>
 <ul>
-    <li>注解圆体设置为Windows幼圆（中英文）附件</li>
+    <li>注解圆体为Windows幼圆（中英文）附件</li>
 </ul>
 <ul>
-    <li>代码段的字体使用了传统代码段的SFMono-Regular，Menlo，Monaco，Consolas（英文）</li>
+    <li>代码段的字体为传统代码段的SFMono-Regular，Menlo，Monaco，Consolas（英文）</li>
     <li>辅以<a href="https://github.com/max32002/swei-gothic/blob/master">狮尾圆体Light</a>（中文）附件</li>
 </ul>
 
