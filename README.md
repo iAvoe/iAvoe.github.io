@@ -22,6 +22,10 @@
     <li>代码段的字体为传统代码段的SFMono-Regular，Menlo，Monaco，Consolas（英文）</li>
     <li>辅以<a href="https://github.com/max32002/swei-gothic/blob/master">狮尾圆体Light</a>（中文）附件</li>
 </ul>
+<ul>
+    <li>公式段的字体为传统Cambria, Cambria Math（英文）附件（因为安卓不自带）, </li>
+    <li>辅以Cochin, Georgia, Times, Times New Roman, serif</li>
+</ul>
 
 ### 相对于docx版
 <p>解决了诸多文书规范性和阅读排版的问题，包括一些无法简单修复（如标题1被大版块用完）的历史遗留问题</p>
