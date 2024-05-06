@@ -872,7 +872,7 @@ aq-strength-edge偏给暗场的程度</code></pre>
             <p>x264 中还可选用画质优先的高频加权平方差 Noise SSE：</p>
             <span class="text-blue-math">$$\sum_{x=0}^{n-1}{\sum_{y=0}^{n-1}{\ \left| \left\lbrack N(x,y) - \ N\prime(x,y) \right\rbrack \cdot fgo \right| + |f(x,y) - f\prime(x,y)|^2}}$$</span>
             <p>其中 N/Noise 代表块的噪点强度，在一个2x2的区间下为四个像素两两加减得到，因为噪点和其它高频信号一样都是突兀的像素值：</p>
-            <span class="text-blue-math">$$N(x,y)=|f(0,0)-f(0,1)+f(1,1)-f(0,1)|$$</span>
+            <span class="text-blue-math">$$N(0,0)=|f(0,0)-f(0,1)+f(1,1)-f(0,1)|$$</span>
             <ul class="text-gray-side">
                 <li>
                     <span class="text-blue-math">\(n\)</span>为块的大小边界，当然此处未考虑 rect 和 asm 的长方形
