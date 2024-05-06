@@ -866,25 +866,23 @@ aq-strength-edge偏给暗场的程度</code></pre>
             </div>
 
             <p>x265的失真（块间差异）用均方差 Mean Squared Error（MSE）判断：</p>
-            <span class="text-blue-math">$$\frac{1}{TxTy}\sum_{x_{0 \rightarrow Tx}}^{}{\sum_{y_{0 \rightarrow Ty}}^{}{\ |f(x,y) - f\prime(x,y)|^2}}$$</span>
+            <span class="text-blue-math">$$\frac{1}{n^2}\sum_{x=0}^{n-1}{\sum_{y=0}^{n-1}{\ |f(x,y) - f\prime(x,y)|^2}}$$</span>
             <p>x264 中默认用更快的平方差 Sum of Squared Error（SSE），或Sum of Squared Difference（SSD）:</p>
-            <span class="text-blue-math">$$\sum_{x_{0 \rightarrow Tx}}^{}{\sum_{y_{0 \rightarrow Ty}}^{}{\ |f(x,y) - f\prime(x,y)|^2}}$$</span>
+            <span class="text-blue-math">$$\sum_{x=0}^{n-1}{\sum_{y=0}^{n-1}{\ |f(x,y) - f\prime(x,y)|^2}}$$</span>
             <p>x264 中还可选用画质优先的高频加权平方差 Noise SSE：</p>
-            <span class="text-blue-math">$$\sum_{x_{0 \rightarrow Tx}}^{}{\sum_{y_{0 \rightarrow Ty}}^{}{\ \left| \left\lbrack N(x,y) - \ N\prime(x,y) \right\rbrack \cdot fgo \right| + |f(x,y) - f\prime(x,y)|^2}}$$</span>
+            <span class="text-blue-math">$$\sum_{x=0}^{n-1}{\sum_{y=0}^{n-1}{\ \left| \left\lbrack N(x,y) - \ N\prime(x,y) \right\rbrack \cdot fgo \right| + |f(x,y) - f\prime(x,y)|^2}}$$</span>
             <p>其中 N/Noise 代表块的噪点强度，在一个2x2的区间下为四个像素两两加减得到，因为噪点和其它高频信号一样都是突兀的像素值：</p>
             <span class="text-blue-math">$$N(x,y)=|f(0,0)-f(0,1)+f(1,1)-f(0,1)|$$</span>
             <ul class="text-gray-side">
                 <li>
-                    <span class="text-blue-math">\(T\)</span>数学上代表一个函数周期，此处为块中的最后一个 x 或 y 像素
+                    <span class="text-blue-math">\(n\)</span>为块的大小边界，当然此处未考虑 rect 和 asm 的长方形
                 </li>
                 <li>
-                    <span class="text-blue-math">\(\sum_{x_{0 \rightarrow Tx}}^{}{\sum_{y_{0 \rightarrow Ty}}^{}{}}\)</span>
-                    分别指块宽，块高的求和范围
+                    <span class="text-blue-math">\(\sum_{x_{0 \rightarrow Tx}}^{}{\sum_{y_{0 \rightarrow Ty}}^{}{}}\)</span>分别指块宽，块高的求和范围
                 </li>
 
                 <li>
-                    <span class="text-blue-math">\(x,y\)</span>
-                    代表块中各个像素值的坐标
+                    <span class="text-blue-math">\(x,y\)</span>代表块中各个像素值的坐标
                 </li>
                 <li><span class="text-blue-math">| |</span> 求绝对值以正常求和</li>
             </ul>
