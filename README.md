@@ -23,9 +23,14 @@
     <li>辅以<a href="https://github.com/max32002/swei-gothic/blob/master">狮尾圆体Light</a>（中文）附件</li>
 </ul>
 <ul>
-    <li>公式段的字体为传统KaTeX Math（英文）附件（因为安卓不自带）</li>
+    <li>公式段的字体为<a href="https://github.com/KaTeX/katex-fonts/blob/master/">KaTeX Math Regular</a>（英文）附件（适配安卓）</li>
     <li>辅以Cochin，Georgia，Times，Times New Roman，serif</li>
 </ul>
+
+### 公式转换
+<p>一开始因为没有转换LaTex的工具链而使用了手写转MathML的处理。工具为<a href="https://webdemo.myscript.com/views/math/index.html">ConvertMathToLaTexMathML</a></p>
+<p>目前引入了MathJax（<a href="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">JavaScript</a>）附件做公式转换，同时因为MathML Tag占据HTML源码的面积太大而重写为LaTex。工具为<a href=https://www.text2latex.com>Text2Latex.com</a></p>
+<p>注：Word 2016不支持复制LaTex格式的公式，需要升级...</p>
 
 ### 相对于docx版
 <p>解决了诸多文书规范性和阅读排版的问题，包括一些无法简单修复（如标题1被大版块用完）的历史遗留问题</p>

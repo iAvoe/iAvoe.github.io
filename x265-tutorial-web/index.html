@@ -9,12 +9,14 @@
         <!-- Bootstrap Icons CSS (remote)
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/span/bootstrap-icons.css" crossorigin="anonymous">
         -->
+        <!-- Basic MathJax Javascript -->
+        <script src="./files/mathJax3-tex-svg.js"></script>
         
         <!-- JavaScript Codes -->
-        <script src="./files/tutorialExperimental.js" defer></script>
+        <script src="./files/tutorial.js" defer></script>
 
         <!-- Custom CSS Codes -->
-        <link rel="stylesheet" href="./files/tutorialExperimental.css">
+        <link rel="stylesheet" href="./files/tutorial.css">
 
         <!--
             Example run function
@@ -23,7 +25,7 @@
             let s2 = document.getElementById("string2").value;
             document.getElementById("output").value = common(s1, s2);
         }-->
-        <title>x265教程 HTML 版</title>
+        <title>x265 教程 HTML 完整版</title>
 	</head>
 	<body class="text-gray-main">
         <div class="container p-3 mt-3 rounded-9 border-main">
@@ -31,42 +33,29 @@
             <p class="text-gray-side">欢迎阅读！若有什么不会的可以加群<a href='https://jq.qq.com/?_wv=1027&k=5YJFXyf'>691892901</a>。本教程仅算盲人摸象的业余分析，仅具备业余参考价值，入门先看 x264 视频压缩教程综合版。手头需要编码压制不妨搭配急用版教程</p>
             <p class="text-gray-side text-red-emph">点击图片即可更改桌面和移动端的适配排版</p>
 
-            <h3>ffmpeg，VapourSynth，avs2yuv 传递参数</h3>
-            <ul class="list-dotless text-gray-side">
-                <li class="mt-3">ffmpeg -i &lt;源&gt; -an -f yuv4mpegpipe -strict unofficial - | x265 --y4m - --output</li>
-                <li class="text-gray-note mt-3">ffmpeg -i &lt;源&gt; -an -f rawvideo	- | x265.exe --input-res &lt;宽x高&gt; --fps &lt;整/小/分数&gt; - --output</li>
-                <li class="mt-3"><span class="text-blue-emph">-f</span> 格式，<span class="text-blue-emph">-an</span> 关音频，<span class="text-blue-emph">-strict unofficial</span> 关格式限制，<span class="text-blue-emph">--y4m</span> 对应"YUV for MPEG"，两个"-"是 Unix pipe 串流</li>
-                <li class="mt-3">VSpipe	源.vpy --y4m - | x265.exe - --y4m --output</li>
-                <li class="mt-3">avs2yuv	源.avs -csp &lt;色&gt; -depth &lt;深&gt; - | x265.exe --input-res &lt;宽x高&gt; --fps &lt;整/小/分数&gt; - --output</li>
-                <li class="mt-3">avs2pipemod 源.avs -y4mp | x265.exe --y4m - --output</li>
-            </ul>
+            <h4 class="mb-0">ffmpeg，VapourSynth，avs2yuv 传递参数</h4>
+            <pre><code>
+ffmpeg -i &lt;源&gt; -an -f yuv4mpegpipe -strict unofficial - | x265 --y4m - --output
+<span class="text-gray-note">ffmpeg -i &lt;源&gt; -an -f rawvideo	- | x265.exe --input-res &lt;宽x高&gt; --fps &lt;整/小/分数&gt; - --output</span>
+<span class="text-blue-emph">-f</span>格式，<span class="text-blue-emph">-an</span>关音频，<span class="text-blue-emph">-strict unofficial</span>关格式限制，<span class="text-blue-emph">--y4m</span>对应"YUV for MPEG"，两个"-"是Unix pipe串流
 
-            <table>
-                <tr>
-                    <td><h4 class="m-0">搜索 ffmpeg 支持的色度采样：</h4></td>
-                    <td class="text-gray-side">ffmpeg -pix_fmts | findstr &lt;或 grep 关键字&gt;</td>
-                </tr>
-                <tr>
-                    <td><h4 class="m-0">检查/选择色深，版本，编译：</h4></td>
-                    <td class="text-gray-side">x265.exe -V，-D &lt;8/10/12 调整色深&gt;</td>
-                </tr>
-                <tr>
-                    <td><h4 class="m-0">多字体 + 艺术体 + 上下标 .ass 字幕渲染：</h4></td>
-                    <td class="text-gray-side">ffmpeg -filter_complex "ass='F\:/字幕.ass'"滤镜</td>
-                </tr>
-                <tr>
-                    <td><h4 class="m-0">Linux Bash 报错导出：</h4></td>
-                    <td class="text-gray-side">x265.exe [命令行] 2>&1 | tee home\[用户名]\Desktop\报错.txt</td>
-                </tr>
-                <tr>
-                    <td><h4 class="m-0">Mac Terminal 报错导出：</h4></td>
-                    <td class="text-gray-side">x265.exe [命令行] 2>&1 | tee User\[用户名]\Desktop\报错.txt</td>
-                </tr>
-                <tr>
-                    <td><h4 class="m-0">Windows CMD 报错导出：</h4></td>
-                    <td class="text-gray-side">x265.exe [命令行] 2> [桌面路径]\报错.txt</td>
-                </tr>
-            </table>
+VSpipe	源.vpy --y4m - | x265.exe - --y4m --output
+avs2yuv	源.avs -csp&lt;色&gt; -depth&lt;深&gt; - | x265.exe --input-res &lt;宽x高&gt; --fps &lt;整/小/分数&gt; - --output
+avs2pipemod 源.avs -y4mp | x265.exe --y4m - --output
+            </code></pre>
+
+            <h4 class="m-0">搜索 ffmpeg 支持的色度采样：</h4>
+            <code>ffmpeg -pix_fmts | findstr &lt;或grep关键字&gt;</code>
+            <h4 class="m-0">检查/选择色深，版本，编译：</h4>
+            <code>x265.exe -V，-D &lt;8/10/12调整色深&gt;</code>
+            <h4 class="m-0">多字体 + 艺术体 + 上下标 .ass 字幕渲染：</h4>
+            <code>ffmpeg -filter_complex "ass='F\:/字幕.ass'"滤镜</code>
+            <h4 class="m-0">Linux Bash，Mac Terminal，Windows CMD 报错导出：</h4>
+            <pre><code>
+x265.exe [命令行] 2>&1 | tee home\[用户名]\Desktop\报错.txt
+x265.exe [命令行] 2>&1 | tee User\[用户名]\Desktop\报错.txt
+x265.exe [命令行] 2> [桌面路径]\报错.txt
+            </code></pre>
 
             <h2>分块</h2>
             <p>hevc 中，帧下结构按面积大小分为<span class="text-blue-emph">帧 → 瓦 tile → 条带 slice → 条带分段 ss → ctu 树单元 → cu 单元</span>.</p>
@@ -77,14 +66,14 @@
             </div>
 
             <h4 class="same-line">PU - 预测单元：</h4>
-            <p class="same-line">prediction unit 是编码完，用做参考源的块。支持 cu 上对称 rectangle，非对称 asymmetric 划分，以更好的隔离动静态。亮度与色度上的分裂法可以不同，小至 4x4 像素。</p>
+            <p class="same-line">Prediction unit 是编码完，用做参考源的块。支持 CU 上对称 Rectangle，非对称 Asymmetric 划分，以更好的隔离动静态。亮度与色度上的分裂法可以不同，小至 4x4 像素。</p>
             <div class="align-items-center">
                 <img src="files/image2.png" alt="Prediction Unit" class="img-medium" >
                 <p class="text-gray-side mt-0">图：pu 的 4 种对称 rectangular 和 4 种不对称 asymmetric 划分</p>
             </div>
             
             <h4 class="same-line">TU - 变换单元：</h4>
-            <p class="same-line">transformation unit 的划分与 CU 而非 PU 同步，实现变换和量化</p>
+            <p class="same-line">Transforma unit 的划分与 CU 而非 PU 同步，实现变换和量化</p>
             <div class="align-items-center">
                 <img src="files/image3.png" alt="Transform Unit" class="img-medium" >
             </div>
@@ -196,12 +185,12 @@
                         超过 180°（π）会归零而不用。详见<a href="https://www.desmos.com/calculator/qpnz9celzf">desmos 例 1</a>，<a href="https://www.desmos.com/calculator/ywxqicajbv">desmos 例 2</a>，<a href="https://www.youtube.com/watch?v=spUNpyF58BY">3b1b 视频科普</a>以及<a href="https://www.youtube.com/watch?v=tEzgtbnbXgQ">Computer Vision 公开课</a>。
                     </p>
                     <h4>二维傅里叶变换 2D-FT</h4>
-                    <p>宽高上单拆出线来分别进行 1DFT，通过双求和/双积分 ΣΣ/∫∫ 整合。在频域中相当于每个像素的变换结果相加或干涉。亮则振幅大，距中心远则频率高。强在可编辑性，可以消除打印喷头，抖动等均匀噪声。</p>
+                    <p>宽高上单拆出线来分别进行 1DFT，以双求和/双积分 ΣΣ/∫∫ 整合。在频域中相当于每个像素的变换结果相加或干涉。亮则振幅大，距中心远则频率高。强在可编辑性，可以消除打印喷头，抖动等均匀噪声。</p>
                 </div>
                 <img src="files/image4.png" alt="Fourier Transform Phenomenons" id="LR-UD-002" class="img-medium img-right col-4 mb-auto" >
                 <div id="LR-UD-003" class="col-8">
                     <h4>二维离散余弦变换 2D Descrete Cosine Transform</h4>
-                    <p>用预制的二维波形模具，穷举加减列出各波形格子的使用次数，实现比 2DFT 更快的变换。</p>
+                    <p>用预制的二维波形模具，穷举加减列出各波形格子的使用次数，比 2DFT 更快。</p>
                     <p class="text-gray-side mt-0">图：二维傅里叶变换的特性，背景特性以及可编辑性</p>
                 </div>
                 <img src="files/image5.png" alt="Fourier Transform Editing" id="LR-UD-004" class="img-medium img-right col-4 mb-auto" >
@@ -243,7 +232,7 @@
     · me umh-star 设<span class="text-blue-emph">≥32</span>
 <b>--no-temporal-mvp</b>&lt;开关&gt;关 P-B 条带的动态搜索，除直播外不推荐
 <b>--hme-search</b>&lt;hex/umh/star/esa/full，<span class="text-red-emph">关 me</span>&gt;三份异分辨率原画分别查找宏观到微观的搜索动态信息
-<b>--hme-range</b>&lt;三整数，<span class="text-red-emph">需 hme-search</span>，推荐默认<span class="text-blue-emph">16,32,48</span>&gt;对应<math xmlns='http://www.w3.org/1998/Math/MathML'><mfrac><mrow><mn> 1 </mn></mrow><mrow><mn> 16 </mn></mrow></mfrac></math>，<math xmlns='http://www.w3.org/1998/Math/MathML'><mfrac><mrow><mn> 1 </mn></mrow><mrow><mn> 4 </mn></mrow></mfrac></math>和全分辨率三画面
+<b>--hme-range</b>&lt;三整数，<span class="text-red-emph">需 hme-search</span>，推荐默认<span class="text-blue-emph">16,32,48</span>&gt;对应<math xmlns='http://www.w3.org/1998/Math/MathML'><mfrac><mrow><mn> 1 </mn></mrow><mrow><mn> 16 </mn></mrow></mfrac></math>，¼和全分辨率三画面
             </code></pre>
             
             <h2>帧间 - 子像素运动补偿</h2>
@@ -307,7 +296,7 @@
                         </tr>
                     </table>
                 </div>
-                <img src="files/image9.png" alt="hpel qpel interpolation" id="LR-UD-006" class="img-medium img-right col-4 mb-auto" >
+                <img src="files/image9.png" alt="hpel qpel interpolation" id="LR-UD-006" class="img-small img-right col-2 mb-auto" >
             </div>
             <p class="text-gray-side mt-0">表：x264/5 实现 h~qpel 插值计算（实现了浮点→整数变量的程序优化）</p>
             <p class="text-gray-side mt-0">图：此“子像素”特指是放大出的 half-pixel(hpel)
@@ -800,252 +789,71 @@
             <h2>率控制 - 算出量化值 Quantization Parameter</h2>
             <p>人眼对明暗变化与画面细节程度的感知呈对数㏒状，分别奠定了显示器的伽马曲线映射，以及量化值 qp（x 轴）到强度 qScale（y 轴）的强度映射。<span class="text-gray-side">图：量化值 qp 到 qScale 的映射，见<a href="https://www.desmos.com/calculator/vernjiiphf">desmos 互动例</a></span>；伽马矫正的科普见<a href="https://www.nazorip.site/archives/63">x264 教程</a>，<a href="https://www.artleds.com/blog/introduction-to-gamma-curves-and-gamma-correction-in-led-pixel-tapes-application">ArtLEDs 科普</a>。</p>
             <img src="files/image23.png" alt="Logrithm QP to qScale" class="" >
-            <p>由于当前帧此时还未编码（码率未知），故寻已编码前帧的量化失真程度（越高则后帧理应越复杂），做推演复杂度/模糊复杂度。CRF 越高则除进推演复杂度的分母越大/ABR 越低则分子越小，得到的推演复杂度越低，推演出的 qp 就越高。</p>
+            <p>由于当前帧此时还未编码（码率未知），故寻已编码前帧的量化失真程度（越高则后帧理应越复杂），做推演复杂度/模糊复杂度。CRF 越高则除进推演复杂度的分母越大/ABR 越低则分子越小，得到的推演复杂度越低，推演出的 qp 就越高。<span class="text-gray-side">表：分别以 [L<sub>-1</sub>] 和 [L] 表示上帧和当前帧</span></p>
             
             <div class="mt-3 align-items-center">
                 <table class="table-center">
                     <tr class="t-border-bottom">
                         <th class="t-light-gray px-1">
-                            cplxSum
-                            <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math text-smaller">
-                                <mfrac>
-                                    <mrow>
-                                        <mi> c </mi><mi> p </mi><mi> l </mi><mi> x </mi><mi> S </mi><mi> u </mi><mi> m </mi>
-                                        <mrow>
-                                            <mo> [ </mo>
-                                            <msub>
-                                                <mrow>
-                                                    <mi> L </mi>
-                                                </mrow>
-                                                <mrow>
-                                                    <mo> - </mo><mn> 1 </mn>
-                                                </mrow>
-                                            </msub>
-                                            <mo> ] </mo>
-                                        </mrow>
-                                    </mrow>
-                                    <mrow>
-                                        <mn> 2 </mn>
-                                    </mrow>
-                                </mfrac>
-                                <mo> + </mo><mi> S </mi><mi> A </mi><mi> T </mi><mi> D </mi>
-                                <mrow>
-                                    <mo> [ </mo>
-                                    <msub>
-                                        <mrow>
-                                            <mi> L </mi>
-                                        </mrow>
-                                        <mrow>
-                                            <mo> - </mo><mn> 1 </mn>
-                                        </mrow>
-                                    </msub>
-                                    <mo> ] </mo>
-                                </mrow>
-                            </math>
+                            cplxSum<span class="text-blue-math">$$\frac{cplxSum\lbrack L_{-1}\rbrack}{2} + SATD\lbrack L_{-1}\rbrack$$</span>
                         </th>
-                        <td class="text-smaller">一直于当前与上帧帧间做差并累积<br>总差异先减半一次再添加新的差异程度</td>
+                        <td class="text-smaller">一直于当前与上帧帧间做差并累积，总差异先减半一次再添加新的差异程度</td>
                     </tr>
                     <tr class=" t-border-bottom">
                         <th class="t-light-gray px-1">
-                            cplxCount
-                            <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math text-smaller">
-                                <mfrac>
-                                    <mrow>
-                                        <mi> c </mi><mi> p </mi><mi> l </mi><mi> x </mi><mi> C </mi><mi> o </mi><mi> u </mi><mi> n </mi><mi> t </mi>
-                                        <mrow>
-                                            <mo> [ </mo>
-                                            <msub>
-                                                <mrow>
-                                                    <mi> L </mi>
-                                                </mrow>
-                                                <mrow>
-                                                    <mo> - </mo><mn> 1 </mn>
-                                                </mrow>
-                                            </msub>
-                                            <mo> ] </mo>
-                                        </mrow>
-                                    </mrow>
-                                    <mrow>
-                                        <mn> 2 </mn>
-                                    </mrow>
-                                </mfrac>
-                                <mo> + </mo><mn> 1 </mn>
-                            </math>
+                            cplxCount<span class="text-blue-math">$$\frac{cplxSum\lbrack L_{-1}\rbrack}{2} + 1$$</span>
                         </th>
-                        <td class="text-smaller">初始为零，用于逐帧加权 cplxBlur 的帧数计<br>÷2 与 cplxSum 同步<br>加权逻辑时越往后参考冗余理应越多的规律</td>
+                        <td class="text-smaller">初始为零，用于逐帧加权 cplxBlur 的帧数计。÷2 与 cplxSum 同步。加权逻辑时越往后参考冗余理应越多的规律</td>
                     </tr>
                     <tr class="t-border-bottom">
                         <th class="t-light-gray px-1">
-                            cplxBlur
-                            <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math text-smaller">
-                                <mfrac>
-                                    <mrow>
-                                        <mi> c </mi><mi> p </mi><mi> l </mi><mi> x </mi><mi> S </mi><mi> u </mi><mi> m </mi>
-                                    </mrow>
-                                    <mrow><mi> c </mi><mi> p </mi><mi> l </mi><mi> x </mi><mi> C </mi><mi> o </mi><mi> u </mi><mi> n </mi><mi> t </mi>
-                                    </mrow>
-                                </mfrac>
-                            </math>
+                            cplxBlur<span class="text-blue-math">$$\frac{cplxSum}{cplxCount}$$</span>
                         </th>
-                        <td class="text-smaller">模糊复杂度。据帧所处推演加权的新 SATD<br>近似 100% 则当前帧复杂度推高（涨势复杂度）<br>可扭转 cplxCount 默认的跌势</td>
+                        <td class="text-smaller">模糊复杂度。据帧所处推演加权的新 SATD。近似 100% 则当前帧复杂度推高（涨势复杂度）可扭转 cplxCount 默认的跌势</td>
                     </tr>
                     <tr class="t-border-bottom">
                         <th class="t-light-gray px-1">
-                            qScale
-                            <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math text-smaller">
-                                <mn> 0.85 </mn><mo> &#x00D7; <!-- multiplication sign --> </mo>
-                                <msup>
-                                    <mrow>
-                                        <mn> 2 </mn>
-                                    </mrow>
-                                    <mrow>
-                                        <mfrac>
-                                            <mrow>
-                                                <mi> q </mi><mi> p </mi><mo> - </mo><mn> 12 </mn>
-                                            </mrow>
-                                            <mrow>
-                                                <mn> 6 </mn>
-                                            </mrow>
-                                        </mfrac>
-                                    </mrow>
-                                </msup>
-                            </math>
+                            qScale<span class="text-blue-math">$$0.85 \times 2^{\frac{qp-12}{6}}$$</span>
                         </th>
-                        <td class="text-smaller">GOP 内累计的直线化 qp，或率失真优化量化的拉格朗日值 λ<br>已编码帧的 qp 转 qScale，便于其它参数修改更新</td>
+                        <td class="text-smaller">GOP 内累计的直线化 qp，或 rdoq 的拉格朗日值 λ。已编码帧的 qp 转 qScale，便于其它参数修改更新</td>
                     </tr>
                     <tr class="t-border-bottom">
-                        <th class="t-light-gray t-align-left px-1">
-                            ABR_rate_factor
-                            <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math text-smaller">
-                                <mfrac>
-                                    <mrow>
-                                        <mi> t </mi><mi> a </mi><mi> r </mi><mi> g </mi><mi> e </mi><mi> t </mi><mo> _ </mo><mi> r </mi><mi> a </mi><mi> t </mi><mi> e </mi><mo> _ </mo><mi> w </mi><mi> i </mi><mi> n </mi><mi> d </mi><mi> o </mi><mi> w </mi>
-                                    </mrow>
-                                    <mrow><mi> c </mi><mi> p </mi><mi> l </mi><mi> x </mi><mi> s </mi><mi> u </mi><mi> m </mi>
-                                    </mrow>
-                                </mfrac>
-                            </math>
+                        <th class="t-light-gray px-1">
+                            ABR_rate_factor<span class="text-blue-math">$$\frac{target\_rate\_window}{\text{cplxSum}}$$</span>
                         </th>
                         <td class="text-smaller">GOP 初始值，ABR 下的 qScale（rdoqλ）转 qp</td>
                     </tr>
                     <tr class="t-border-bottom">
-                        <th class="t-light-gray t-align-left px-1">
-                            ABR_qScaleNew
-                            <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math text-smaller">
-                                <mfrac>
-                                    <mrow>
-                                        <mrow>
-                                            <mi> q </mi><mn> S </mn><mi> c </mi><mi> a </mi><mi> l </mi><mi> e </mi>
-                                        </mrow>
-                                        <mo> &#x00D7; <!-- multiplication sign --> </mo>
-                                        <mi> o </mi><mi> v </mi><mi> e </mi><mi> r </mi><mi> f </mi><mi> l </mi><mi> o </mi><mi> w </mi>
-                                    </mrow>
-                                    <mrow>
-                                        <mi> A </mi><mi> B </mi><mi> R </mi><mo> _ </mo><mi> r </mi><mi> a </mi><mi> t </mi><mi> e </mi><mi> f </mi><mi> a </mi><mi> c </mi><mi> t </mi><mi> o </mi><mi> r </mi>
-                                    </mrow>
-                                </mfrac>
-                            </math>
+                        <th class="t-light-gray px-1">
+                            ABR_qScaleNew<span class="text-blue-math">$$\frac{qscale \times \text{overflow}}{ABR\_rate\_factor}$$</span>
                         </th>
                         <td class="text-smaller">据 ABR 控制更新一遍 qScale（rdoqλ）</td>
                     </tr>
                     <tr class="t-border-bottom">
                         <th class="t-light-gray px-1">
-                            cplxBase
-                            <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math text-smaller">
-                                <mi> c </mi><mi> t </mi><mi> u </mi><mo> _ </mo><mi> c </mi><mi> o </mi><mi> u </mi><mi> n </mi><mi> t </mi><mo> &#x00D7; <!-- multiplication sign --> </mo>
-                                <mrow>
-                                    <mo> ( </mo><mi> b </mi><mi> f </mi><mi> r </mi><mi> a </mi><mi> m </mi><mi> e </mi><mo> ? </mo><mn> 120 </mn><mo> : </mo><mn> 80 </mn><mo> ) </mo>
-                                </mrow>
-                            </math>
+                            cplxBase<span class="text-blue-math">$$ctu\_count \times (bframe?120:80)$$</span>
                         </th>
-                        <td class="text-smaller">常数/恒定值。CRF 模式默认的复杂度<br>若用 B 帧编码则 CTU 或宏块数量×120, 否则×80</td>
+                        <td class="text-smaller">常数/恒定值。CRF 模式默认的复杂度。若用 B 帧编码则 CTU 或宏块数量×120, 否则×80</td>
                     </tr>
                     <tr class="t-border-bottom">
                         <th class="t-light-gray px-1">
-                            CRF_rate_factor
-                            <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math text-smaller">
-                                <mfrac>
-                                    <mrow>
-                                        <msup>
-                                            <mrow>
-                                                <mrow>
-                                                    <mi> c </mi><mi> p </mi><mi> l </mi><mi> x </mi><mi> B </mi><mi> a </mi><mi> s </mi><mi> e </mi>
-                                                </mrow>
-                                            </mrow>
-                                            <mrow>
-                                                <mn> 1 </mn><mo> - </mo><mi> q </mi><mi> c </mi><mi> o </mi><mi> m </mi><mi> p </mi>
-                                            </mrow>
-                                        </msup>
-                                    </mrow>
-                                    <mrow>
-                                        <mi> q </mi><mi> S </mi><mi> c </mi><mi> a </mi><mi> l </mi><mi> e </mi>
-                                        <mo> &#x00D7; <!-- multiplication sign --> </mo>
-                                        <mo> ( </mo><mi> c </mi><mi> r </mi><mi> f </mi><mo> + </mo><mi> c </mi><mi> u </mi><mi> t </mi><mi> r </mi><mi> e </mi><mi> e </mi><mo> + </mo><mi> b </mi><mi> f </mi><mi> r </mi><mi> a </mi><mi> m </mi><mi> e </mi><mi> s </mi><mo> _ </mo><mi> o </mi><mi> f </mi><mi> f </mi><mi> s </mi><mi> e </mi><mi> t </mi><mo> ) </mo>
-                                    </mrow>
-                                </mfrac>
-                            </math> 
+                            CRF_rate_factor<span class="text-blue-math">$$\frac{cplxBase^{1-qcomp}}{qScale \times (crf + cutree + bframe\_offset)}$$</span>
                         </th>
-                        <td class="text-smaller">GOP 内累计，经 cutree，B 帧偏移乘进 qScale 后得到<br> 1-qcomp 与 CRF_qScale 对齐（仅 cplxBase，cplxBlur 运算）</td>
+                        <td class="text-smaller">GOP 内累计，经 cutree，B 帧偏移乘进 qScale 后得 1-qcomp 与 CRF_qScale 对齐（仅 cplxBase，cplxBlur 运算）</td>
                     </tr>
                     <tr class=" t-border-bottom">
                         <th class="t-light-gray px-1">
-                            CRF_qScaleNew
-                            <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math text-smaller">
-                                <mtable columnalign='left'>
-                                    <mtr>
-                                        <mtd>
-                                            <mfrac>
-                                                <mrow>
-                                                    <msup>
-                                                        <mrow>
-                                                            <mrow>
-                                                                <mi> c </mi><mi> p </mi><mi> l </mi><mi> x </mi><mi> B </mi><mi> a </mi><mi> s </mi><mi> e </mi>
-                                                            </mrow>
-                                                        </mrow>
-                                                        <mrow>
-                                                            <mn> 1 </mn><mo> - </mo><mi> q </mi><mi> c </mi><mi> o </mi><mi> m </mi><mi> p </mi>
-                                                        </mrow>
-                                                    </msup>
-                                                </mrow>
-                                                <mrow>
-                                                    <mi> C </mi><mi> R </mi><mi> F </mi><mo> _ </mo><mi> r </mi><mi> a </mi><mi> t </mi><mi> e </mi><mi> f </mi><mi> a </mi><mi> c </mi><mi> t </mi><mi> o </mi><mi> r </mi>
-                                                </mrow>
-                                            </mfrac>
-                                        </mtd>
-                                    </mtr>
-                                </mtable>
-                            </math>
+                            CRF_qScaleNew<span class="text-blue-math">$$\frac{cplxBlur^{1-qcomp}}{CRF\_rate\_factor}$$</span>
                         </th>
                         <td class="text-smaller">据 crf_rate_factor 更新当前帧的 qScale（rdoqλ）</td>
                     </tr>
                     <tr class="t-border-bottom">
                         <th class="t-light-gray px-1">
-                            qp
-                            <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math text-smaller t-align-right">
-                                <mn> 6 </mn>
-                                <msub>
-                                    <mrow>
-                                        <mi> log </mi>
-                                    </mrow>
-                                    <mrow>
-                                        <mn> 2 </mn>
-                                    </mrow>
-                                </msub>
-                                <mfrac>
-                                    <mrow>
-                                        <mi> q </mi><mi> S </mi><mi> c </mi><mi> a </mi><mi> l </mi><mi> e </mi><mo> _ </mo><mi> n </mi><mi> e </mi><mi> w </mi>
-                                    </mrow>
-                                    <mrow>
-                                        <mn> 0.85 </mn>
-                                    </mrow>
-                                </mfrac>
-                                <mo> + </mo><mn> 12 </mn>
-                            </math>
+                            qp<span class="text-blue-math">$$6\log_{2}{\frac{qscale\_ new}{0.85} + 12}$$</span>
                         </th>
-                        <td class="text-smaller">qScale（rdoqλ）经调整后得到当前帧的量化值 qp<br>各 qp 对应一套 DCT 变换量化矩阵。qp→qStep 见<a href="https://www.nazorip.site/archives/63">x264 教程</a></td>
+                        <td class="text-smaller">qScale（rdoqλ）经调整后得到当前帧的量化值 qp。各 qp 对应一套 DCT 变换量化矩阵。qp→qStep 见<a href="https://www.nazorip.site/archives/63">x264 教程</a></td>
                     </tr>
                 </table>
-                <p class="text-gray-side">表：分别以 [L<sub>-1</sub>] 和 [L] 表示上帧和当前帧</p>
             </div>
 
             <p>经此实现了帧内画面复杂则 qp 低，简则高；同时据用户设定的（对数）强度的动态变化。这种质量判断只有两帧而不宏观，所以引出了各种各样的优化步骤，如 mb/cutree，rdoq 等。</p>
@@ -1164,7 +972,7 @@ x265.exe --abr-ladder 1440p8000_2160p11000_2160p16000.txt --fps 59.94 --input-de
 <b>--hevc-aq</b>&lt;开关&gt;以¼tile 而非 aq 的边缘高频信息实现自适应。据 doom9 结论<a href="https://forum.doom9.org/showthread.php?p=1925373#post1925373">1</a>，<a href="https://forum.doom9.org/showthread.php?p=1925464">2</a>: hevc-aq 比 aq 4 快且适合动漫，而 aq 4 更适合录播。目前学术方 - 官方 - 第三方间信息较割裂，暂无适解
 <b>--aq-motion</b>&lt;开关，<span class="text-red-emph">实验性</a>&gt;据动态信息微调自适应量化的效果 mode 和强度 strength
 <b>--qg-size</b>&lt;64/32/16/8，默认 64，<span class="text-red-emph">≥min-cu-size</span>&gt;偏移蓝，红色色度面相比亮度平面的 qp 值差异，负值降低量化。如当色度平面的量化太高则可以用这两个参数补偿回来，但 x264-5 会根据色度平面采样格式（4:2:2，4:4:4）自动设定这些参数。由于编码器一直不擅长深红色，而人眼又对红光敏感，所以可以给红色面设<span class="text-blue-emph">-3</span>左右
-<b>--cbqpoffs --crqpoffs</b>&lt;整数&gt;据动态信息微调自适应量化的效果 mode 和强度 strength
+<b>--cbqpoffs --crqpoffs</b>&lt;整数偏移值&gt;据动态信息微调自适应量化的效果 mode 和强度 strength
             </code></pre>
 
             <h4>x265 jpsdr-mod 参数</h4>
@@ -1184,56 +992,56 @@ x265.exe --abr-ladder 1440p8000_2160p11000_2160p16000.txt --fps 59.94 --input-de
                     </thead>
                     <tbody>
                         <tr class="t-border-bottom t-light-gray">
-                            <td>1</td>
+                            <td class="text-blue-emph">1</td>
                             <td>√</td>
                             <td> </td>
                             <td> </td>
                             <td> </td>
                         </tr>
                         <tr class="t-border-bottom">
-                            <td>2,3</td>
+                            <td class="text-blue-emph">2,3</td>
                             <td>√</td>
                             <td>√</td>
                             <td> </td>
                             <td> </td>
                         </tr>
                         <tr class="t-border-bottom t-light-gray">
-                            <td>4</td>
+                            <td class="text-blue-emph">4</td>
                             <td>√</td>
                             <td> </td>
                             <td>√</td>
                             <td> </td>
                         </tr>
                         <tr class="t-border-bottom">
-                            <td>8</td>
+                            <td class="text-blue-emph">8</td>
                             <td>√</td>
                             <td> </td>
                             <td> </td>
                             <td>√</td>
                         </tr>
                         <tr class="t-border-bottom t-light-gray">
-                            <td>6</td>
+                            <td class="text-blue-emph">6</td>
                             <td>√</td>
                             <td>√</td>
                             <td>√</td>
                             <td> </td>
                         </tr>
                         <tr class="t-border-bottom">
-                            <td>10</td>
+                            <td class="text-blue-emph">10</td>
                             <td>√</td>
                             <td>√</td>
                             <td> </td>
                             <td>√</td>
                         </tr>
                         <tr class="t-border-bottom t-light-gray">
-                            <td>12</td>
+                            <td class="text-blue-emph">12</td>
                             <td>√</td>
                             <td> </td>
                             <td>√</td>
                             <td>√</td>
                         </tr>
                         <tr class="t-border-bottom">
-                            <td>14</td>
+                            <td class="text-blue-emph">14</td>
                             <td>√</td>
                             <td>√</td>
                             <td>√</td>
@@ -1265,14 +1073,14 @@ x265.exe --abr-ladder 1440p8000_2160p11000_2160p16000.txt --fps 59.94 --input-de
 <b>--limit-refs</b>&lt;整数 0~3，默认 3&gt;限制分块用信息可参考性。<span class="text-blue-emph">0 不限</span>压缩高且慢；<span class="text-blue-emph">1</span>用 cu 分裂后的信息 + 差异信息描述自身 (推荐)；<span class="text-blue-emph">2</span>据单个 cb 的差异信息建立 pu；<span class="text-blue-emph">3=1+2</span>
 <b>--rskip</b>&lt;整数 0~2&gt;前 cu 分块被跳过时，判断后 cu 接着搜索分块还是提前退出的参数。画面越接近录屏/低成本动漫就用得越多
     · <span class="text-blue-emph">0</span>继续分析。适合信噪比差/高噪源。原画很干净则不如<span class="text-blue-emph">1</span>
-    · <span class="text-blue-emph">1</span>rd0~4 下据临 cu 是否细分而定；rd5~6 下看附近 2Nx2N cu 分块难度而定，高压和一般情况推荐
-    · <span class="text-blue-emph">2</span>直接对比 cu 纹理密度 edge density，快且不比前者差，但存在对源的画质要求及客观判断“画质”的能力
+    · <span class="text-blue-emph">1</span>rd 0~4 下据临 cu 是否细分而定；rd5~6 下看附近 2Nx2N cu 分块难度而定，高压和一般情况推荐
+    · <span class="text-blue-emph">2</span>直接对比 cu 纹理密度 Edge Density，快且不比前者差，但存在对源的画质要求及客观判断“画质”的能力
 <b>--tskip-fast</b>&lt;开关，默认关&gt;跳过 4x4 tu 的变换，忽略部分 DCT 系子 coefficients 来加速，CbCr-tu 也取决于 Y 块是否被跳过。在全屏小细节的视频中有显著加速效果。建议除高压以外的情况使用
 <b>--rskip-edge-threshold</b>&lt;0~100，默认 5: 趋向于分块，<span class="text-red-emph">需 rskip 大于 1</span>&gt;用 Sobel 算法获取 cu 纹理密度再除以块所占面积的百分比。纹理密度&gt;阈值=分块，量化强度越高越关键。8×8 或 16×16 块下默认 5%（即含 3 或 12 个系子）就分
 注：类似 x264 deadzone 参数
     · 像素风：<span class="text-blue-emph">据像素变大的程度决定</span>。如分辨率宽÷2，分辨率高÷2 会回到 1x1 像素大小，则使默认值乘以 2 以提速
     · 抗涂抹：<span class="text-blue-emph">rskip 2 rskip-edge-threshold 3</span>。即“有一点不平就应分块”。比 rskip 0 快，用于已知要保留雪景等全屏大量动态信息的源的情况下，节省传统分块计算时间。可=在不添噪点的情况下达成抗涂抹的目的
-</code></pre>
+            </code></pre>
             <div class="align-items-center">
                 <img src="files/image25.png" alt="rSkip Edge Threshold" class="img-small" >
                 <p class="text-gray-side">图：影响 DCT 系子分布的块中像素，而 DCT 系子的密度影响 rskip-edge-threshold 的设置</p>
@@ -1280,16 +1088,15 @@ x265.exe --abr-ladder 1440p8000_2160p11000_2160p16000.txt --fps 59.94 --input-de
 
             <h2>率失真优化控制</h2>
             <h4>率失真优化 Rate distortion optimization</h4>
-            <p>多个码率下测得的 cu 失真，挑出 R-D 曲线下的平衡区间。由代价函数开销=失真+λ·码率：
-            <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math">
-                <mi> J </mi><mo> = </mo><mi> D </mi><mo> + </mo><mi> &#x03BB; <!-- greek lambda --> </mi><mo> &#x00B7; <!-- middle dot --> </mo><mi> R </mi>
-            </math>
-            实现模式决策。</p>
+            <p>
+                多个码率下测得的 cu 失真，挑出 R-D 曲线下的平衡区间。由代价函数「开销=失真+λ⋅码率」实现模式决策：
+                <span class="text-blue-math">$$J = D + \lambda \cdot R$$</span>
+            </p>
             <p>失真 D 用差异平方和 SSE 或总差异 SAD 判断（SSE 多取一步平方，使较大的差异呈指数增长）进而分到更多补偿的码率。拉格朗日值λ源于 qp，即 crf，abr 指定的率失真斜率 slope 区间。qp 越大斜度越小：</p>
             <ul>
                 <li><math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math"><mi> &#x03BB; <!-- greek lambda --> </mi><mo> = </mo><mi> 0 </mi></math>则无斜度，则代价等于失真——码率变而画质不变，宜压缩。</li>
-                <li>λ 趋 0 则开销趋失真——适当压缩就不会影响画质</li>
-                <li>λ>0 则开销>失真——保画质收益大于压缩收益，应该保画质</li>
+                <li><span class="text-blue-math">λ</span> 趋 0 则开销趋失真——适当压缩就不会影响画质</li>
+                <li><span class="text-blue-math">λ &gt; 0</span> 则开销&gt;失真——保画质收益大于压缩收益，应该保画质</li>
             </ul>
             <div class="align-items-center">
                 <img src="files/image26.png" alt="x264 JM RDO Lambda" class="" >
@@ -1298,6 +1105,170 @@ x265.exe --abr-ladder 1440p8000_2160p11000_2160p16000.txt --fps 59.94 --input-de
                 <img src="files/image28.png" alt="RDO qStep Chart" class="img-medium" >
                 <p class="text-gray-side">图：率 - 失真表格中不断调整并得到“×”的实际效果</p>
             </div>
+
+            <ul>
+                <li>
+                    x265 的失真（块间差异）用均差异平方 Mean Squared Error（MSE）判断：<span class="text-blue-math">$$\frac{1}{xy}\sum_{}^{}{x_{0 \rightarrow Tx}\sum_{}^{}{y_{0 \rightarrow Ty}\ |f(x,y) - f\prime(x,y)|^2}}$$</span>
+                </li>
+
+                <li>
+                    x264 中默认用更快的差异平方和 Sum of Squared Error（SSE），或 Sum of Squared Difference（SSD）:
+                    <span class="text-blue-math">$$\sum_{}^{}{x_{0 \rightarrow Tx}\sum_{}^{}{y_{0 \rightarrow Ty}\ |f(x,y) - f\prime(x,y)|^2}}$$</span>
+                </li>
+
+                <li>
+                    x264 中还可选用画质优先的高频加权总差方/噪声加权总差异平方 Noise SSE：
+                    <span class="text-blue-math">$$\sum_{}^{}{x_{0 \rightarrow Tx}\sum_{}^{}{y_{0 \rightarrow Ty}\ \left| \left\lbrack N(x,y) - \ N\prime(x,y) \right\rbrack \cdot fgo \right| + |f(x,y) - f\prime(x,y)|^2}}$$</span>
+                </li>
+                    <li class="text-gray-side">
+                        <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-smaller">
+                            <munder>
+                                <mrow>
+                                    <mo> &#x2211; <!-- n-ary summation --> </mo>
+                                </mrow>
+                                <mrow>
+                                    <msub>
+                                        <mrow>
+                                            <mi> x </mi>
+                                        </mrow>
+                                        <mrow>
+                                            <mn> 0 </mn>
+                                        </mrow>
+                                    </msub>
+                                    <mo> &#x2192; <!-- right arrow --> </mo>
+                                    <msub>
+                                        <mrow>
+                                            <mi> T </mi>
+                                        </mrow>
+                                        <mrow>
+                                            <mi> x </mi>
+                                        </mrow>
+                                    </msub>
+                                </mrow>
+                            </munder>
+                            <munder>
+                                <mrow>
+                                    <mo> &#x2211; <!-- n-ary summation --> </mo>
+                                </mrow>
+                                <mrow>
+                                    <msub>
+                                        <mrow>
+                                            <mi> y </mi>
+                                        </mrow>
+                                        <mrow>
+                                            <mn> 0 </mn>
+                                        </mrow>
+                                    </msub>
+                                    <mo> &#x2192; <!-- right arrow --> </mo><mi> T </mi><mi> y </mi>
+                                </mrow>
+                            </munder>
+                        </math>
+                        分别指块宽，块高的求和范围
+                    </li>
+
+                    <li class="text-gray-side">
+                        <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-smaller">
+                            <mi> x </mi><mo>,</mo><mi> y </mi>
+                        </math>
+                        代表块中各个像素值的坐标
+                    </li>
+
+                    <li class="text-gray-side">| | 求绝对值以正常求和</li>
+            </ul>
+
+            <h4>优化策略 - 随量化强度增加而增加</h4>
+            <div class="align-items-center">
+                <img src="files/image29.jpg" alt="RDO Settings 1" class="" >
+                <p class="text-gray-side">图：左 1 源有微量边缘失真以及颗粒。2~4=高量化导致块失真，worm，蚊噪等。5 对应失真用 psy-rd(oq)，(limit)sao，deblock，aq，降 crf 抑制</p>
+                <img src="files/image30.png" alt="RDO Settings 2" class="img-medium" >
+            </div>
+
+            <h4>优化模式决策</h4>
+            <pre><code>
+<b>--dynamic-rd</b>&lt;整数0~4，<span class="text-red-emph">需rd小于5</span>&gt;给VBR限码画面调高rd止损。1~4为rd搜索面积倍数，大则慢
+<b>--splitrd-skip</b>&lt;开关，默认关&gt;在“所有当前CU分割致失真程度之总和”大于“同帧CU分割致失真程度之总和”时，不独立计算rd值以加速
+<b>--qp-adaptation-range</b>&lt;浮点1~6，默认1&gt;psy参数改动qp的最大范围，宏观影响大，片源含明显边缘失真时会强化失真
+<b>--psy-rd</b>&lt;浮点偏移值0~50，，默认2.0，<span class="text-red-emph">需rd 3，加psy-rdoq后构成x264 psy-rd参数</span>&gt;心理视觉优化往高影响量化块的能量J，使md偏好保留细节的程度，值随分辨率增加而增加，随片源边缘失真增加而降低，并随量化强度增加而增加
+    · <span class="text-blue-emph">0~0.1</span>片源有明显边缘失真（和细节同是高频信号），优化则降低画质
+    · <span class="text-blue-emph">0.2</span>高压或片源暗场有一点点边缘失真
+    · <span class="text-blue-emph">0.5~2</span>根据要保留的边缘峭度以及文件大小，VBR模式的峰值码率决定
+    · <span class="text-blue-emph">1.5~2.5</span>至少2k的录像片源，根据分辨率和边缘失真程度决定
+<b>--rd-refine</b>&lt;开关，<span class="text-red-emph">需rd 5，见下图斜面上出现的随机块失真</span>&gt;率失真优化分析完成帧内搜索cu的最佳量化和分块结果，耗时换压缩率和画质。x264中直接嵌入subme 8中，还多一个最优动态向量分析
+            </code></pre>
+            <div class="align-items-center">
+                <img src="files/image31.jpg" alt="RD Refine Random Distortion" class="img-small" >
+            </div>
+
+            <h4>优化量化</h4>
+            <pre><code>
+<b>--rdoq-level</b>&lt;整数，0~2&gt;abr/crf分配量化值的宏观调控强度，大则慢，0则关
+    · <span class="text-blue-emph">1</span>逐分块进行率失真优化量化，psy-rdoq开启则倾向低量化
+    · <span class="text-blue-emph">2</span>对比4x4块高频信息/残差是否有利于整个编码组(CTU内分块)画质，同时对所有系子进行同类分析，大量减少4×4块，降低psy-rdoq效果，适合一般及高压缩用途
+<b>--psy-rdoq</b>&lt;浮点0~50，默认0关&gt;心理视觉往高影响量化块的能量J，改量化偏好为保留细节。值随分辨率增加而增加，随片源边缘失真增加而降低，并随量化强度增加而增加
+    · <span class="text-blue-emph">0~0.1</span>片源有明显边缘失真（和细节同是高频信号），优化则降低画质
+    · <span class="text-blue-emph">2.3~2.8</span>电脑录屏，中低成本动漫等几乎没有动态背景变化的情况
+    · <span class="text-blue-emph">3~4.8</span>分辨率从1280x720到3840x2160的高成本电影动漫，要求片源无明显边缘失真
+    · <span class="text-blue-emph">7~12+psy-rd 3，tskip，tskip-fast，ipratio 1.2，no-sao</span>留噪。保的细节面积越小越高
+<b>--nr-intra --nr-inter</b>&lt;整数0关~2000，默认0，<a href="http://forum.doom9.net/showthread.php?s=81cd7c04a679401fe7c4e689e67eaeb8&p=1947571#post1947571">1920x1080不建议超250</a>&gt;基于MC结果给量化前变换完的i帧降噪。nr-intra不如第三方降噪滤镜。但帧间/时域上降噪的nr-inter可以拉近参考源和参考帧的差距/残差，实现在rc-grain上进一步稳定qp值波动，且在噪点源中相比模糊掉纹理更容易破坏噪点,结果类似低配双阈滤镜
+            </code></pre>
+
+            <h4>峰值信噪比 Peak signal-noise ratio PSNR</h4>
+            <p>不只是人眼对光压的感知，包括痛觉冷热音量等强度的感知皆呈对数㏒状，因此对数被用于统计信号强度，如突出重点范围变化的分贝 dB 表示。信噪比 SNR 即「信号÷噪声」，用于测量处理传输变换信号的有效信息所剩。使用㏒统计还有在坐标系中撇开信噪比太好太差数据（指数增长缩放成线性增长）的效果。</p>
+            <p class="text-blue-math">$$PSNR_{8bit} = 10 \log_{10} \left( \frac{2^{8bit}-1}{MSE} \right) \, \text{(dB)}$$</p>
+            </p>
+
+            <ul class="text-gray-side">
+                <li>PSNR 用来判断编码前后的画面差距，此处画面差异记为均差异平方 MSE</li>
+                <li>右侧减 1 代表从 0 开始数，㏒<sub>10</sub>对齐十进制</li>
+            </ul>
+
+            <h2>去块滤镜</h2>
+            <p>修复高量化时宏块间出现明显横纵割痕瑕疵的平滑滤镜。编码器内去块利用了之前搜索到的信息而相比外部滤镜误判更少，但大体上就是检查 1 像素宽，且周围没有较大高度/像素值变化的横纵边缘，所以误判也不可避免。</p>
+            <p>块失真源自块间不统一的量化程度。而去块手段是平滑滤镜，因此要降低强度才适用于高码视频，动漫，素材录屏等锐利画面。边界强度 Boundary strength（去块力度判断）</p>
+            <div class="align-items-center">
+                <img src="files/image32.png" alt="Deblock detection visualization" class="img-medium" >
+                <img src="files/image33.png" alt="Deblock edge visualization" class="img-medium" >
+                <p class="text-gray-side">图：取最小 8x8 范围（两个 4x4 CU）间的界线举例。</p>
+            </div>
+
+            <ul>
+                <li>平滑 4：a 与 1 皆为帧内块，且边界位于 CTU/宏块间，最强滤镜值</li>
+                <li>平滑 3：a 或 1 皆为帧内块，但边界不在 CTU/宏块间</li>
+                <li>平滑 2：a 与 1 皆非帧内块，含一参考源/已编码系子</li>
+                <li>平滑 1：a 与 1 皆非帧内块，皆无参考源/已编码系子，溯异帧或动态向量相异</li>
+                <li>平滑 0：a 与 1 皆非帧内块，皆无参考源/已编码系子，溯同帧或动态向量相同，滤镜关</li>
+            </ul>
+            <pre><code>
+<b>--deblock</b>&lt;浮点偏移值，平滑强度:搜索精度，默认1:0，推荐0:0，-1:-1，-2:-1&gt;两值于原有强度上增减
+    · 平滑<span class="text-blue-emph">≥1</span>时用以压缩
+    · 平滑<span class="text-blue-emph">-2~-1</span>时略降锐度，适合串流
+    · 平滑<span class="text-blue-emph">2</span>适合锐利视频源，4k电影，游戏录屏。提高码率且会出现块失真
+    · 平滑<span class="text-blue-emph">-3~-2</span>适合高码动画源/桌面录屏。增块失真，但观感还是比1好
+    · 搜索<span class="text-blue-emph">大于2</span>易误判；<span class="text-blue-emph">小于1</span>会遗漏。建议保持<span class="text-blue-emph">0~-1</span>，除非qp大于26时设<span class="text-blue-emph">1</span>
+            </code></pre>
+
+            <h2>环路滤波 - 取样迁就偏移</h2>
+            <p>Sample adaptive offset 滤镜。逐 CTB 划分。界偏移 EO 缓解纹理边缘因「高频波形的遮盖因强量化或去块丢失」的问题。可能分以下几步。算法略像帧内搜索的趋平滤镜。适合修复纹理量化出振铃的损失。关闭则遮不住平面的蠕虫失真</p>
+            <ul class="text-gray-side">
+                <li>CTB 内据分块结果建立一批 3x3 像素的采样域</li>
+                <li>由 3x3 排列规律找出三个像素排成一排的横 0，纵 1，左倾 2 和右倾 3 四种可能</li>
+                <li>中心像素值要符合小于/大于旁像素且等于任意一边像素的条件，否则不是边界</li>
+                <li>确保 3x3 间的边界连续性，实现边界验证和性能优化 (?)</li>
+            </ul>
+            <p>带偏移 BO 是对比源 + 补偿编码差异的平面 CTB 滤镜，适合补偿平面，斜面和曲面渐变 CU，以及修复平面量化的损失。方法是：</p>
+            <ol>
+                <li>划分 32 条色深带来均分当前色深下的像素值</li>
+                <li>分为 24~31，0~7 的明带，暗带; 以及 8~23 的中间带</li>
+                <li>限制最大只能补偿 4 条相连的色深带，以确保 CTB 中色深差异不会大到触发 EO 同时涵盖足够大的斜面渐变</li>
+                <li>率失真优化找出所谓的补偿值：每条色深带的偏移值</li>
+            </ol>
+            <ul class="text-gray-side">
+                <li>共有 0=无，1=横 E0，2=纵 EO，3=左倾 EO，4=右倾 EO，5=中间带，6=明暗带，共 7 种补偿方案</li>
+                <li>共有 0=无，1=Y，2=Y+Cr，3=Y+Cb，4=YCbCr，5=Cr，6=Cb，7=CbCr 种平面补偿开关</li>
+            </ul>
+            <p>融合 Merge 将相邻两个 CTB 的 SAO 信息 (补偿方案，平面补偿开关等) 根据参数决定直接用上/左块，还是对比像素趋势更接近哪个。和选择 BO，EO 具体的偏移值一样由率失真优化决定</p>
+            
+
         </div>
 
         <!-- Footer -->
