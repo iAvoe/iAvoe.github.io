@@ -870,9 +870,9 @@ aq-strength-edge偏给暗场的程度</code></pre>
             <p>x264 中默认用更快的差异平方和 Sum of Squared Error（SSE），或Sum of Squared Difference（SSD）:</p>
             <span class="text-blue-math">$$\sum_{}^{}{x_{0 \rightarrow Tx}\sum_{}^{}{y_{0 \rightarrow Ty}\ |f(x,y) - f\prime(x,y)|^2}}$$</span>
             <p>x264 中还可选用画质优先的高频加权总差方/噪声加权总差异平方 Noise SSE：</p>
-            <span class="text-blue-math">$$\sum_{x_{0 \rightarrow Tx}}^{}{\sum_{y_{0 \rightarrow Ty}}^{}{\ \left| \left\lbrack N - \ N\prime \right\rbrack \cdot fgo \right| + |f(x,y) - f\prime(x,y)|^2}}$$</span>
+            <span class="text-blue-math">$$\sum_{x_{0 \rightarrow Tx}}^{}{\sum_{y_{0 \rightarrow Ty}}^{}{\ \left| \left\lbrack N(x,y) - \ N\prime(x,y) \right\rbrack \cdot fgo \right| + |f(x,y) - f\prime(x,y)|^2}}$$</span>
             <p>其中 N/Noise 代表块的噪点强度，在一个2x2的区间下为四个像素两两加减得到，因为噪点和其它高频信号一样都是突兀的像素值：</p>
-            <span class="text-blue-math">$$|f(x,y) - f(x+1,y) + f(x+1,y+1) - f(x,y+1)|$$</span>
+            <span class="text-blue-math">$$N(x,y)=|f(x,y)-f(x+1,y)+f(x+1,y+1)-f(x,y+1)|$$</span>
             <ul>
                 <li class="text-gray-side">
                     <span class="text-blue-math">\(\sum_{}^{}{x_{0 \rightarrow Tx}\sum_{}^{}{y_{0 \rightarrow Ty}}}\)</span>
@@ -945,7 +945,7 @@ abr/crf分配量化值的宏观调控强度，大则慢，0则关
                 <p class="text-gray-side">图：取最小8x8范围（两个4x4 CU）间的界线举例。</p>
             </div>
 
-            <ul>
+            <ul class="text-smaller">
                 <li>平滑4：a与1皆为帧内块，且边界位于CTU/宏块间，最强滤镜值</li>
                 <li>平滑3：a或1皆为帧内块，但边界不在CTU/宏块间</li>
                 <li>平滑2：a与1皆非帧内块，含一参考源/已编码系子</li>
