@@ -23,7 +23,7 @@
     <li>辅以<a href="https://github.com/max32002/swei-gothic/blob/master">狮尾圆体Light</a>（中文）附件</li>
 </ul>
 <ul>
-    <li>公式段的字体为传统KaTeX Math（英文）附件（因为安卓不自带）</li>
+    <li>公式段的字体为<a href="https://github.com/KaTeX/katex-fonts/blob/master/">KaTeX Math Regular</a>（英文）附件（适配安卓）</li>
     <li>辅以Cochin，Georgia，Times，Times New Roman，serif</li>
 </ul>
 
