@@ -25,13 +25,14 @@ MathJax = {
  * Change main container class on the fly (window Width > window Height)
  * This only changes style, not class, otherwise it would break class detection on image click re-formating
  */
-window.addEventListener('resize', ()=>{
+function switchPlatform() {
     if (window.innerWidth <= window.innerHeight) { // Mobile / Vertical Layout
         document.querySelector('div').setAttribute("class", "container-mobile rounded-9 border-main");
         // Decrease mobile font size
-        document.body.style.fontSize = "0.95rem";
+        document.body.style.fontSize = "0.8rem";
     }
     else { // Desktop / Horizontal Layout
+        document.body.style.fontSize = "1rem";
         document.querySelector('div').setAttribute("class", "container-desktop rounded-9 border-main");
         // Increase line height for Desktop
         mainPara = document.querySelectorAll('p:not([class])');
@@ -39,7 +40,9 @@ window.addEventListener('resize', ()=>{
             mainPara[i].style.lineHeight = "2.5rem";
         }
     }
-});
+}
+window.addEventListener('resize', switchPlatform);
+switchPlatform(); // Call this function onload as well
 
 /**
  * Click image to enlarge - up to 3 digits

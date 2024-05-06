@@ -95,7 +95,7 @@
     --font-style-math: 'KaTeX Math', Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
-/* High-level inherited formatting*/
+/* High-level inherited formatting */
 body {
     font-family: var(--font-style-main);
     background-color: #dee2e6;
