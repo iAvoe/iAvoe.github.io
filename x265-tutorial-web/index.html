@@ -10,22 +10,22 @@
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/span/bootstrap-icons.css" crossorigin="anonymous">
         -->
         <!-- Basic MathJax Javascript -->
-        <script src="./files/mathJax3-tex-svg.js"></script>
+        <script src="./files/mathJax3-tex-svg.js" defer></script>
         
         <!-- JavaScript Codes -->
         <script src="./files/tutorial.js" defer></script>
 
-        <!-- Custom CSS Codes -->
+        <!-- Custom CSS Codes <link rel="stylesheet" href="./files/desktopContainer.css"> -->
         <link rel="stylesheet" href="./files/tutorial.css">
+        
 
         <title>x265 教程 HTML 完整版</title>
 	</head>
 	<body class="text-gray-main">
-        <div class="container p-3 mt-3 rounded-9 border-main">
+        <div class="container-mobile rounded-9 border-main">
             <h1>x265 教程<span class="text-blue-emph"> HTML 完整版</span></h1>
-            <p class="text-gray-side">欢迎阅读！若有什么不会的可以加群<a href='https://jq.qq.com/?_wv=1027&k=5YJFXyf'>691892901</a>。本教程仅算盲人摸象的业余分析，仅具备业余参考价值，入门先看x264视频压缩教程综合版。手头需要编码压制不妨搭配急用版教程</p>
-            <p class="text-gray-side text-red-emph">点击图片即可更改桌面和移动端的适配排版</p>
-
+            <p>欢迎阅读！若有什么不会的可以加群<a href='https://jq.qq.com/?_wv=1027&k=5YJFXyf'>691892901</a>。本教程仅算盲人摸象的业余分析，仅具备业余参考价值。入门先看x264视频压缩教程综合版，手头需要编码压制不妨搭配急用版教程。<span class="text-red-emph">点击图片即可更改桌面和移动端的适配排版</span>。</p>
+            
             <h4 class="mb-0">ffmpeg，VapourSynth，avs2yuv 传递参数</h4>
             <pre><code>
 ffmpeg -i &lt;源&gt; -an -f yuv4mpegpipe -strict unofficial - | x265 --y4m - --output
@@ -51,7 +51,7 @@ x265.exe [命令行] 2> [桌面路径]\报错.txt
             </code></pre>
 
             <h2>分块</h2>
-            <p>hevc中，帧下结构按面积大小分为<span class="text-blue-emph">帧 → 瓦 tile → 条带 slice → 条带分段 ss → ctu 树单元 → cu 单元</span>.</p>
+            <p>hevc中，帧下结构按面积大小分为<span class="text-blue-emph">帧 → 瓦 tile → 条带 slice → 条带分段 ss → ctu 树单元 → cu 单元</span>。</p>
             <p>cu，cb 由同帧的 ctu 经动态搜索 ME 与运动补偿 MC 隔离所得。其 U/unit 代表 YCbCr 整体块；B/block 则单指 Y，Cb 或 Cr 块，区分亮度色度。ipcm-cu 代表跳过 MEMC，直达环路滤波的「帧内编码 pcm 波形 cu」intra pulse code modulation cu，因为“块”是一串像素值的波形，只是用元数据“换行”到二维而已。</p>
             <div class="align-items-center">
                 <img src="files/image1.png" alt="Coding Tree Unit" class="img-medium" >
@@ -913,7 +913,7 @@ aq-strength-edge偏给暗场的程度
                 <li><span class="text-blue-math">\(\lambda &gt; 0\)</span>则开销大于失真——保画质收益大于压缩收益，应该保画质</li>
             </ul>
             <div class="align-items-center">
-                <img src="files/image26.png" alt="x264 JM RDO Lambda" class="" >
+                <img src="files/image26.png" alt="x264 JM RDO Lambda" class="img-medium" >
                 <img src="files/image27.png" alt="RDO Lambda Slopes" class="img-medium" >
                 <p class="text-gray-side">图：率失真优化中λ的斜度变化与效果</p>
                 <img src="files/image28.png" alt="RDO qStep Chart" class="img-medium" >
@@ -1079,14 +1079,14 @@ sao分析跳过视频右边和下边边界
                 <p class="text-gray-side">图: 编码即逐字按出字概率缩窄概率条到最后一个字的出字概率, 取上/下区间为编码结果, 解码照概率位置(蓝线)的落点反推实现.</p>
             </div>
 
-            <img src="files/image37.png" alt="Double Action Ball Point Pen" class="" >
-            <img src="files/image38.png" alt="Finite State Machine on Double Action Pen" class="" >
-            <img src="files/image39.png" alt="Finite State Machine Context Adaptation" class="" >
-            <img src="files/image40.png" alt="Golomb Rice Coding k stands for Klimaka" class="" >
-            <img src="files/image41.png" alt="Run Length Coding Demonstration" class="" >
-            <img src="files/image42.png" alt="Soft Decision Quantization Trellis Chart" class="" >
-            <img src="files/image43.png" alt="Metadata for VUI HDR Info 1" class="" >
-            <img src="files/image44.png" alt="Metadata for VUI HDR Info 2" class="" >
+            <img src="files/image37.png" alt="Double Action Ball Point Pen" class="img-small" >
+            <img src="files/image38.png" alt="Finite State Machine on Double Action Pen" class="img-medium" >
+            <img src="files/image39.png" alt="Finite State Machine Context Adaptation" class="img-medium" >
+            <img src="files/image40.png" alt="Golomb Rice Coding k stands for Klimaka" class="img-medium" >
+            <img src="files/image41.png" alt="Run Length Coding Demonstration" class="img-medium" >
+            <img src="files/image42.png" alt="Soft Decision Quantization Trellis Chart" class="img-medium" >
+            <img src="files/image43.png" alt="Metadata for VUI HDR Info 1" class="img-medium" >
+            <img src="files/image44.png" alt="Metadata for VUI HDR Info 2" class="img-medium" >
         </div>
 
         <!-- Footer -->
