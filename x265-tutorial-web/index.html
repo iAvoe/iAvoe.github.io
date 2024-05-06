@@ -86,96 +86,11 @@ x265.exe [命令行] 2> [桌面路径]\报错.txt
                     <h4>一维傅里叶变换 1D Fourier Transform</h4>
                     <p>给出与原信号波形等高，从最长的频率周期开始不断缩窄（周期增加）并根据源信号调整相位的参考余弦。在参考余弦波变化的过程中，记下两条波形吻合度变化的曲线-不同波形周期的振幅，得频域信号。反过来将频域所对应的波形加回去就是逆变换。为将源波形中反相（上下颠倒）的余弦也考虑在内，所以计算过程含取立方转正。</p>
                     <p>
-                        「不断缩窄的参考余弦」可用
-                        <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math">
-                            <mi> cos </mi>
-                            <mrow>
-                                <mo> ( </mo><mi> x </mi>
-                                <mfrac>
-                                    <mrow>
-                                        <mn> 2 </mn>
-                                        <mi> &#x03C0; <!-- greek pi --> </mi>
-                                    </mrow>
-                                    <mrow>
-                                        <mi> T </mi>
-                                    </mrow>
-                                </mfrac>
-                                <mo> ) </mo>
-                            </mrow>
-                        </math>
-                        表示，以及复数用
-                        <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math">
-                            <mi> cos </mi>
-                            <mrow>
-                                <mo> ( </mo><mi> x </mi><mo> ) </mo>
-                            </mrow>
-                            <mo> + </mo><mi> sin </mi>
-                            <mrow>
-                                <mo> ( </mo><mi> i </mi><mi> x </mi><mo> ) </mo>
-                            </mrow>
-                        </math>
-                        表示，相位可记为
-                        <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math">
-                            <msqrt>
-                                <mi> F </mi><mi> T </mi>
-                                <msup>
-                                    <mrow>
-                                        <mrow>
-                                            <mo> ( </mo><mi> x </mi><mo> ) </mo>
-                                        </mrow>
-                                    </mrow>
-                                    <mrow>
-                                        <mn> 2 </mn>
-                                    </mrow>
-                                </msup>
-                                <mo> + </mo><mi> i </mi><mi> F </mi><mi> T </mi>
-                                <msup>
-                                    <mrow>
-                                        <mrow>
-                                            <mo> ( </mo><mi> x </mi><mo> ) </mo>
-                                        </mrow>
-                                    </mrow>
-                                    <mrow>
-                                        <mn> 2 </mn>
-                                    </mrow>
-                                </msup>
-                            </msqrt>
-                        </math>
-                        以及复数用
-                        <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math">
-                            <mi> arctan </mi><mn> 2 </mn>
-                            <mrow>
-                                <mo> ( </mo><mi> i </mi><mi> F </mi><mi> T </mi>
-                                <mrow>
-                                    <mo> ( </mo><mi> x </mi><mo> ) </mo>
-                                </mrow>
-                                <mo> , </mo><mi> F </mi><mi> T </mi>
-                                <mrow>
-                                    <mo> ( </mo><mi> x </mi><mo> ) </mo>
-                                </mrow>
-                                <mo> ) </mo>
-                            </mrow>
-                        </math>
-                        ，表示频域点的亮度和位移（二维变换下是旋角）。
-                        <br>
-                        <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math">
-                            <mi> arctan </mi><mn> 2 </mn>
-                            <mrow>
-                                <mo> ( </mo><mi> y </mi><mo> , </mo><mi> x </mi><mo> ) </mo>
-                            </mrow>
-                        </math>
-                        代表二轴坐标系统计一圈 360°（2π）的旋角，几何坐标系中同理的
-                        <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math">
-                            <msup>
-                                <mrow>
-                                    <mi> tan </mi>
-                                </mrow>
-                                <mrow>
-                                    <mo> - </mo><mn> 1 </mn>
-                                </mrow>
-                            </msup>
-                        </math>
-                        超过180°（π）会归零而不用。详见<a href="https://www.desmos.com/calculator/qpnz9celzf">desmos例1</a>，<a href="https://www.desmos.com/calculator/ywxqicajbv">desmos例2</a>，<a href="https://www.youtube.com/watch?v=spUNpyF58BY">3b1b视频科普</a>以及<a href="https://www.youtube.com/watch?v=tEzgtbnbXgQ">Computer Vision 公开课</a>。
+                        「不断缩窄的参考余弦」可用<span class="text-blue-math">\(\cos\left(\frac{2\pi}{T}\right)\)</span>表示，以及复数用<span class="text-blue-math">\(cos(x)+isin(x)\)</span>表示；相位可记为<span class="text-blue-math">\(\text{atan2}\left(\text{iFT}(x),\text{FT}(x)\right)\)</span>以及复数用<span class="text-blue-math">\(\sqrt{(FT(x)^2 + iFT(x)^2)}\)</span>，表示频域点的亮度和位移（二维变换下是旋角）。
+                    </p>
+                    <p>
+                        <span class="text-blue-math">\(\text{atan2}(y,x)\)</span>
+                        代表二轴坐标系统计一圈 360°（2π）的旋角，几何坐标系中同理的<span class="text-blue-math">\(\tan^{-1}\)</span>超过180°（π）会归零而不用。详见<a href="https://www.desmos.com/calculator/qpnz9celzf">desmos例1</a>，<a href="https://www.desmos.com/calculator/ywxqicajbv">desmos例2</a>，<a href="https://www.youtube.com/watch?v=spUNpyF58BY">3b1b视频科普</a>以及<a href="https://www.youtube.com/watch?v=tEzgtbnbXgQ">Computer Vision 公开课</a>。
                     </p>
                     <h4>二维傅里叶变换2D-FT</h4>
                     <p>宽高上单拆出线来分别进行 1DFT，以双求和/双积分 ΣΣ/∫∫ 整合。在频域中相当于每个像素的变换结果相加或干涉。亮则振幅大，距中心远则频率高。强在可编辑性，可以消除打印喷头，抖动等均匀噪声。</p>
@@ -225,22 +140,11 @@ x265.exe [命令行] 2> [桌面路径]\报错.txt
     · me umh-star设<span class="text-blue-emph">≥32</span>
 <b>--no-temporal-mvp</b>&lt;开关&gt;关P-B条带的动态搜索，除直播外不推荐
 <b>--hme-search</b>&lt;hex/umh/star/esa/full，<span class="text-red-emph">关me</span>&gt;三份异分辨率原画分别查找宏观到微观的搜索动态信息
-<b>--hme-range</b>&lt;三整数，<span class="text-red-emph">需hme-search</span>，推荐默认<span class="text-blue-emph">16,32,48</span>&gt;对应<math xmlns='http://www.w3.org/1998/Math/MathML'><mfrac><mrow><mn> 1 </mn></mrow><mrow><mn> 16 </mn></mrow></mfrac></math>，¼和全分辨率三画面
+<b>--hme-range</b>&lt;三整数，<span class="text-red-emph">需hme-search</span>，推荐默认<span class="text-blue-emph">16,32,48</span>&gt;对应1/16，¼和全分辨率三画面
             </code></pre>
             
             <h2>帧间-子像素运动补偿</h2>
-            <p>动态预测 ME 除了与帧内编码后的帧做差（以便推演P/B/I帧，见x264教程）以外，还被动态补偿 MC 以「允动画之移，拦静画所变」的原理消除如噪点之类导致的动态信息误判，同时将帧间矢量表中动态矢量的精度提高到
-            <math xmlns='http://www.w3.org/1998/Math/MathML'>
-                <mfrac>
-                    <mrow>
-                        <mn> 1 </mn>
-                    </mrow>
-                    <mrow>
-                        <mn> 4 </mn>
-                    </mrow>
-                </mfrac>
-            </math>
-            像素以修复「动态预测因精度低导致细节损失」的画面错误。</p>
+            <p>动态预测 ME 除了与帧内编码后的帧做差（以便推演P/B/I帧，见x264教程）以外，还被动态补偿 MC 以「允动画之移，拦静画所变」的原理消除如噪点之类导致的动态信息误判，同时将帧间矢量表中动态矢量的精度提高到¼像素以修复「动态预测因精度低导致细节损失」的画面错误。</p>
             <p>大体上，补偿过程是用帧内编码所得的“粗加工PU”与源视频对应的块做差，使用有限冲激响应滤镜 Finite impulse response (FIR) filter 放大。此处指 x264-6tap；x265-8tap，7tap 和 4tap 滤镜。放大后用 SATD 对准动态矢量，得“精加工PU”。</p>
             <div class="row">
                 <div id="LR-UD-005" class="col-8 align-items-center">
@@ -292,30 +196,7 @@ x265.exe [命令行] 2> [桌面路径]\报错.txt
                 <img src="files/image9.png" alt="hpel qpel interpolation" id="LR-UD-006" class="img-small img-right col-2 mb-auto" >
             </div>
             <p class="text-gray-side mt-0">表：x264/5实现h~qpel插值计算（实现了浮点→整数变量的程序优化）</p>
-            <p class="text-gray-side mt-0">图：此“子像素”特指是放大出的half-pixel(hpel)
-            <math xmlns='http://www.w3.org/1998/Math/MathML'>
-                <mfrac>
-                    <mrow>
-                        <mn> 1 </mn>
-                    </mrow>
-                    <mrow>
-                        <mn> 2 </mn>
-                    </mrow>
-                </mfrac>
-            </math>
-            像素，及quarter-pixel(qpel)
-            <math xmlns='http://www.w3.org/1998/Math/MathML'>
-                <mfrac>
-                    <mrow>
-                        <mn> 1 </mn>
-                    </mrow>
-                    <mrow>
-                        <mn> 4 </mn>
-                    </mrow>
-                </mfrac>
-            </math>
-            像素。</p>
-            
+            <p class="text-gray-side mt-0">图：此“子像素”特指是放大出的half-pixel(hpel)½像素，及quarter-pixel(qpel)¼像素。</p>
             
             <div class="align-items-center">
                 <img src="files/image10.png" alt="7tap 8tap interpolation 1" class="img-medium" >
@@ -425,66 +306,9 @@ x265.exe [命令行] 2> [桌面路径]\报错.txt
             </div>
 
             <h4>高斯模糊 Gaussian blur</h4>
-            <p>利用正态分布函数面积不变的特性，通过设定偏差程度 σ 决定正态分布钟的梯度：σ 大则钟扁——滤镜中心分到的权重/面积越被更多分到权/面积的旁像素冲淡模糊掉，设计行业常用。见<a href="https://zh.wikipedia.org/wiki/%E9%AB%98%E6%96%AF%E6%A8%A1%E7%B3%8A">维基百科</a>和<a href="https://www.desmos.com/calculator/jxzs8fz9qr">Desmos互动例</a>。</p>
-            <div class="align-items-center">
-                <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math">
-                    <mi> G </mi>
-                    <mrow>
-                        <mo> ( </mo><mi> x </mi><mo> ) </mo>
-                    </mrow>
-                    <mo> = </mo>
-                    <mfrac>
-                        <mrow>
-                            <mn> 1 </mn>
-                        </mrow>
-                        <mrow>
-                            <msqrt>
-                                <mn> 2 </mn>
-                                <mi> &#x03C0; <!-- greek pi --> </mi>
-                                <msup>
-                                    <mrow>
-                                        <mi> &#x03C3; <!-- greek sigma --> </mi>
-                                    </mrow>
-                                    <mrow>
-                                        <mn> 2 </mn>
-                                    </mrow>
-                                </msup>
-                            </msqrt>
-                        </mrow>
-                    </mfrac>
-                    <msup>
-                        <mrow>
-                            <mi> e </mi>
-                        </mrow>
-                        <mrow>
-                            <mo> - </mo>
-                            <mfrac>
-                                <mrow>
-                                    <msup>
-                                        <mrow>
-                                            <mi> x </mi>
-                                        </mrow>
-                                        <mrow>
-                                            <mn> 2 </mn>
-                                        </mrow>
-                                    </msup>
-                                </mrow>
-                                <mrow>
-                                    <mn> 2 </mn>
-                                    <msup>
-                                        <mrow>
-                                            <mi> &#x03C3; <!-- greek sigma --> </mi>
-                                        </mrow>
-                                        <mrow>
-                                            <mn> 2 </mn>
-                                        </mrow>
-                                    </msup>
-                                </mrow>
-                            </mfrac>
-                        </mrow>
-                    </msup>
-                </math>
-            </div>
+            <p>利用正态分布函数面积不变的特性，通过设定偏差程度 σ 决定正态分布钟型线的梯度：σ 大则钟扁——滤镜中心分到的权重/面积越被更多分到权/面积的旁像素冲淡模糊掉，设计行业常用。见<a href="https://zh.wikipedia.org/wiki/%E9%AB%98%E6%96%AF%E6%A8%A1%E7%B3%8A">维基百科</a>和<a href="https://www.desmos.com/calculator/jxzs8fz9qr">Desmos互动例</a>。2D高斯模糊写作：<span class="text-blue-math">
+                $${\displaystyle G(x,y)={\frac {1}{2\pi \sigma ^{2}}}e^{-{\frac {x^{2}+y^{2}}{2\sigma ^{2}}}}}$$
+            </span></p>
             <h4>中值滤镜median filter</h4>
             <p>和卷积滤镜一样用n×n的滤镜格子逐像素扫图，区别在于滤镜中心会被替换为旁像素的中值。如此一来在扫描窗口任意两端几乎一致的像素值会被识别为线段或边缘，中间的像素值会被同化，而平面上的噪点/颗粒就会被抹除，生成仅有平/斜面和完整线条边缘的“模糊”结果。见<a href="https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%80%BC%E6%BB%A4%E6%B3%A2%E5%99%A8">维基百科</a>。</p>
             <h4>双边滤镜bilateral filter</h4>
@@ -654,21 +478,7 @@ x265.exe [命令行] 2> [桌面路径]\报错.txt
                 
                 <div id="LR-UD-019" class="col-8">
                     <h4>3-tap 有限冲击响应 Finite Impulse Reponse 滤镜</h4>
-                    <p>用横向
-                    <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math">
-                        <mi> t </mi>
-                        <mrow>
-                            <mo> ( </mo><mi> x </mi><mo> ) </mo>
-                        </mrow>
-                    </math>
-                    与纵向
-                    <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math">
-                        <mi> l </mi>
-                        <mrow>
-                            <mo> ( </mo><mi> y </mi><mo> ) </mo>
-                        </mrow>
-                    </math>
-                    各3像素加权平均得预测像素 p，按卷积顺序轮询得到 PU</p>
+                    <p>用横向<span class="text-blue-math">\(t(x)\)</span>与纵向<span class="text-blue-math">\(l(y)\)</span>各3像素加权平均得预测像素 p，按卷积顺序轮询得到 PU</p>
                     <p class="text-gray-side mt-0">图：3tap FIR滤镜。</p>
                     <p>预处理后，用趋平，夹角，或 DC 模式初步编码 PB 到 CB。</p>
                 </div>
@@ -676,102 +486,33 @@ x265.exe [命令行] 2> [桌面路径]\报错.txt
 
                 <h4>趋平模式Planar</h4>
                 <div id="LR-UD-021" class="col-8">
-                    <p>用双线性插值 Bi-lerp，让左-上过渡为右-下平面。由<span class="text-blue-math"><span class="text-blue-pure">底β</span>×<span class="text-blue-pure">高α</span>+<span class="text-red-pure">底α</span>×<span class="text-red-pure">高β</span>=<span class="text-green-pure">h</span>×<span class="text-green-pure">底γ</span></span>的关系得过渡线<math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math">
-                        <mi> h </mi>
-                    </math>
-                    ，
-                    <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math">
-                        <mi> t </mi>
-                        <mrow>
-                            <mo> ( </mo><mi> x </mi><mo> , </mo><mi> y </mi><mo> ) </mo>
-                        </mrow>
-                    </math>
-                    再做一遍得过渡线
-                    <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math">
-                        <mi> v </mi>
-                        <mrow>
-                            <mo> ( </mo><mi> x </mi><mo> , </mo><mi> y </mi><mo> ) </mo>
-                        </mrow>
-                        <mo> , </mo><mi> h </mi>
-                        <mrow>
-                            <mo> ( </mo><mi> x </mi><mo> , </mo><mi> y </mi><mo> ) </mo>
-                        </mrow>
-                    </math>
-                    ；
-                        <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math">
-                            <mi> v </mi>
-                            <mrow>
-                                <mo> ( </mo><mi> x </mi><mo> , </mo><mi> y </mi><mo> ) </mo>
-                            </mrow>
-                        </math>
-                    取平均得预测像素
-                    <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math">
-                        <mi> p </mi>
-                    </math>
-                    。</p>
+                    <p>
+                        用双线性插值 Bi-lerp，让左-上过渡为右-下平面。由
+                        <span class="text-blue-math">
+                            <span class="text-blue-pure">底β</span>
+                            ×
+                            <span class="text-blue-pure">高α</span>
+                            +
+                            <span class="text-red-pure">底α</span>
+                            ×
+                            <span class="text-red-pure">高β</span>
+                            =
+                            <span class="text-green-pure">h</span>
+                            ×
+                            <span class="text-green-pure">底γ</span>
+                        </span>
+                        的关系从<span class="text-blue-math">\(l(y)\)</span>得过渡线<span class="text-blue-math">\(h\)</span>，再做<span class="text-blue-math">\(t(x)\)</span>得过渡线<span class="text-blue-math">\(v\)</span>，而所有过渡线连起来，每个预测的像素点取平均就完成了趋平插值。
+                    </p>
                     <p class="text-gray-side mt-0">图：得到一个平均预测像素p(x,y)的过程。</p>
                 </div>
-                <img src="files/image20.png" alt="Planar Intra Coding Mode" id="LR-UD-022" class="img-small img-right col-4 mb-auto" >
+                <img src="files/image20.png" alt="Planar Intra Coding Mode" id="LR-UD-022" class="img-medium img-right col-4 mb-auto" >
 
                 <h4>夹角模式 Direct（35种）</h4>
-                <div id="LR-UD-023" class="col-8">
-                    <p>将渐变（斜面）PB 无损压缩为编码块 CB 中全部画面与参考源共角的夹角
-                        <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math">
-                            <mi> &#x03B8; <!-- greek theta --> </mi>
-                        </math>
-                        拓补结构。通过穷举所有
-                        <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math">
-                            <mi> p </mi>
-                            <mrow>
-                                <mo> ( </mo><mi> x </mi><mo> , </mo><mi> y </mi><mo> ) </mo>
-                            </mrow>
-                        </math>
-                        的夹角以尝试对齐上方横向参考源
-                        <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math">
-                            <mi> t </mi><mo> ( </mo><mi> x </mi><mo> ) </mo>
-                        </math>
-                        ，或左侧纵向参考源
-                        <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math">
-                            <mi> l </mi><mo> ( </mo><mi> y </mi><mo> ) </mo>
-                        </math>
-                        中差异最小的点
-                        <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math">
-                            <mi> t </mi>
-                            <mrow>
-                                <mo> ( </mo><mi> x </mi><mo> &#x00B1; <!-- plus-minus --> </mo><mi> n </mi><mo> ) </mo>
-                            </mrow>
-                        </math>
-                    或纵向的
-                    <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math">
-                        <mi> l </mi>
-                        <mrow>
-                            <mo> ( </mo><mi> y </mi><mo> &#x00B1; <!-- plus-minus --> </mo><mi> n </mi><mo> ) </mo>
-                        </mrow>
-                    </math>
-                    构成直角三角。用三角函数
-                    <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math">
-                        <mfrac>
-                            <mrow>
-                                <mi> o </mi><mi> p </mi><mi> p </mi>
-                            </mrow>
-                            <mrow>
-                                <mi> a </mi><mi> d </mi><mi> j </mi>
-                            </mrow>
-                        </mfrac>
-                        <mo> = </mo><mi> tan </mi><mi> &#x03B8; <!-- greek theta --> </mi>
-                    </math>
-                    得预测像素
-                    <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math">
-                        <mi> p </mi>
-                    </math>
-                    的夹角
-                    <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math">
-                        <mi> &#x03B8; <!-- greek theta --> </mi>
-                    </math>
-                    。<span class="text-gray-side mt-0">图：35种共角夹角模式。</span></p>
+                <div id="LR-UD-023" class="col-10">
+                    <p>将渐变（斜面）PB 无损压缩为编码块 CB 中全部画面与参考源共角的夹角<span class="text-blue-math">\(\theta\)</span>拓补结构。通过穷举所有<span class="text-blue-math">\(p(x,y)\)</span>的夹角以尝试对齐上方横向参考源<span class="text-blue-math">\(t(x)\)</span>，或左侧纵向参考源<span class="text-blue-math">\(l(y)\)</span>中差异最小的点<span class="text-blue-math">\(t(x\pm n)\)</span>或纵向的<span class="text-blue-math">\(l(y\pm n)\)</span>构成直角三角。用三角函数<span class="text-blue-math">\(\frac{opp}{adj} = \tan\theta\)</span>得预测像素<span class="text-blue-math">\(p\)</span>的夹角<span class="text-blue-math">\(\theta\)</span>
                 </div>
 
-                <img src="files/image21.png" alt="Directional Coding Modes" id="LR-UD-024" class="img-small img-right col-2 mb-auto" >
+                <img src="files/image21.png" alt="Directional Coding Modes" id="LR-UD-024" class="img-medium img-right col-2 mb-auto" >
                 <div class="align-items-center">
                     <img src="files/image22.png" alt="Directional Angle Algebra" class="img-small" >
                     <p class="text-gray-side mt-0">图：大体的精确夹角测算。见<a href="https://www.elecard.com/page/spatial_intra_prediction_in_hevc">Elecard参考书</a></p>
@@ -1087,9 +828,9 @@ x265.exe --abr-ladder 1440p8000_2160p11000_2160p16000.txt --fps 59.94 --input-de
             </p>
             <p>失真 D 用差异平方和 SSE 或总差异 SAD 判断（SSE多取一步平方，使较大的差异呈指数增长）进而分到更多补偿的码率。拉格朗日值λ源于 qp，即 crf，abr 指定的率失真斜率 slope 区间。qp 越大斜度越小：</p>
             <ul>
-                <li><math xmlns='http://www.w3.org/1998/Math/MathML' class="text-blue-math"><mi> &#x03BB; <!-- greek lambda --> </mi><mo> = </mo><mi> 0 </mi></math>则无斜度，则代价等于失真——码率变而画质不变，宜压缩。</li>
-                <li><span class="text-blue-math">λ</span> 趋0则开销趋失真——适当压缩就不会影响画质</li>
-                <li><span class="text-blue-math">λ &gt; 0</span> 则开销&gt;失真——保画质收益大于压缩收益，应该保画质</li>
+                <li><span class="text-blue-math">\(\lambda=0\)</span>则无斜度，则代价等于失真——码率变而画质不变，宜压缩。</li>
+                <li><span class="text-blue-math">\(\lambda \rightarrow 0\)</span>（趋0）则开销趋失真——适当压缩就不会影响画质</li>
+                <li><span class="text-blue-math">\(\lambda &gt; 0\)</span>则开销大于失真——保画质收益大于压缩收益，应该保画质</li>
             </ul>
             <div class="align-items-center">
                 <img src="files/image26.png" alt="x264 JM RDO Lambda" class="" >
@@ -1114,59 +855,16 @@ x265.exe --abr-ladder 1440p8000_2160p11000_2160p16000.txt --fps 59.94 --input-de
                     <span class="text-blue-math">$$\sum_{}^{}{x_{0 \rightarrow Tx}\sum_{}^{}{y_{0 \rightarrow Ty}\ \left| \left\lbrack N(x,y) - \ N\prime(x,y) \right\rbrack \cdot fgo \right| + |f(x,y) - f\prime(x,y)|^2}}$$</span>
                 </li>
                     <li class="text-gray-side">
-                        <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-smaller">
-                            <munder>
-                                <mrow>
-                                    <mo> &#x2211; <!-- n-ary summation --> </mo>
-                                </mrow>
-                                <mrow>
-                                    <msub>
-                                        <mrow>
-                                            <mi> x </mi>
-                                        </mrow>
-                                        <mrow>
-                                            <mn> 0 </mn>
-                                        </mrow>
-                                    </msub>
-                                    <mo> &#x2192; <!-- right arrow --> </mo>
-                                    <msub>
-                                        <mrow>
-                                            <mi> T </mi>
-                                        </mrow>
-                                        <mrow>
-                                            <mi> x </mi>
-                                        </mrow>
-                                    </msub>
-                                </mrow>
-                            </munder>
-                            <munder>
-                                <mrow>
-                                    <mo> &#x2211; <!-- n-ary summation --> </mo>
-                                </mrow>
-                                <mrow>
-                                    <msub>
-                                        <mrow>
-                                            <mi> y </mi>
-                                        </mrow>
-                                        <mrow>
-                                            <mn> 0 </mn>
-                                        </mrow>
-                                    </msub>
-                                    <mo> &#x2192; <!-- right arrow --> </mo><mi> T </mi><mi> y </mi>
-                                </mrow>
-                            </munder>
-                        </math>
+                        <span class="text-blue-math">\(\sum_{}^{}{x_{0 \rightarrow Tx}\sum_{}^{}{y_{0 \rightarrow Ty}}}\)</span>
                         分别指块宽，块高的求和范围
                     </li>
 
                     <li class="text-gray-side">
-                        <math xmlns='http://www.w3.org/1998/Math/MathML' class="text-smaller">
-                            <mi> x </mi><mo>,</mo><mi> y </mi>
-                        </math>
+                        <span class="text-blue-math">\(x,y\)</span>
                         代表块中各个像素值的坐标
                     </li>
 
-                    <li class="text-gray-side">| | 求绝对值以正常求和</li>
+                    <li class="text-gray-side"><span class="text-blue-math">| |</span> 求绝对值以正常求和</li>
             </ul>
 
             <h4>优化策略-随量化强度增加而增加</h4>
