@@ -120,7 +120,7 @@ pre { overflow-x: scroll; margin-top: 0; }
     color: rgba(var(--rgb-dark-waterblue), var(--no-opacity)) !important;
 }
 .text-green-link { color: rgba(var(--rgb-light-green), var(--no-opacity)) !important; }
-.text-purple-tbl { color: rgba(var(--rgb-dark-purple), var(--no-opacity)) !important; }
+.text-purple-resv { color: rgba(var(--rgb-dark-purple), var(--no-opacity)) !important; }
 .text-blue-side { color: rgba(var(--rgb-light-blue), var(--no-opacity)) !important; }
 .text-red-side { color: rgba(var(--rgb-light-red), var(--no-opacity)) !important; }
 .text-pink-cnsq { color: rgba(var(--rgb-bright-pink), var(--no-opacity)) !important; }
@@ -135,6 +135,7 @@ pre { overflow-x: scroll; margin-top: 0; }
 .border-main { border: solid 2px var(--hex-light-gray) !important;  }
 .border-top { border-top: 1px solid #dee2e6 !important; }
 .border-left  { border-left: 1px solid #dee2e6 !important; }
+.border-bottom { border-bottom: 1px solid var(--hex-light-grayblue); }
 
 /* Margins and paddings from bootstrap */
 .m-0  { margin: 0 !important; }
@@ -292,6 +293,7 @@ a:active {
 /* Override button fontsize */
 .text-larger { font-size: larger; }
 .text-smaller { font-size: smaller; }
+.text-xs { font-size: x-small; }
 
 /* Creating custom bootstrap css */
 .rounded-9 { border-radius: 0.9rem; }
@@ -341,7 +343,6 @@ table thead { border-bottom: 1.25px solid var(--hex-light-grayblue); }
 .table-fit-container { width: 100%; }
 .t-align-left { text-align: left; }
 .t-align-right { text-align: right; }
-.t-border-bottom { border-bottom: 1px solid var(--hex-light-grayblue); }
 .t-light-gray { background-color: rgba(var(--rgb-lighest-gray), var(--no-opacity)) }
 .t-invert-light {
     background-color: rgba(var(--rgb-light-gray), var(--no-opacity));

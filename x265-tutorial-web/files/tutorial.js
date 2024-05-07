@@ -1,9 +1,6 @@
 /*jshint esversion: 6 */
 /*jslint devel: true */
 /*eslint no-extend-native: ["error", { "exceptions": ["Object"] }]*/
-/**
- * Jia-Cheng Gong (JC) - 000758631, 2024
- */
 var document; // Rectifying 'document not defined'
 var window; // Rectifying 'window not defined'
 if (document !== "undefined") {
@@ -26,6 +23,7 @@ MathJax = {
  * This only changes style, not class, otherwise it would break class detection on image click re-formating
  */
 function switchPlatform() {
+    "use strict";
     if (window.innerWidth <= window.innerHeight) { // Mobile / Vertical Layout
         // Set class for the main container div for Mobile only
         document.querySelector('div').setAttribute("class", "container-mobile rounded-9 border-main");
@@ -35,7 +33,6 @@ function switchPlatform() {
         if (document.getElementsByClassName("table-fit-container align-items-center text-smaller").length > 0) {
             document.getElementsByClassName("table-fit-container align-items-center text-smaller")[0].setAttribute("class", "table-fit-container align-items-center text-xs");
         }
-        
     }
     else { // Desktop / Horizontal Layout
         document.body.style.fontSize = "1rem";
@@ -58,9 +55,9 @@ switchPlatform(); // Call this function onload as well
 /**
  * Click image to enlarge - up to 3 digits
  */
-imgs = document.querySelectorAll('img');
-let LRToUDOrientationID = 0;
+const imgs = document.querySelectorAll('img');
 for (let i=0; i<imgs.length; i++) {
+    let LR_UD_ID = 0;
     imgs[i].addEventListener('click', ()=>{ 
         switch(imgs[i].getAttribute('class')) {
             case 'img-medium':
@@ -76,80 +73,80 @@ for (let i=0; i<imgs.length; i++) {
             case 'img-medium img-right col-4': // Rotation 1 - Medium to Large
                 imgs[i].setAttribute("class", "img-right col-auto");
                 // i.e., Image element id: LR-UD-2, then the same column text block element id: LR-UD-1
-                LRToUDOrientationID = parseInt(imgs[i].id.substr(6, [imgs[i].id.length]));
-                document.getElementById("LR-UD-"+(LRToUDOrientationID-1).toString().padStart(3, '0')).setAttribute("class", "col-auto");
+                LR_UD_ID = parseInt(imgs[i].id.substring(6, [imgs[i].id.length]));
+                document.getElementById("LR-UD-"+(LR_UD_ID-1).toString().padStart(3, '0')).setAttribute("class", "col-auto");
                 break;
             case 'img-right col-auto': // Rotation 2 - Large to Small
                 imgs[i].setAttribute("class", "img-small img-right col-2");
                 // i.e., Image element id: LR-UD-2, then the same column text block element id: LR-UD-1
-                LRToUDOrientationID = parseInt(imgs[i].id.substr(6, [imgs[i].id.length]));
-                document.getElementById("LR-UD-"+(LRToUDOrientationID-1).toString().padStart(3, '0')).setAttribute("class", "col-10");
+                LR_UD_ID = parseInt(imgs[i].id.substring(6, [imgs[i].id.length]));
+                document.getElementById("LR-UD-"+(LR_UD_ID-1).toString().padStart(3, '0')).setAttribute("class", "col-10");
                 break;
             case 'img-small img-right col-2': // Rotation 3 - Smal to Medium
                 imgs[i].setAttribute("class", "img-medium img-right col-4");
                 // i.e., Image element id: LR-UD-2, then the same column text block element id: LR-UD-1
-                LRToUDOrientationID = parseInt(imgs[i].id.substr(6, [imgs[i].id.length]));
-                document.getElementById("LR-UD-"+(LRToUDOrientationID-1).toString().padStart(3, '0')).setAttribute("class", "col-8");
+                LR_UD_ID = parseInt(imgs[i].id.substring(6, [imgs[i].id.length]));
+                document.getElementById("LR-UD-"+(LR_UD_ID-1).toString().padStart(3, '0')).setAttribute("class", "col-8");
                 break;
             // Edge case - Images under row column grid system and auto margin bottom
             case 'img-medium img-right col-4 mb-auto': // Rotation 1 - Medium to Large
                 imgs[i].setAttribute("class", "img-right col-auto mb-auto");
                 // i.e., Image element id: LR-UD-2, then the same column text block element id: LR-UD-1
-                LRToUDOrientationID = parseInt(imgs[i].id.substr(6, [imgs[i].id.length]));
-                document.getElementById("LR-UD-" + (LRToUDOrientationID - 1).toString().padStart(3, '0')).setAttribute("class", "col-auto");
+                LR_UD_ID = parseInt(imgs[i].id.substring(6, [imgs[i].id.length]));
+                document.getElementById("LR-UD-" + (LR_UD_ID - 1).toString().padStart(3, '0')).setAttribute("class", "col-auto");
                 break;
             case 'img-right col-auto mb-auto': // Rotation 2 - Large to Small
                 imgs[i].setAttribute("class", "img-small img-right col-2 mb-auto");
                 // i.e., Image element id: LR-UD-2, then the same column text block element id: LR-UD-1
-                LRToUDOrientationID = parseInt(imgs[i].id.substr(6, [imgs[i].id.length]));
-                document.getElementById("LR-UD-" + (LRToUDOrientationID - 1).toString().padStart(3, '0')).setAttribute("class", "col-10");
+                LR_UD_ID = parseInt(imgs[i].id.substring(6, [imgs[i].id.length]));
+                document.getElementById("LR-UD-" + (LR_UD_ID - 1).toString().padStart(3, '0')).setAttribute("class", "col-10");
                 break;
             case 'img-small img-right col-2 mb-auto': // Rotation 3 - Smal to Medium
                 imgs[i].setAttribute("class", "img-medium img-right col-4 mb-auto");
                 // i.e., Image element id: LR-UD-2, then the same column text block element id: LR-UD-1
-                LRToUDOrientationID = parseInt(imgs[i].id.substr(6, [imgs[i].id.length]));
-                document.getElementById("LR-UD-" + (LRToUDOrientationID - 1).toString().padStart(3, '0')).setAttribute("class", "col-8");
+                LR_UD_ID = parseInt(imgs[i].id.substring(6, [imgs[i].id.length]));
+                document.getElementById("LR-UD-" + (LR_UD_ID - 1).toString().padStart(3, '0')).setAttribute("class", "col-8");
                 break;
             // Edge case - iamges with margin top
             case 'img-medium img-right col-4 mt-3': // Rotation 1 - Medium to Large
                 imgs[i].setAttribute("class", "img-right col-auto mt-3");
                 // i.e., Image element id: LR-UD-2, then the same column text block element id: LR-UD-1
-                LRToUDOrientationID = parseInt(imgs[i].id.substr(6, [imgs[i].id.length]));
-                document.getElementById("LR-UD-"+(LRToUDOrientationID-1).toString().padStart(3, '0')).setAttribute("class", "col-auto");
+                LR_UD_ID = parseInt(imgs[i].id.substring(6, [imgs[i].id.length]));
+                document.getElementById("LR-UD-"+(LR_UD_ID-1).toString().padStart(3, '0')).setAttribute("class", "col-auto");
                 break;
             case 'img-right col-auto mt-3': // Rotation 2 - Large to Small
                 imgs[i].setAttribute("class", "img-small img-right col-2 mt-3");
                 // i.e., Image element id: LR-UD-2, then the same column text block element id: LR-UD-1
-                LRToUDOrientationID = parseInt(imgs[i].id.substr(6, [imgs[i].id.length]));
-                document.getElementById("LR-UD-"+(LRToUDOrientationID-1).toString().padStart(3, '0')).setAttribute("class", "col-10");
+                LR_UD_ID = parseInt(imgs[i].id.substring(6, [imgs[i].id.length]));
+                document.getElementById("LR-UD-"+(LR_UD_ID-1).toString().padStart(3, '0')).setAttribute("class", "col-10");
                 break;
             case 'img-small img-right col-2 mt-3': // Rotation 3 - Small to Medium
                 imgs[i].setAttribute("class", "img-medium img-right col-4 mt-3");
                 // i.e., Image element id: LR-UD-2, then the same column text block element id: LR-UD-1
-                LRToUDOrientationID = parseInt(imgs[i].id.substr(6, [imgs[i].id.length]));
-                document.getElementById("LR-UD-"+(LRToUDOrientationID-1).toString().padStart(3, '0')).setAttribute("class", "col-8");
+                LR_UD_ID = parseInt(imgs[i].id.substring(6, [imgs[i].id.length]));
+                document.getElementById("LR-UD-"+(LR_UD_ID-1).toString().padStart(3, '0')).setAttribute("class", "col-8");
                 break;   
             // Edge case - iamges with margin top and auto margin bottom
             case 'img-medium img-right col-4 mt-3 mb-auto': // Rotation 1 - Medium to Large
                 imgs[i].setAttribute("class", "img-right col-auto mt-3 mb-auto");
                 // i.e., Image element id: LR-UD-2, then the same column text block element id: LR-UD-1
-                LRToUDOrientationID = parseInt(imgs[i].id.substr(6, [imgs[i].id.length]));
-                document.getElementById("LR-UD-" + (LRToUDOrientationID - 1).toString().padStart(3, '0')).setAttribute("class", "col-auto");
+                LR_UD_ID = parseInt(imgs[i].id.substring(6, [imgs[i].id.length]));
+                document.getElementById("LR-UD-" + (LR_UD_ID - 1).toString().padStart(3, '0')).setAttribute("class", "col-auto");
                 break;
             case 'img-right col-auto mt-3 mb-auto': // Rotation 2 - Large to Small
                 imgs[i].setAttribute("class", "img-small img-right col-2 mt-3 mb-auto");
                 // i.e., Image element id: LR-UD-2, then the same column text block element id: LR-UD-1
-                LRToUDOrientationID = parseInt(imgs[i].id.substr(6, [imgs[i].id.length]));
-                document.getElementById("LR-UD-" + (LRToUDOrientationID - 1).toString().padStart(3, '0')).setAttribute("class", "col-10");
+                LR_UD_ID = parseInt(imgs[i].id.substring(6, [imgs[i].id.length]));
+                document.getElementById("LR-UD-" + (LR_UD_ID - 1).toString().padStart(3, '0')).setAttribute("class", "col-10");
                 break;
             case 'img-small img-right col-2 mt-3 mb-auto': // Rotation 3 - Small to Medium
                 imgs[i].setAttribute("class", "img-medium img-right col-4 mt-3 mb-auto");
                 // i.e., Image element id: LR-UD-2, then the same column text block element id: LR-UD-1
-                LRToUDOrientationID = parseInt(imgs[i].id.substr(6, [imgs[i].id.length]));
-                document.getElementById("LR-UD-" + (LRToUDOrientationID - 1).toString().padStart(3, '0')).setAttribute("class", "col-8");
+                LR_UD_ID = parseInt(imgs[i].id.substring(6, [imgs[i].id.length]));
+                document.getElementById("LR-UD-" + (LR_UD_ID - 1).toString().padStart(3, '0')).setAttribute("class", "col-8");
                 break;    
             default:
-                console.log("Click image event switch failed: calculated id "+LRToUDOrientationID);
+                console.log("Click image event switch failed: calculated id "+LR_UD_ID);
                 break;
         }
     }, false);
