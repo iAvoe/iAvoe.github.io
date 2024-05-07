@@ -936,11 +936,11 @@ abr/crf分配量化值的宏观调控强度，大则慢，0则关
             </div>
 
             <ul class="text-smaller">
-                <li>平滑4：a与1皆为帧内块，且边界位于CTU/宏块间，最强滤镜值</li>
-                <li>平滑3：a或1皆为帧内块，但边界不在CTU/宏块间</li>
-                <li>平滑2：a与1皆非帧内块，含一参考源/已编码系子</li>
-                <li>平滑1：a与1皆非帧内块，皆无参考源/已编码系子，溯异帧或动态向量相异</li>
-                <li>平滑0：a与1皆非帧内块，皆无参考源/已编码系子，溯同帧或动态向量相同，滤镜关</li>
+                <li>平滑4：a 与1皆为帧内块，且边界位于 CTU/宏块间，最强滤镜值</li>
+                <li>平滑3：a 或1皆为帧内块，但边界不在 CTU/宏块间</li>
+                <li>平滑2：a 与1皆非帧内块，含一参考源/已编码系子</li>
+                <li>平滑1：a 与1皆非帧内块，皆无参考源/已编码系子，溯异帧或动态向量相异</li>
+                <li>平滑0：a 与1皆非帧内块，皆无参考源/已编码系子，溯同帧或动态向量相同，滤镜关</li>
             </ul>
             <pre><code><b>--deblock</b>&lt;浮点偏移值，平滑强度:搜索精度，默认1:0，推荐0:0，-1:-1，-2:-1&gt;
 两值于原有强度上增减
@@ -3417,7 +3417,19 @@ sao分析跳过视频右边和下边边界
             <p>叫软判决量化是因为此处SSE测了欧几里得距离，相对的硬判决量化为 qp 值所对应的 DCT 除法表。</p>
 
             <h2>SEI 补充与优化消息</h2>
-            <p>Supplemental enhance info 记录每帧的补充信息。主要有正确解码新 GOP 用的缓冲 SEI，解码校正时间戳的 pic timing SEI，让显示主控切边的 SEI，cc 字幕 SEI，HDR-SEI 等等。缓冲 SEI 记录对应 sps 的号；待解码图像缓冲 Coded picture buffer CPB 的延迟安全区等信息；时戳 SEI 记录哪些帧上/下场优先的变化；连帧/三连帧的位置等信息。</p>
+            <p>Supplemental enhance info 记录每帧的补充信息。主要有正确解码新 GOP 用的缓冲 SEI，解码校正时间戳的 pic timing SEI，让显示主控切边的 SEI，cc 字幕 SEI，HDR-SEI 等等。缓冲 SEI 记录对应 SPS 的号；待解码图像缓冲 Coded picture buffer CPB 的延迟安全区等信息；时戳 SEI 记录哪些帧上/下场优先的变化；连帧/三连帧的位置等信息。</p>
+
+            <pre class="mb-0"><code><b>--hrd</b>&lt;开关，默认关，<span class="text-red-emph">需开vbv</span>&gt;
+将假设对照解码参数Hypothetical Reference Decoder Parameter估计不丢包无延迟的瞬间码率，写在每段SPS及SEI里，对专门配置了网络串流，NAS播放自动缓冲的播放器有好处
+<b>--hash</b>&lt;整数0~3，默认0/关&gt;SEI里加效验码，播放时可用以对图像重建纠错来减少失真，但校验本身会消耗算力：
+    · <span class="text-blue-emph">1</span>：checksum校验，性能占用最小
+    · <span class="text-blue-emph">2</span>：CRC校验，性能占用略高，准确率较高，一般情况推荐
+    · <span class="text-blue-emph">3</span>：CRC校验，性能占用略高，准确率高；性能占用高
+<b>--single-sei</b>&lt;开关&gt;只写一个装全部SEI信息的大NALU而非每GOP都写，提高很小一点压缩率，但可能会降低兼容性
+<b>--film-grain</b>&lt;文件名&gt;将如<a href="https://bitbucket.org/multicoreware/libfgm">libfgm</a>提取的纹理细节模型Film grain model写进SEI，将编码压缩掉的细节另存档，兼容解码器播放时恢复的功能
+<b>--idr-recovery-sei</b>&lt;开关&gt;SEI写进idr帧，串流时防止整个GOP都找不到参考帧的机制
+<b>--frame-dup</b>&lt;开关，默认关，需<span class="text-red-emph">开vbv和hrd，有bug</span>&gt;直接将2~3面极近似的连续帧换成同一帧并用SEI告知，理论上能在动漫和电脑录屏画面提高压缩率，但会降低兼容性
+<b>--dup-threshold</b>&lt;整数1~99，默认70&gt;相似度判定值, 默认达70%重复就判为相似</code></pre>
 
             <h2>线程与节点控制</h2>
             <div class="align-items-center">

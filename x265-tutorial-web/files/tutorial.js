@@ -39,7 +39,7 @@ function switchPlatform() {
         // Set class for the main container div for Desktop only
         document.querySelector('div').setAttribute("class", "container-desktop rounded-9 border-main");
         // Increase line height for Desktop
-        mainPara = document.querySelectorAll('p:not([class])');
+        const mainPara = document.querySelectorAll('p:not([class])');
         for (let i=0; i<mainPara.length; i++) {
             mainPara[i].style.lineHeight = "2.5rem";
         }
