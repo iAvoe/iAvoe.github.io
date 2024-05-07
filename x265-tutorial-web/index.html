@@ -219,64 +219,62 @@ x265.exe [命令行] 2> [桌面路径]\报错.txt</code></pre>
             <pre><code><b>--subme</b>&lt;整数范围1~7，默认2&gt;
 根据源帧率借下表判断。
 注：x264的rdo选项和subme并用，所以与x265不通用；SATD算法见x264教程。</code></pre>
-            <div class="align-items-center mt-3">
-                <table class="table-center">
-                    <tr>
-                        <th class="px-3">范围（率失真优化开）</th>
-                        <th class="px-3">推荐</th>
-                        <th class="px-3">hpel迭代</th>
-                        <th class="px-3">hpel搜索</th>
-                        <th class="px-3">qpel迭代</th>
-                        <th class="px-3">qpel搜索</th>
-                        <th class="px-3">统计法</th>
-                    </tr>
-                    <tr class="t-light-gray">
-                        <td class="px-3">30fps</td>
-                        <td class="text-blue-emph px-3">3</td>
-                        <td class="px-3">2次</td>
-                        <td class="px-3">4方向</td>
-                        <td class="px-3">1次</td>
-                        <td class="px-3">4方向</td>
-                        <td class="px-3">SATD</td>
-                    </tr>
-                    <tr>
-                        <td class="px-3">48fps</td>
-                        <td class="text-blue-emph px-3">4</td>
-                        <td class="px-3">2次</td>
-                        <td class="px-3">4方向</td>
-                        <td class="px-3">2次</td>
-                        <td class="px-3">4方向</td>
-                        <td class="px-3">SATD</td>
-                    </tr>
-                    <tr class="t-light-gray">
-                        <td class="px-3">60fps</td>
-                        <td class="text-blue-emph px-3">5</td>
-                        <td class="px-3">1次</td>
-                        <td class="px-3">8方向</td>
-                        <td class="px-3">1次</td>
-                        <td class="px-3">8方向</td>
-                        <td class="px-3">SATD</td>
-                    </tr>
-                    <tr>
-                        <td class="px-3">90fps</td>
-                        <td class="text-blue-emph px-3">6</td>
-                        <td class="px-3">2次</td>
-                        <td class="px-3">8方向</td>
-                        <td class="px-3">1次</td>
-                        <td class="px-3">8方向</td>
-                        <td class="px-3">SATD</td>
-                    </tr>
-                    <tr class="t-light-gray">
-                        <td class="px-3">≥144fps</td>
-                        <td class="text-blue-emph px-3">7</td>
-                        <td class="px-3">2次</td>
-                        <td class="px-3">8方向</td>
-                        <td class="px-3">2次</td>
-                        <td class="px-3">8方向</td>
-                        <td class="px-3">SATD</td>
-                    </tr>
-                </table>
-            </div>
+            <table class="align-items-center table-center ">
+                <tr>
+                    <th class="px-3">范围（率失真优化开）</th>
+                    <th class="px-3">推荐</th>
+                    <th class="px-3">hpel迭代</th>
+                    <th class="px-3">hpel搜索</th>
+                    <th class="px-3">qpel迭代</th>
+                    <th class="px-3">qpel搜索</th>
+                    <th class="px-3">统计法</th>
+                </tr>
+                <tr class="t-light-gray">
+                    <td class="px-3">30fps</td>
+                    <td class="text-blue-emph px-3">3</td>
+                    <td class="px-3">2次</td>
+                    <td class="px-3">4方向</td>
+                    <td class="px-3">1次</td>
+                    <td class="px-3">4方向</td>
+                    <td class="px-3">SATD</td>
+                </tr>
+                <tr>
+                    <td class="px-3">48fps</td>
+                    <td class="text-blue-emph px-3">4</td>
+                    <td class="px-3">2次</td>
+                    <td class="px-3">4方向</td>
+                    <td class="px-3">2次</td>
+                    <td class="px-3">4方向</td>
+                    <td class="px-3">SATD</td>
+                </tr>
+                <tr class="t-light-gray">
+                    <td class="px-3">60fps</td>
+                    <td class="text-blue-emph px-3">5</td>
+                    <td class="px-3">1次</td>
+                    <td class="px-3">8方向</td>
+                    <td class="px-3">1次</td>
+                    <td class="px-3">8方向</td>
+                    <td class="px-3">SATD</td>
+                </tr>
+                <tr>
+                    <td class="px-3">90fps</td>
+                    <td class="text-blue-emph px-3">6</td>
+                    <td class="px-3">2次</td>
+                    <td class="px-3">8方向</td>
+                    <td class="px-3">1次</td>
+                    <td class="px-3">8方向</td>
+                    <td class="px-3">SATD</td>
+                </tr>
+                <tr class="t-light-gray">
+                    <td class="px-3">≥144fps</td>
+                    <td class="text-blue-emph px-3">7</td>
+                    <td class="px-3">2次</td>
+                    <td class="px-3">8方向</td>
+                    <td class="px-3">2次</td>
+                    <td class="px-3">8方向</td>
+                    <td class="px-3">SATD</td>
+                </tr>
+            </table>
 
             <h4>加权预测 Weighted Prediction</h4>
             <div class="row">
@@ -733,77 +731,75 @@ x265.exe --abr-ladder 1440p8000_2160p11000_2160p16000.txt --fps 59.94 --input-de
             <h4>x265 jpsdr-mod 参数</h4>
             <pre class="mb-0"><code><b>--aq-auto</b>&lt;8bit四开关十进制，默认0关&gt;
 对应下表：</code></pre>
-            <div class="align-items-center">
-                <table class="table-center">
-                    <thead>
-                        <tr class="t-border-bottom">
-                            <th class="px-3">值</th>
-                            <th class="px-3">逐帧aq</th>
-                            <th class="px-3">延迟逐帧aq(hysteresis)</th>
-                            <th class="px-3">HDR兼容</th>
-                            <th class="px-3">aq-mode 5</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="t-border-bottom t-light-gray">
-                            <td class="text-blue-emph px-3">1</td>
-                            <td class="px-3">√</td>
-                            <td class="px-3"> </td>
-                            <td class="px-3"> </td>
-                            <td class="px-3"> </td>
-                        </tr>
-                        <tr class="t-border-bottom">
-                            <td class="text-blue-emph px-3">2,3</td>
-                            <td class="px-3">√</td>
-                            <td class="px-3">√</td>
-                            <td class="px-3"> </td>
-                            <td class="px-3"> </td>
-                        </tr>
-                        <tr class="t-border-bottom t-light-gray">
-                            <td class="text-blue-emph px-3">4</td>
-                            <td class="px-3">√</td>
-                            <td class="px-3"> </td>
-                            <td class="px-3">√</td>
-                            <td class="px-3"> </td>
-                        </tr>
-                        <tr class="t-border-bottom">
-                            <td class="text-blue-emph px-3">8</td>
-                            <td class="px-3">√</td>
-                            <td class="px-3"> </td>
-                            <td class="px-3"> </td>
-                            <td class="px-3">√</td>
-                        </tr>
-                        <tr class="t-border-bottom t-light-gray">
-                            <td class="text-blue-emph px-3">6</td>
-                            <td class="px-3">√</td>
-                            <td class="px-3">√</td>
-                            <td class="px-3">√</td>
-                            <td class="px-3"> </td>
-                        </tr>
-                        <tr class="t-border-bottom">
-                            <td class="text-blue-emph px-3">10</td>
-                            <td class="px-3">√</td>
-                            <td class="px-3">√</td>
-                            <td class="px-3"> </td>
-                            <td class="px-3">√</td>
-                        </tr>
-                        <tr class="t-border-bottom t-light-gray">
-                            <td class="text-blue-emph px-3">12</td>
-                            <td class="px-3">√</td>
-                            <td class="px-3"> </td>
-                            <td class="px-3">√</td>
-                            <td class="px-3">√</td>
-                        </tr>
-                        <tr class="t-border-bottom">
-                            <td class="text-blue-emph px-3">14</td>
-                            <td class="px-3">√</td>
-                            <td class="px-3">√</td>
-                            <td class="px-3">√</td>
-                            <td class="px-3">√</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <table class="align-items-center table-center">
+                <thead>
+                    <tr class="t-border-bottom">
+                        <th class="px-3">值</th>
+                        <th class="px-3">逐帧aq</th>
+                        <th class="px-3">延迟逐帧aq(hysteresis)</th>
+                        <th class="px-3">HDR兼容</th>
+                        <th class="px-3">aq-mode 5</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="t-border-bottom t-light-gray">
+                        <td class="text-blue-emph px-3">1</td>
+                        <td class="px-3">√</td>
+                        <td class="px-3"> </td>
+                        <td class="px-3"> </td>
+                        <td class="px-3"> </td>
+                    </tr>
+                    <tr class="t-border-bottom">
+                        <td class="text-blue-emph px-3">2,3</td>
+                        <td class="px-3">√</td>
+                        <td class="px-3">√</td>
+                        <td class="px-3"> </td>
+                        <td class="px-3"> </td>
+                    </tr>
+                    <tr class="t-border-bottom t-light-gray">
+                        <td class="text-blue-emph px-3">4</td>
+                        <td class="px-3">√</td>
+                        <td class="px-3"> </td>
+                        <td class="px-3">√</td>
+                        <td class="px-3"> </td>
+                    </tr>
+                    <tr class="t-border-bottom">
+                        <td class="text-blue-emph px-3">8</td>
+                        <td class="px-3">√</td>
+                        <td class="px-3"> </td>
+                        <td class="px-3"> </td>
+                        <td class="px-3">√</td>
+                    </tr>
+                    <tr class="t-border-bottom t-light-gray">
+                        <td class="text-blue-emph px-3">6</td>
+                        <td class="px-3">√</td>
+                        <td class="px-3">√</td>
+                        <td class="px-3">√</td>
+                        <td class="px-3"> </td>
+                    </tr>
+                    <tr class="t-border-bottom">
+                        <td class="text-blue-emph px-3">10</td>
+                        <td class="px-3">√</td>
+                        <td class="px-3">√</td>
+                        <td class="px-3"> </td>
+                        <td class="px-3">√</td>
+                    </tr>
+                    <tr class="t-border-bottom t-light-gray">
+                        <td class="text-blue-emph px-3">12</td>
+                        <td class="px-3">√</td>
+                        <td class="px-3"> </td>
+                        <td class="px-3">√</td>
+                        <td class="px-3">√</td>
+                    </tr>
+                    <tr class="t-border-bottom">
+                        <td class="text-blue-emph px-3">14</td>
+                        <td class="px-3">√</td>
+                        <td class="px-3">√</td>
+                        <td class="px-3">√</td>
+                        <td class="px-3">√</td>
+                    </tr>
+                </tbody>
+            </table>
             <pre><code><b>-aq-fast-edge</b>&lt;开关，<span class="text-red-emph">需aq-mode4,5</span>&gt;
 边缘检测跳过高斯模糊过滤，不适合脏片源
 <b>--aq-bias-strength</b>&lt;浮点，默认1，<span class="text-red-emph">需aq-mode3,5</span>&gt;
@@ -966,7 +962,6 @@ abr/crf分配量化值的宏观调控强度，大则慢，0则关
                 <p id="LR-UD-025" class="col-10">Sample adaptive offset 滤镜。逐 CTB 划分。界偏移EO缓解纹理边缘因「高频波形的遮盖因强量化或去块丢失」的问题。可能分以下几步。算法略像帧内搜索的趋平滤镜。适合修复纹理量化出振铃的损失。关闭则遮不住平面的蠕虫失真</p>
                 <img src="files/image34.jpg" alt="Sample Adaptive Offset Case" id="LR-UD-026" class="img-small img-right col-2 mb-auto" >
             </div>
-
 
             <ul class="text-gray-side">
                 <li>CTB内据分块结果建立一批3x3像素的采样域</li>
@@ -3190,14 +3185,203 @@ sao分析跳过视频右边和下边边界
                 </tbody>
             </table>
 
-            <img src="files/image37.png" alt="Double Action Ball Point Pen" class="img-small" >
-            <img src="files/image38.png" alt="Finite State Machine on Double Action Pen" class="img-medium" >
-            <img src="files/image39.png" alt="Finite State Machine Context Adaptation" class="img-medium" >
-            <img src="files/image40.png" alt="Golomb Rice Coding k stands for Klimaka" class="img-medium" >
-            <img src="files/image41.png" alt="Run Length Coding Demonstration" class="img-medium" >
-            <img src="files/image42.png" alt="Soft Decision Quantization Trellis Chart" class="img-medium" >
-            <img src="files/image43.png" alt="Metadata for VUI HDR Info 1" class="img-medium" >
-            <img src="files/image44.png" alt="Metadata for VUI HDR Info 2" class="img-medium" >
+            <p>PPM 非常适合推演 DNA链 的出字概率，因为人类细胞染色体多达0.5~25亿端，而上表在全文未知的情况下已经把最优的出字概率分布总结得差不多了。这种以查表推演 Table lookup 是一种计算特性，与之相对的特性是有限状态机推演。</p>
+
+            <h4>有限状态机 Finite-State Machine</h4>
+            <div class="row">
+                <p id="LR-UD-027" class="col-10">以状态描述程序/机器。如1~2间可过渡出无限个数字，代表机械运动到位的中间过程；去掉过程后（如取整后）剩下圆圈数字表示的①↔②两种状态，就足以抽象地表示按动式圆珠笔；将两态联系起来的操作表示为箭头，即按下笔的按钮，而输出就是下一状态。若需要将笔伸出（需②）而笔已收拢则写作①→⓶; 若需收拢而笔已伸出则②→⓵</p>
+                <img src="files/image37.png" alt="Double Action Ball Point Pen" id="LR-UD-028" class="img-small img-right col-2 mb-auto" >
+            </div>
+            <div class="align-items-center">
+                <img src="files/image38.png" alt="Finite State Machine on Double Action Pen" class="img-medium" >
+            </div>
+            
+            <h4>上下文自适应-有限状态机推演法</h4>
+            <p>BAC 下只有最大概符 Most-probable symbol MPS 和最小概符 Least-probable symbol LPS 两个变量。若大概符（超过50%）为1，则 LPS 变量为0。若已知出0概率为 <span class="text-blue-math">\(p0\)</span>，则出1的概率就是 <span class="text-blue-math">\(1-p0\)</span>，这样只需要推演 LPS 一个变量的上下文就足以推演0~1概率区间的分布。具体分布由人工筛选，所以具体逻辑要看编码器源码，x264 中大体为输入 LPS 为0/为1时的状态切换：若大于0.5则变成 MPS，LPS 最小为0.01875；MPS 最大为0.98125</p>
+            <div class="align-items-center">
+                <img src="files/image39.png" alt="Finite State Machine Context Adaptation" class="img-medium" >
+            </div>
+
+            <h4>(低精度)二进制算数编码 Binary Arithmetic Coding BAC</h4>
+            <p>通过 MPS，LPS 变量简化出字概率的统计。再降精度到1/2的幂（如8则在0~1区间精确到1/256个位深过渡）来略增误差优化性能，再加一步将像素值转二进制的编码，设以便统计过程中交换值，而算数编码的部分不变，就实现了二进制的算数编码。</p>
+
+            <h4>几何分布/等差等比分布类 Geometric distribution</h4>
+            <p>条件过程不变，各个尝试独立，只有阴阳两结果的伯努利试验中统计 n 遍成功的概率分布所形成的概率变化曲线，为：<span class="text-blue-math">\[ P(X=x) = (1-p)^{x-1} p \]</span>其中概率 <span class="text-blue-math">\(1-p\)</span> 盖失败，<span class="text-blue-math">\(p\)</span> 盖成功。如：</p>
+            <ol>
+                <li>尝试3次后得阳结果记作"阴，阴，阳": <span class="text-blue-math">\(P(X=3)=(1-p)(1-p)(p)=(1-p)^{3-1} p\)</span>. </li>
+                <li>成功概率为90%则记做 <span class="text-blue-math">\( P(X=x) = (1-0.9)^{x-1} (0.9) \)</span>，且成功概率与尝试次数独立</li>
+                <li>所谓「重试3次后过关」是可能脱离实际的期望值 eXpectation，记做大写 X：<span class="text-blue-math">\( X(x) = \frac{1}{p} \)</span></li>
+            </ol>
+            <ul>
+                <li>小概率对时，一遍对的概率被其它次数分走，而反过来大概率对时，一遍对的概率会夺走其它次数的概率</li>
+                <li>因为尝试次数间的差距皆为整数1（如不存在0.3次尝试）所以等差</li>
+                <li>因为尝试次数每次都乘进同个 <span class="text-blue-math">\(1-p\)</span> 比率, 所以等比</li>
+                <li>综上所述（计算过程含多次 <span class="text-blue-math">\(1-p\)</span> 相乘）二维坐标系中可见概率的指数递减下降变化，得名几何分布</li>
+            </ul>
+
+            <h4>小数取整法，进位法以及取模</h4>
+            <table class="align-items-center table-center">
+                <thead>
+                <tr>
+                    <th class="px-5">名称</th>
+                    <th class="px-5">所谓</th>
+                    <th class="px-5">运算</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td class="px-5">round</td>
+                    <td class="px-5">舍入</td>
+                    <td class="px-5">四舍五入</td>
+                </tr>
+                <tr>
+                    <td class="px-5">celling <span class="text-blue-math">\( \lceil x \rceil \)</span></td>
+                    <td class="px-5">取上</td>
+                    <td class="px-5">进位法</td>
+                </tr>
+                <tr>
+                    <td class="px-5">floor <span class="text-blue-math">\( \lfloor x \rfloor \)</span></td>
+                    <td class="px-5">取下</td>
+                    <td class="px-5">去尾法</td>
+                </tr>
+                <tr>
+                    <td class="px-5">modulus</td>
+                    <td class="px-5">取模</td>
+                    <td class="px-5">余数乘以除数</td>
+                </tr>
+                </tbody>
+            </table>
+            
+            <h4>转二进制-伪哥伦布编码</h4>
+            <p>8bit下，十进制 3 会转为浪费码率的 00000011——因为前后都挨着其它 8bit 数而不能删；所以添加清点有效位数的标记，共有 11 两位数而设标记 00，再转后缀为前缀，就得到相对可靠的 <span class="text-blue-math">\( (a=00,b=11) \)</span>；解码器识别出变量a，b，为两位数的二进制 11 而还原</p>
+
+            <h4>转二进制-一元码Unary，截短二进制码 Truncated Binary</h4>
+            <p></p>
+
+            <h4>转二进制-哥伦布(-莱斯)编码 Golomb(-Rice) Coding</h4>
+            <p></p>
+            <div class="align-items-center">
+                <img src="files/image40.png" alt="Golomb Rice Coding k stands for Klimaka" class="img-medium" >
+            </div>
+
+            <h4>转二进制-零阶指数哥伦布编码Exponential Golomb k0</h4>
+            <p></p>
+            <ol>
+                <li></li>
+            </ol>
+            <table class="align-items-center table-center">
+                <thead>
+                    <tr>
+                        <th class="px-3">N</th>
+                        <th class="px-3">K'</th>
+                        <th class="px-3">R</th>
+                        <th class="px-3">前端1</th>
+                        <th class="px-3">后端</th>
+                        <th class="px-3">前端2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="px-3">0</td>
+                        <td class="px-3">0</td>
+                        <td class="px-3">0</td>
+                        <td class="px-3"> </td>
+                        <td class="px-3">1</td>
+                        <td class="px-3">0</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3">1</td>
+                        <td class="px-3">1</td>
+                        <td class="px-3">0</td>
+                        <td class="px-3">0</td>
+                        <td class="px-3">10</td>
+                        <td class="px-3">0</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3">2</td>
+                        <td class="px-3">1</td>
+                        <td class="px-3">1</td>
+                        <td class="px-3">0</td>
+                        <td class="px-3">11</td>
+                        <td class="px-3">1</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3">3</td>
+                        <td class="px-3">2</td>
+                        <td class="px-3">0</td>
+                        <td class="px-3">00</td>
+                        <td class="px-3">100</td>
+                        <td class="px-3">00</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3">4</td>
+                        <td class="px-3">2</td>
+                        <td class="px-3">1</td>
+                        <td class="px-3">00</td>
+                        <td class="px-3">101</td>
+                        <td class="px-3">01</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3">5</td>
+                        <td class="px-3">2</td>
+                        <td class="px-3">2</td>
+                        <td class="px-3">00</td>
+                        <td class="px-3">110</td>
+                        <td class="px-3">10</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3">6</td>
+                        <td class="px-3">2</td>
+                        <td class="px-3">3</td>
+                        <td class="px-3">00</td>
+                        <td class="px-3">111</td>
+                        <td class="px-3">11</td>
+                    </tr>
+                    <tr>
+                        <td class="px-3">7</td>
+                        <td class="px-3">3</td>
+                        <td class="px-3">0</td>
+                        <td class="px-3">000</td>
+                        <td class="px-3">1000</td>
+                        <td class="px-3">000</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>汉明距离与欧几里得距离</h4>
+            <p></p>
+
+            <h4>软判决与硬判决解码 Soft/Hard Decision decoding</h4>
+            <p></p>
+
+            <h4>游程/游标编码 Run-length/run-level coding</h4>
+            <p></p>
+            <div class="align-items-center">
+                <img src="files/image41.png" alt="Run Length Coding Demonstration" class="img-medium" >
+            </div>
+
+            <h4>Trellis</h4>
+            <p>原指北欧建筑的白墙木条棋盘格子装修。在动态规划编程 Dynamic programming 中代表过程的可视化——各状态为节点，且都遵循一种从左推演到右的规则而相互连成的网格，视频编码中包括：</p>
+            <ul>
+                <li>Psy-trellis 心理学优化，于x264的--psy-rd</li>
+                <li>Viterbi-trellis，解决最短路径，隐马尔科夫问题的导航寻路算法，用于推演B帧位置</li>
+                <li>Trellis-coded quantization （TCQ，h.263+，trellis 卷积内核的有限状态机）中涉及的量化优化，停留在理论</li>
+                <li>软判决率失真优化CABAC的再量化，于 x264 --trellis参数</li>
+            </ul>
+
+            <h4>软判决率失真优化 CABAC 的再量化-SDQ trellis</h4>
+            <p>算数编码行游标编码之倒序——先编码最大概率的0，后编码低概的绝对值强度 absolute level（因为含负强度/DCT 系子波形的反相）。得 <span class="text-gray-side">图: CABAC编码4×4块，从各个可能路线整合出 trellis 所有上下文可能性以及变更。</span>。由于文本编码是动态程序（一次编一字），所以路线一次只能改一条，且会保持出字概率而得斜线。</p>
+            <div class="align-items-center">
+                <img src="files/image42.png" alt="Soft Decision Quantization Trellis Chart" class="img-medium" >
+                
+            </div>
+
+
+            <div class="align-items-center">
+                <img src="files/image43.png" alt="Metadata for VUI HDR Info 1" class="img-medium" >
+                <img src="files/image44.png" alt="Metadata for VUI HDR Info 2" class="img-medium" >
+            </div>
+
         </div>
 
         <!-- Footer -->
