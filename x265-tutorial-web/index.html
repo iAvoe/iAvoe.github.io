@@ -24,7 +24,7 @@
 	<body class="text-gray-main">
         <div class="container-mobile rounded-9 border-main">
             <h1>x265 教程<span class="text-blue-emph"> HTML 完整版</span></h1>
-            <p>欢迎阅读！若有什么不会的可以加群<a href='https://jq.qq.com/?_wv=1027&k=5YJFXyf'>691892901</a>。本教程仅算盲人摸象的业余分析，仅具备业余参考价值。入门先看x264视频压缩教程综合版，手头需要编码压制不妨搭配急用版教程。<span class="text-red-emph">点击图片即可更改桌面和移动端的适配排版</span>。</p>
+            <p>欢迎阅读！若有什么不会的可以加群<a href='https://jq.qq.com/?_wv=1027&k=5YJFXyf'>691892901</a>。本教程仅算盲人摸象的业余分析，仅具备业余参考价值。入门先看 x264 视频压缩教程综合版，手头需要编码压制不妨搭配急用版教程。<span class="text-red-emph">点击图片即可更改桌面和移动端的适配排版</span>。</p>
             
             <h4 class="mb-0">ffmpeg，VapourSynth，avs2yuv 传递参数</h4>
             <pre><code>
@@ -49,7 +49,7 @@ x265.exe [命令行] 2>&1 | tee User\[用户名]\Desktop\报错.txt
 x265.exe [命令行] 2> [桌面路径]\报错.txt</code></pre>
 
             <h2>分块</h2>
-            <p>hevc中，帧下结构按面积大小分为<span class="text-blue-emph">帧 → 瓦 tile → 条带 slice → 条带分段 ss → ctu 树单元 → cu 单元</span>。</p>
+            <p>HEVC 中，帧下结构按面积大小分为<span class="text-blue-emph">帧 → 瓦 tile → 条带 slice → 条带分段 ss → ctu 树单元 → cu 单元</span>。</p>
             <p>cu，cb 由同帧的 ctu 经动态搜索 ME 与运动补偿 MC 隔离所得。其 U/unit 代表 YCbCr 整体块；B/block 则单指 Y，Cb 或 Cr 块，区分亮度色度。ipcm-cu 代表跳过 MEMC，直达环路滤波的「帧内编码 pcm 波形 cu」intra pulse code modulation cu，因为“块”是一串像素值的波形，只是用元数据“换行”到二维而已。</p>
             <div class="align-items-center">
                 <img src="files/image1.png" alt="Coding Tree Unit" class="img-medium" >
@@ -1079,7 +1079,7 @@ sao分析跳过视频右边和下边边界
                     </tr>
                     <tr>
                         <td>自适概率</td>
-                        <td class="text-pink-acts">1/2</td>
+                        <td class="text-pink-cnsq">1/2</td>
                         <td>0</td>
                         <td>0</td>
                         <td>0</td>
@@ -1116,7 +1116,7 @@ sao分析跳过视频右边和下边边界
                     <tr>
                         <td>自适概率</td>
                         <td>1/3</td>
-                        <td class="text-pink-acts">1/3</td>
+                        <td class="text-pink-cnsq">1/3</td>
                         <td>0</td>
                         <td>0</td>
                         <td>0</td>
@@ -1153,7 +1153,7 @@ sao分析跳过视频右边和下边边界
                         <td>自适概率</td>
                         <td>1/4</td>
                         <td>1/4</td>
-                        <td class="text-pink-acts">1/4</td>
+                        <td class="text-pink-cnsq">1/4</td>
                         <td>0</td>
                         <td>0</td>
                         <td>0</td>
@@ -1189,7 +1189,7 @@ sao分析跳过视频右边和下边边界
                         <td>自适概率</td>
                         <td>1/5</td>
                         <td>1/5</td>
-                        <td class="text-pink-acts">2/5</td>
+                        <td class="text-pink-cnsq">2/5</td>
                         <td>0</td>
                         <td>0</td>
                         <td>0</td>
@@ -1226,7 +1226,7 @@ sao分析跳过视频右边和下边边界
                         <td>1/6</td>
                         <td>1/6</td>
                         <td>2/6</td>
-                        <td class="text-pink-acts">1/6</td>
+                        <td class="text-pink-cnsq">1/6</td>
                         <td>0</td>
                         <td>0</td>
                         <td>0</td>
@@ -1263,7 +1263,7 @@ sao分析跳过视频右边和下边边界
                         <td>1/7</td>
                         <td>2/7</td>
                         <td>1/7</td>
-                        <td class="text-pink-acts">1/7</td>
+                        <td class="text-pink-cnsq">1/7</td>
                         <td>0</td>
                         <td>0</td>
                         <td>0</td>
@@ -1300,7 +1300,7 @@ sao分析跳过视频右边和下边边界
                         <td>2/8</td>
                         <td>1/8</td>
                         <td>1/8</td>
-                        <td class="text-pink-acts">1/8</td>
+                        <td class="text-pink-cnsq">1/8</td>
                         <td>0</td>
                         <td>0</td>
                         <td>1/8</td>
@@ -1336,7 +1336,7 @@ sao分析跳过视频右边和下边边界
                         <td>2/9</td>
                         <td>2/9</td>
                         <td>1/9</td>
-                        <td class="text-pink-acts">1/9</td>
+                        <td class="text-pink-cnsq">1/9</td>
                         <td>0</td>
                         <td>0</td>
                         <td>1/9</td>
@@ -1373,7 +1373,7 @@ sao分析跳过视频右边和下边边界
                         <td>2/10</td>
                         <td>1/10</td>
                         <td>1/10</td>
-                        <td class="text-pink-acts">1/10</td>
+                        <td class="text-pink-cnsq">1/10</td>
                         <td>0</td>
                         <td>1/10</td>
                     </tr>
@@ -1409,7 +1409,7 @@ sao分析跳过视频右边和下边边界
                         <td>2/11</td>
                         <td>1/11</td>
                         <td>1/11</td>
-                        <td class="text-pink-acts">1/11</td>
+                        <td class="text-pink-cnsq">1/11</td>
                         <td>0</td>
                         <td>1/11</td>
                     </tr>
@@ -1446,7 +1446,7 @@ sao分析跳过视频右边和下边边界
                         <td>1/12</td>
                         <td>1/12</td>
                         <td>1/12</td>
-                        <td class="text-pink-acts">1/12</td>
+                        <td class="text-pink-cnsq">1/12</td>
                         <td>1/12</td>
                     </tr>
                     <tr>
@@ -1504,25 +1504,25 @@ sao分析跳过视频右边和下边边界
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="t-invert-light">
+                    <tr class="t-invert-dark">
                         <td>等概CTX<sub>-1</sub></td>
                         <td>1/5</td>
                         <td>1/5</td>
                         <td>1/5</td>
                         <td>1/5</td>
                         <td>1/5</td>
-                        <td>P-uniform</td>
+                        <td> </td>
                     </tr>
                     <tr class="t-invert-light"><!--1-->
                         <th>1:</th>
                         <td>输入C</td>
                         <td>已知null</td>
                         <td>null长0</td>
-                        <td class="t-align-right">CTAGGCAATC</td>
+                        <td class="t-align-right"><span class="text-red-emph">C</span>TAGGCAATC</td>
                         <td class="t-align-left">TAGGTA</td>
                         <td> </td>
                     </tr>
-                    <tr class="border-lr">
+                    <tr class="border-lr text-green-dyna">
                         <td>CTX匹配</td><!--1-->
                         <td>CTX3匹配⊗</td>
                         <td>CTX2匹配⊗</td>
@@ -1531,7 +1531,7 @@ sao分析跳过视频右边和下边边界
                         <td>CTX<sub>-1</sub>配C</td>
                         <td>小计</td>
                     </tr>
-                    <tr class="border-lr">
+                    <tr class="border-lr text-blue-cnsq">
                         <td>编码结果</td><!--1-->
                         <td>已知长0跳过 </td>
                         <td>已知长0跳过</td>
@@ -1540,7 +1540,7 @@ sao分析跳过视频右边和下边边界
                         <td>C</td>
                         <td>"⊗C"</td>
                     </tr>
-                    <tr class="border-lr">
+                    <tr class="border-lr text-pink-cnsq">
                         <td>概率结果</td><!--1-->
                         <td> </td>
                         <td> </td>
@@ -1550,7 +1550,7 @@ sao分析跳过视频右边和下边边界
                         <td>1×1/5</td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--1-->
+                        <td>CTX 更新</td><!--1-->
                         <td> </td>
                         <td> </td>
                         <td> </td>
@@ -1572,11 +1572,11 @@ sao分析跳过视频右边和下边边界
                         <td>输入T</td>
                         <td>已知"C"</td>
                         <td>已知长1</td>
-                        <td class="t-align-right">CTAGGCAATC</td>
+                        <td class="t-align-right"><span class="text-blue-emph">C</span><span class="text-red-emph">T</span>AGGCAATC</td>
                         <td class="t-align-left">TAGGTA</td>
                         <td> </td>
                     </tr>
-                     <tr class="border-lr">
+                    <tr class="border-lr text-green-dyna">
                         <td>CTX匹配</td><!--2-->
                         <td>CTX3匹配⊗</td>
                         <td>CTX2匹配⊗</td>
@@ -1585,7 +1585,7 @@ sao分析跳过视频右边和下边边界
                         <td>CTX<sub>-1</sub>配T</td>
                         <td>小计</td>
                     </tr>
-                     <tr class="border-lr">
+                     <tr class="border-lr text-blue-cnsq">
                         <td>编码结果</td><!--2-->
                         <td>已知长1跳过 </td>
                         <td>已知长1跳过</td>
@@ -1594,7 +1594,7 @@ sao分析跳过视频右边和下边边界
                         <td>T</td>
                         <td>"⊗⊗T"</td>
                     </tr>
-                     <tr class="border-lr">
+                    <tr class="border-lr text-pink-cnsq">
                         <td>概率结果</td><!--2-->
                         <td> </td>
                         <td> </td>
@@ -1604,7 +1604,7 @@ sao分析跳过视频右边和下边边界
                         <td>1×1/2×1/5</td>
                     </tr>
                      <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--2-->
+                        <td>CTX 更新</td><!--2-->
                         <td> </td>
                         <td> </td>
                         <td>P("C"T)=1/2</td>
@@ -1613,7 +1613,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                      <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--2-->
+                        <td>CTX 更新</td><!--2-->
                         <td> </td>
                         <td> </td>
                         <td> </td>
@@ -1635,11 +1635,11 @@ sao分析跳过视频右边和下边边界
                         <td>输入A</td>
                         <td>已知"CT"</td>
                         <td>已知长2</td>
-                        <td class="t-align-right">CTAGGCAATC</td>
+                        <td class="t-align-right"><span class="text-blue-emph">CT</span><span class="text-red-emph">A</span>GGCAATC</td>
                         <td class="t-align-left">TAGGTA</td>
                         <td> </td>
                     </tr>
-                    <tr class="border-lr">
+                    <tr class="border-lr text-green-dyna">
                         <td>CTX匹配</td><!--3-->
                         <td>CTX3匹配⊗</td>
                         <td>CTX2匹配⊗</td>
@@ -1648,7 +1648,7 @@ sao分析跳过视频右边和下边边界
                         <td>CTX<sub>-1</sub>配A</td>
                         <td>小计</td>
                     </tr>
-                    <tr class="border-lr">
+                    <tr class="border-lr text-blue-cnsq">
                         <td>编码结果</td><!--3-->
                         <td>已知长2跳过 </td>
                         <td>⊗</td>
@@ -1657,7 +1657,7 @@ sao分析跳过视频右边和下边边界
                         <td>A</td>
                         <td>"⊗⊗⊗A"</td>
                     </tr>
-                    <tr class="border-lr">
+                    <tr class="border-lr text-pink-cnsq">
                         <td>概率结果</td><!--3-->
                         <td> </td>
                         <td>P⊗ = 1</td>
@@ -1667,7 +1667,7 @@ sao分析跳过视频右边和下边边界
                         <td>1×1</td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--3-->
+                        <td>CTX 更新</td><!--3-->
                         <td> </td>
                         <td>P("CT"A)=1/2</td>
                         <td>P("C"T)=1/2</td>
@@ -1676,7 +1676,7 @@ sao分析跳过视频右边和下边边界
                         <td>×1/3×1/5</td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--3-->
+                        <td>CTX 更新</td><!--3-->
                         <td> </td>
                         <td> </td>
                         <td>P("T"A)=1/2</td>
@@ -1685,7 +1685,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--3-->
+                        <td>CTX 更新</td><!--3-->
                         <td> </td>
                         <td> </td>
                         <td> </td>
@@ -1707,11 +1707,11 @@ sao分析跳过视频右边和下边边界
                         <td>输入G</td>
                         <td>已知"CTA"</td>
                         <td>已知长3</td>
-                        <td>CTAGGCAATC</td>
+                        <td class="t-align-right"><span class="text-blue-emph">CTA</span><span class="text-red-emph">G</span>GCAATC</td>
                         <td class="t-align-left">TAGGTA</td>
                         <td> </td>
                     </tr>
-                    <tr class="border-lr">
+                    <tr class="border-lr text-green-dyna">
                         <td>CTX匹配</td><!--4-->
                         <td>CTX3匹配⊗</td>
                         <td>CTX2匹配⊗</td>
@@ -1720,7 +1720,7 @@ sao分析跳过视频右边和下边边界
                         <td>CTX<sub>-1</sub>配G</td>
                         <td>小计</td>
                     </tr>
-                    <tr class="border-lr">
+                    <tr class="border-lr text-blue-cnsq">
                         <td>编码结果</td><!--4-->
                         <td>⊗ </td>
                         <td>⊗</td>
@@ -1729,7 +1729,7 @@ sao分析跳过视频右边和下边边界
                         <td>G</td>
                         <td>"⊗⊗⊗⊗G"</td>
                     </tr>
-                    <tr class="border-lr">
+                    <tr class="border-lr text-pink-cnsq">
                         <td>概率结果</td><!--4-->
                         <td>P⊗ = 1</td>
                         <td>P⊗ = 1</td>
@@ -1739,7 +1739,7 @@ sao分析跳过视频右边和下边边界
                         <td>1×1×1</td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--4-->
+                        <td>CTX 更新</td><!--4-->
                         <td>P("CTA"G)=1/2</td>
                         <td>P("CT"A)=1/2</td>
                         <td>P("C"T)=1/2</td>
@@ -1748,7 +1748,7 @@ sao分析跳过视频右边和下边边界
                         <td>×1/4×1/5</td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--4-->
+                        <td>CTX 更新</td><!--4-->
                         <td> </td>
                         <td>P("TA"G)=1/2</td>
                         <td>P("T"A)=1/2</td>
@@ -1757,7 +1757,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--4-->
+                        <td>CTX 更新</td><!--4-->
                         <td> </td>
                         <td> </td>
                         <td>P("A"G)=1/2</td>
@@ -1766,7 +1766,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--4-->
+                        <td>CTX 更新</td><!--4-->
                         <td> </td>
                         <td> </td>
                         <td> </td>
@@ -1788,11 +1788,11 @@ sao分析跳过视频右边和下边边界
                         <td>输入G</td>
                         <td>已知"TAG"</td>
                         <td> </td>
-                        <td class="t-align-right">CTAGGCAATC</td>
+                        <td class="t-align-right"><span class="text-blue-emph">CTAG</span><span class=text-red-emph>G</span>CAATC</td>
                         <td class="t-align-left">TAGGTA</td>
                         <td> </td>
                     </tr>
-                    <tr class="border-lr">
+                    <tr class="border-lr text-green-dyna">
                         <td>CTX匹配</td><!--5-->
                         <td>CTX3匹配⊗</td>
                         <td>CTX2匹配⊗</td>
@@ -1801,8 +1801,8 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                         <td>小计</td>
                     </tr>
-                    <tr class="border-lr">
-                        <td>编结果</td><!--5-->
+                    <tr class="border-lr text-blue-cnsq">
+                        <td>编码结果</td><!--5-->
                         <td>⊗ </td>
                         <td>⊗</td>
                         <td>⊗</td>
@@ -1810,8 +1810,8 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                         <td>"⊗⊗⊗G"</td>
                     </tr>
-                    <tr class="border-lr">
-                        <td>概结果</td><!--5-->
+                    <tr class="border-lr text-pink-cnsq">
+                        <td>概率结果</td><!--5-->
                         <td>P⊗ = 1</td>
                         <td>P⊗ = 1</td>
                         <td>P⊗ = 1</td>
@@ -1820,7 +1820,7 @@ sao分析跳过视频右边和下边边界
                         <td>1×1×1</td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--5-->
+                        <td>CTX 更新</td><!--5-->
                         <td>P("CTA"G)=1/2</td>
                         <td>P("CT"A)=1/2</td>
                         <td>P("C"T)=1/2</td>
@@ -1829,7 +1829,7 @@ sao分析跳过视频右边和下边边界
                         <td>×1/5</td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--5-->
+                        <td>CTX 更新</td><!--5-->
                         <td>P("TAG"G)=1/2</td>
                         <td>P("TA"A)=1/2</td>
                         <td>P("T"A)=1/2</td>
@@ -1838,7 +1838,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--5-->
+                        <td>CTX 更新</td><!--5-->
                         <td>P("AG"G)=1/2</td>
                         <td>P("A"G)=1/2</td>
                         <td>P(""A)=1/6</td>
@@ -1847,7 +1847,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--5-->
+                        <td>CTX 更新</td><!--5-->
                         <td> </td>
                         <td>P("G"G)=1/2</td>
                         <td>P(""G)=2/6</td>
@@ -1868,12 +1868,12 @@ sao分析跳过视频右边和下边边界
                         <th colspan="1">6：</th>
                         <td>输入C</td>
                         <td>已知"AGG"</td>
-                        <td class="t-align-right">CTAGGCAATC</td>
+                        <td> </td>
+                        <td class="t-align-right"><span class="text-blue-emph">CTAGG</span><span class="text-red-emph">C</span>AATC</td>
                         <td class="t-align-left">TAGGTA</td>
                         <td> </td>
-                        <td> </td>
                     </tr>
-                    <tr class="border-lr">
+                    <tr class="border-lr text-green-dyna">
                         <td>CTX匹配</td><!--6-->
                         <td>CTX3匹配⊗</td>
                         <td>CTX2匹配⊗</td>
@@ -1882,8 +1882,8 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                         <td>小计</td>
                     </tr>
-                    <tr class="border-lr">
-                        <td>编结果</td><!--6-->
+                    <tr class="border-lr text-blue-cnsq">
+                        <td>编码结果</td><!--6-->
                         <td>⊗</td>
                         <td>⊗</td>
                         <td>⊗</td>
@@ -1891,8 +1891,8 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                         <td>"⊗⊗⊗C"</td>
                     </tr>
-                    <tr class="border-lr">
-                        <td>概结果</td><!--6-->
+                    <tr class="border-lr text-pink-cnsq">
+                        <td>概率结果</td><!--6-->
                         <td>P⊗ = 1</td>
                         <td>P⊗ = 1</td>
                         <td>P"G"⊗ = 1/2</td>
@@ -1901,7 +1901,7 @@ sao分析跳过视频右边和下边边界
                         <td>1×1×</td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--6-->
+                        <td>CTX 更新</td><!--6-->
                         <td>P("CTA"G)=1/2</td>
                         <td>P("CT"A)=1/2</td>
                         <td>P("C"T)=1/2</td>
@@ -1910,7 +1910,7 @@ sao分析跳过视频右边和下边边界
                         <td>1/2×</td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--6-->
+                        <td>CTX 更新</td><!--6-->
                         <td>P("TAG"G)=1/2</td>
                         <td>P("TA"G)=1/2</td>
                         <td>P("T"A)=1/2</td>
@@ -1919,7 +1919,7 @@ sao分析跳过视频右边和下边边界
                         <td>1/6</td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--6-->
+                        <td>CTX 更新</td><!--6-->
                         <td>P("AGG"C)=1/2</td>
                         <td>P("AG"G)=1/2</td>
                         <td>P("A"G)=1/2</td>
@@ -1928,7 +1928,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--6-->
+                        <td>CTX 更新</td><!--6-->
                         <td> </td>
                         <td>P("GG"C)=1/2</td>
                         <td>P("G"G)=1/3</td>
@@ -1937,7 +1937,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--6-->
+                        <td>CTX 更新</td><!--6-->
                         <td> </td>
                         <td> </td>
                         <td>P("G"C)=1/3</td>
@@ -1958,12 +1958,12 @@ sao分析跳过视频右边和下边边界
                         <th colspan="1">7：</th><!--7-->
                         <td>输入A</td>
                         <td>已知"GGC"</td>
-                        <td class="t-align-right">CTAGGCAATC</td>
+                        <td> </td>
+                        <td class="t-align-right"><span class="text-blue-emph">CTAGGC</span><span class="text-red-emph">A</span>ATC</td>
                         <td class="t-align-left">TAGGTA</td>
                         <td> </td>
-                        <td> </td>
                     </tr>
-                    <tr class="border-lr">
+                    <tr class="border-lr text-green-dyna">
                         <td>CTX匹配</td><!--7-->
                         <td>CTX3匹配⊗</td>
                         <td>CTX2匹配⊗</td>
@@ -1972,8 +1972,8 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                         <td>小计</td>
                     </tr>
-                    <tr class="border-lr">
-                        <td>编结果</td><!--7-->
+                    <tr class="border-lr text-blue-cnsq">
+                        <td>编码结果</td><!--7-->
                         <td>⊗</td>
                         <td>⊗</td>
                         <td>⊗</td>
@@ -1981,8 +1981,8 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                         <td>"⊗⊗⊗A"</td>
                     </tr>
-                    <tr class="border-lr">
-                        <td>概结果</td><!--7-->
+                    <tr class="border-lr text-pink-cnsq">
+                        <td>概率结果</td><!--7-->
                         <td>P⊗ = 1</td>
                         <td>P⊗ = 1</td>
                         <td>P⊗ = 1/2</td>
@@ -1991,7 +1991,7 @@ sao分析跳过视频右边和下边边界
                         <td>1/2×</td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--7-->
+                        <td>CTX 更新</td><!--7-->
                         <td>P("CTA"G)=1/2</td>
                         <td>P("CT"A)=1/2</td>
                         <td>P("C"T)=1/3</td>
@@ -2000,7 +2000,7 @@ sao分析跳过视频右边和下边边界
                         <td>1/7</td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--7-->
+                        <td>CTX 更新</td><!--7-->
                         <td>P("TAG"G)=1/2</td>
                         <td>P("TA"G)=1/2</td>
                         <td>P("T"A)=1/2</td>
@@ -2009,7 +2009,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--7-->
+                        <td>CTX 更新</td><!--7-->
                         <td>P("AGG"C)=1/2</td>
                         <td>P("AG"G)=1/2</td>
                         <td>P("A"G)=1/2</td>
@@ -2018,7 +2018,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--7-->
+                        <td>CTX 更新</td><!--7-->
                         <td>P("GGC"A)=1/2</td>
                         <td>P("GG"C)=1/2</td>
                         <td>P("G"G)=1/3</td>
@@ -2027,7 +2027,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--7-->
+                        <td>CTX 更新</td><!--7-->
                         <td> </td>
                         <td>P("GC"A)=1/2</td>
                         <td>P("G"C)=1/3</td>
@@ -2036,7 +2036,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--7-->
+                        <td>CTX 更新</td><!--7-->
                         <td> </td>
                         <td> </td>
                         <td>P("C"A)=1/3</td>
@@ -2057,12 +2057,12 @@ sao分析跳过视频右边和下边边界
                         <th colspan="1">8：</th><!--8-->
                         <td>输入A</td>
                         <td>已知"GCA"</td>
-                        <td class="t-align-right">CTAGGCAATC</td>
+                        <td> </td>
+                        <td class="t-align-right"><span class="text-blue-emph">CTAGGCA</span><span class="text-red-emph">A</span>TC</td>
                         <td class="t-align-left">TAGGTA</td>
                         <td> </td>
-                        <td> </td>
                     </tr>
-                    <tr class="border-lr">
+                    <tr class="border-lr text-green-dyna">
                         <td>CTX匹配</td><!--8-->
                         <td>CTX3匹配⊗</td>
                         <td>CTX2匹配⊗</td>
@@ -2071,8 +2071,8 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                         <td>小计</td>
                     </tr>
-                    <tr class="border-lr">
-                        <td>编结果</td><!--8-->
+                    <tr class="border-lr text-blue-cnsq">
+                        <td>编码结果</td><!--8-->
                         <td>⊗</td>
                         <td>⊗</td>
                         <td>⊗</td>
@@ -2080,8 +2080,8 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                         <td>"⊗⊗⊗A"</td>
                     </tr>
-                    <tr class="border-lr">
-                        <td>概结果</td><!--8-->
+                    <tr class="border-lr text-pink-cnsq">
+                        <td>概率结果</td><!--8-->
                         <td>P⊗ = 1</td>
                         <td>P⊗ = 1</td>
                         <td>P"A"⊗ = 1/2</td>
@@ -2090,7 +2090,7 @@ sao分析跳过视频右边和下边边界
                         <td>1/2×</td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--8-->
+                        <td>CTX 更新</td><!--8-->
                         <td>P("CTA"G)=1/2</td>
                         <td>P("CT"A)=1/2</td>
                         <td>P("C"T)=1/3</td>
@@ -2099,7 +2099,7 @@ sao分析跳过视频右边和下边边界
                         <td>2/8</td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--8-->
+                        <td>CTX 更新</td><!--8-->
                         <td>P("TAG"G)=1/2</td>
                         <td>P("TA"G)=1/2</td>
                         <td>P("T"A)=1/2</td>
@@ -2108,7 +2108,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--8-->
+                        <td>CTX 更新</td><!--8-->
                         <td>P("AGG"C)=1/2</td>
                         <td>P("AG"G)=1/2</td>
                         <td>P("A"G)=1/3</td>
@@ -2117,7 +2117,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--8-->
+                        <td>CTX 更新</td><!--8-->
                         <td>P("GGC"A)=1/2</td>
                         <td>P("GG"C)=1/2</td>
                         <td>P("G"G)=1/3</td>
@@ -2126,7 +2126,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--8-->
+                        <td>CTX 更新</td><!--8-->
                         <td>P("GCA"A)=1/2</td>
                         <td>P("GC"A)=1/2</td>
                         <td>P("G"C)=1/3</td>
@@ -2135,7 +2135,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--8-->
+                        <td>CTX 更新</td><!--8-->
                         <td> </td>
                         <td>P("CA"A)=1/2</td>
                         <td>P("C"A)=1/3</td>
@@ -2144,7 +2144,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--8-->
+                        <td>CTX 更新</td><!--8-->
                         <td> </td>
                         <td> </td>
                         <td>P("A"A)=1/3</td>
@@ -2165,12 +2165,12 @@ sao分析跳过视频右边和下边边界
                         <th colspan="1">9：</th><!--9-->
                         <td>输入T</td>
                         <td>已知"CAA"</td>
-                        <td class="t-align-right">CTAGGCAATC</td>
+                        <td> </td>
+                        <td class="t-align-right"><span class="text-blue-emph">CTAGGCAA</span><span class="text-red-emph">T</span>C</td>
                         <td class="t-align-left">TAGGTA</td>
                         <td> </td>
-                        <td> </td>
                     </tr>
-                    <tr class="border-lr">
+                    <tr class="border-lr text-green-dyna">
                         <td>CTX匹配</td><!--9-->
                         <td>CTX3匹配⊗</td>
                         <td>CTX2匹配⊗</td>
@@ -2179,8 +2179,8 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                         <td>小计</td>
                     </tr>
-                    <tr class="border-lr">
-                        <td>编结果</td><!--9-->
+                    <tr class="border-lr text-blue-cnsq">
+                        <td>编码结果</td><!--9-->
                         <td>⊗</td>
                         <td>⊗</td>
                         <td>⊗</td>
@@ -2188,8 +2188,8 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                         <td>"⊗⊗⊗T"</td>
                     </tr>
-                    <tr class="border-lr">
-                        <td>概结果</td><!--9-->
+                    <tr class="border-lr text-pink-cnsq">
+                        <td>概率结果</td><!--9-->
                         <td>P⊗ = 1</td>
                         <td>P"CA"⊗ = 1/2</td>
                         <td>P"A"⊗ = 1/3</td>
@@ -2198,7 +2198,7 @@ sao分析跳过视频右边和下边边界
                         <td>1/2×1/3</td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--9-->
+                        <td>CTX 更新</td><!--9-->
                         <td>P("CTA"G)=1/2</td>
                         <td>P("CT"A)=1/2</td>
                         <td>P("C"T)=1/3</td>
@@ -2207,7 +2207,7 @@ sao分析跳过视频右边和下边边界
                         <td>×1/9</td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--9-->
+                        <td>CTX 更新</td><!--9-->
                         <td>P("TAG"G)=1/2</td>
                         <td>P("TA"G)=1/2</td>
                         <td>P("T"A)=1/2</td>
@@ -2216,7 +2216,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--9-->
+                        <td>CTX 更新</td><!--9-->
                         <td>P("AGG"C)=1/2</td>
                         <td>P("AG"G)=1/2</td>
                         <td>P("A"G)=1/4</td>
@@ -2225,7 +2225,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--9-->
+                        <td>CTX 更新</td><!--9-->
                         <td>P("GGC"A)=1/2</td>
                         <td>P("GG"C)=1/2</td>
                         <td>P("G"G)=1/3</td>
@@ -2234,7 +2234,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--9-->
+                        <td>CTX 更新</td><!--9-->
                         <td>P("GCA"A)=1/2</td>
                         <td>P("GC"A)=1/2</td>
                         <td>P("G"C)=1/3</td>
@@ -2243,7 +2243,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--9-->
+                        <td>CTX 更新</td><!--9-->
                         <td>P("CAA"T)=1/2</td>
                         <td>P("CA"A)=1/3</td>
                         <td>P("C"A)=1/3</td>
@@ -2252,7 +2252,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--9-->
+                        <td>CTX 更新</td><!--9-->
                         <td> </td>
                         <td>P("CA"T)=1/3</td>
                         <td>P("A"A)=1/4</td>
@@ -2261,7 +2261,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--9-->
+                        <td>CTX 更新</td><!--9-->
                         <td> </td>
                         <td> </td>
                         <td>P("A"T)=1/4</td>
@@ -2282,12 +2282,12 @@ sao分析跳过视频右边和下边边界
                         <th colspan="1">10：</th><!--10-->
                         <td>输入C</td>
                         <td>已知"AAT"</td>
-                        <td class="t-align-right">CTAGGCAATC</td>
+                        <td> </td>
+                        <td class="t-align-right"><span class="text-blue-emph">CTAGGCAAT</span><span class="text-red-emph">C</span></td>
                         <td class="t-align-left">TAGGTA</td>
                         <td> </td>
-                        <td> </td>
                     </tr>
-                    <tr class="border-lr">
+                    <tr class="border-lr text-green-dyna">
                         <td>CTX匹配</td><!--10-->
                         <td>CTX3匹配⊗</td>
                         <td>CTX2匹配⊗</td>
@@ -2296,8 +2296,8 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                         <td>小计</td>
                     </tr>
-                    <tr class="border-lr">
-                        <td>编结果</td><!--10-->
+                    <tr class="border-lr text-blue-cnsq">
+                        <td>编码结果</td><!--10-->
                         <td>⊗</td>
                         <td>⊗</td>
                         <td>⊗</td>
@@ -2305,8 +2305,8 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                         <td>"⊗⊗⊗C"</td>
                     </tr>
-                    <tr class="border-lr">
-                        <td>概结果</td><!--10-->
+                    <tr class="border-lr text-pink-cnsq">
+                        <td>概率结果</td><!--10-->
                         <td>P⊗ = 1</td>
                         <td>P⊗ = 1</td>
                         <td>P"T"⊗ = 1/2</td>
@@ -2315,7 +2315,7 @@ sao分析跳过视频右边和下边边界
                         <td>1/2×</td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--10-->
+                        <td>CTX 更新</td><!--10-->
                         <td>P("CTA"G)=1/2</td>
                         <td>P("CT"A)=1/2</td>
                         <td>P("C"T)=1/3</td>
@@ -2324,7 +2324,7 @@ sao分析跳过视频右边和下边边界
                         <td>2/10</td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--10-->
+                        <td>CTX 更新</td><!--10-->
                         <td>P("TAG"G)=1/2</td>
                         <td>P("TA"G)=1/2</td>
                         <td>P("T"A)=1/3</td>
@@ -2333,7 +2333,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--10-->
+                        <td>CTX 更新</td><!--10-->
                         <td>P("AGG"C)=1/2</td>
                         <td>P("AG"G)=1/2</td>
                         <td>P("A"G)=1/4</td>
@@ -2342,7 +2342,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--10-->
+                        <td>CTX 更新</td><!--10-->
                         <td>P("GGC"A)=1/2</td>
                         <td>P("GG"C)=1/2</td>
                         <td>P("G"G)=1/3</td>
@@ -2351,7 +2351,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--10-->
+                        <td>CTX 更新</td><!--10-->
                         <td>P("GCA"A)=1/2</td>
                         <td>P("GC"A)=1/2</td>
                         <td>P("G"C)=1/3</td>
@@ -2360,7 +2360,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--10-->
+                        <td>CTX 更新</td><!--10-->
                         <td>P("CAA"T)=1/2</td>
                         <td>P("CA"A)=1/3</td>
                         <td>P("C"A)=1/3</td>
@@ -2369,7 +2369,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--10-->
+                        <td>CTX 更新</td><!--10-->
                         <td>P("AAT"C)=1/2</td>
                         <td>P("CA"T)=1/3</td>
                         <td>P("A"A)=1/4</td>
@@ -2378,7 +2378,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--10-->
+                        <td>CTX 更新</td><!--10-->
                         <td> </td>
                         <td>P("AT"C)=1/2</td>
                         <td>P("A"T)=1/4</td>
@@ -2387,7 +2387,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--10-->
+                        <td>CTX 更新</td><!--10-->
                         <td> </td>
                         <td> </td>
                         <td>P("T"C)=1/3</td>
@@ -2408,12 +2408,12 @@ sao分析跳过视频右边和下边边界
                         <th colspan="1">11：</th><!--11-->
                         <td>输入T</td>
                         <td>已知"ATC"</td>
-                        <td class="t-align-right">CTAGGCAATC</td>
-                        <td class="t-align-left">TAGGTA</td>
                         <td> </td>
+                        <td class="t-align-right text-blue-emph">CTAGGCAATC</td>
+                        <td class="t-align-left"><span class="text-red-emph">T</span>AGGTA</td>
                         <td> </td>
                     </tr>
-                    <tr class="border-lr">
+                    <tr class="border-lr text-green-dyna">
                         <td>CTX匹配</td><!--11-->
                         <td>CTX3匹配⊗</td>
                         <td>CTX2匹配⊗</td>
@@ -2422,8 +2422,8 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                         <td>小计</td>
                     </tr>
-                    <tr class="border-lr">
-                        <td>编结果</td><!--11-->
+                    <tr class="border-lr text-blue-cnsq">
+                        <td>编码结果</td><!--11-->
                         <td>⊗</td>
                         <td>⊗</td>
                         <td>T</td>
@@ -2431,8 +2431,8 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                         <td>"⊗⊗T"</td>
                     </tr>
-                    <tr class="border-lr">
-                        <td>概结果</td><!--11-->
+                    <tr class="border-lr text-pink-cnsq">
+                        <td>概率结果</td><!--11-->
                         <td>P⊗ = 1</td>
                         <td>P⊗ = 1</td>
                         <td>P"T"⊗ = 1/3</td>
@@ -2441,7 +2441,7 @@ sao分析跳过视频右边和下边边界
                         <td>1/3</td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--11-->
+                        <td>CTX 更新</td><!--11-->
                         <td>P("CTA"G)=1/2</td>
                         <td>P("CT"A)=1/2</td>
                         <td>P("C"T)=2/4</td>
@@ -2450,7 +2450,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--11-->
+                        <td>CTX 更新</td><!--11-->
                         <td>P("TAG"G)=1/2</td>
                         <td>P("TA"G)=1/2</td>
                         <td>P("T"A)=1/3</td>
@@ -2459,7 +2459,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--11-->
+                        <td>CTX 更新</td><!--11-->
                         <td>P("AGG"C)=1/2</td>
                         <td>P("AG"G)=1/2</td>
                         <td>P("A"G)=1/4</td>
@@ -2468,7 +2468,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--11-->
+                        <td>CTX 更新</td><!--11-->
                         <td>P("GGC"A)=1/2</td>
                         <td>P("GG"C)=1/2</td>
                         <td>P("G"G)=1/3</td>
@@ -2477,7 +2477,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--11-->
+                        <td>CTX 更新</td><!--11-->
                         <td>P("GCA"A)=1/2</td>
                         <td>P("GC"A)=1/2</td>
                         <td>P("G"C)=1/3</td>
@@ -2486,7 +2486,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--11-->
+                        <td>CTX 更新</td><!--11-->
                         <td>P("CAA"T)=1/2</td>
                         <td>P("CA"A)=1/3</td>
                         <td>P("C"A)=1/3</td>
@@ -2495,7 +2495,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--11-->
+                        <td>CTX 更新</td><!--11-->
                         <td>P("AAT"C)=1/2</td>
                         <td>P("CA"T)=1/3</td>
                         <td>P("A"A)=1/4</td>
@@ -2504,7 +2504,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--11-->
+                        <td>CTX 更新</td><!--11-->
                         <td>P("ATC"T)=1/2</td>
                         <td>P("AT"C)=1/2</td>
                         <td>P("A"T)=1/4</td>
@@ -2513,7 +2513,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--11-->
+                        <td>CTX 更新</td><!--11-->
                         <td> </td>
                         <td>P("TC"T)=1/2</td>
                         <td>P("T"C)=1/3</td>
@@ -2534,12 +2534,12 @@ sao分析跳过视频右边和下边边界
                         <th colspan="1">12：</th><!--12-->
                         <td>输入A</td>
                         <td>已知"TCT"</td>
-                        <td class="t-align-right">CTAGGCAATC</td>
-                        <td class="t-align-left">TAGGTA</td>
                         <td> </td>
+                        <td class="t-align-right text-blue-emph">CTAGGCAATC</td>
+                        <td class="t-align-left"><span class="text-blue-emph">T</span><span class="text-red-emph">A</span>GGTA</td>
                         <td> </td>
                     </tr>
-                    <tr class="border-lr">
+                    <tr class="border-lr text-green-dyna">
                         <td>CTX匹配</td><!--12-->
                         <td>CTX3匹配⊗</td>
                         <td>CTX2匹配A</td>
@@ -2548,8 +2548,8 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                         <td>小计</td>
                     </tr>
-                    <tr class="border-lr">
-                        <td>编结果</td><!--12-->
+                    <tr class="border-lr text-blue-cnsq">
+                        <td>编码结果</td><!--12-->
                         <td>⊗</td>
                         <td>A</td>
                         <td> </td>
@@ -2557,8 +2557,8 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                         <td>"⊗A"</td>
                     </tr>
-                    <tr class="border-lr">
-                        <td>概结果</td><!--12-->
+                    <tr class="border-lr text-pink-cnsq">
+                        <td>概率结果</td><!--12-->
                         <td>P⊗ = 1</td>
                         <td>P⊗ = 1/2</td>
                         <td> </td>
@@ -2567,7 +2567,7 @@ sao分析跳过视频右边和下边边界
                         <td>1/2</td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--12-->
+                        <td>CTX 更新</td><!--12-->
                         <td>P("CTA"G)=1/2</td>
                         <td>P("CT"A)=2/3</td>
                         <td> </td>
@@ -2576,7 +2576,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--12-->
+                        <td>CTX 更新</td><!--12-->
                         <td>P("TAG"G)=1/2</td>
                         <td>P("TA"G)=1/2</td>
                         <td> </td>
@@ -2585,7 +2585,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--12-->
+                        <td>CTX 更新</td><!--12-->
                         <td>P("AGG"C)=1/2</td>
                         <td>P("AG"G)=1/2</td>
                         <td> </td>
@@ -2594,7 +2594,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--12-->
+                        <td>CTX 更新</td><!--12-->
                         <td>P("GGC"A)=1/2</td>
                         <td>P("GG"C)=1/2</td>
                         <td> </td>
@@ -2603,7 +2603,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--12-->
+                        <td>CTX 更新</td><!--12-->
                         <td>P("GCA"A)=1/2</td>
                         <td>P("GC"A)=1/2</td>
                         <td> </td>
@@ -2612,7 +2612,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--12-->
+                        <td>CTX 更新</td><!--12-->
                         <td>P("CAA"T)=1/2</td>
                         <td>P("CA"A)=1/3</td>
                         <td> </td>
@@ -2621,7 +2621,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--12-->
+                        <td>CTX 更新</td><!--12-->
                         <td>P("AAT"C)=1/2</td>
                         <td>P("CA"T)=1/3</td>
                         <td> </td>
@@ -2630,7 +2630,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--12-->
+                        <td>CTX 更新</td><!--12-->
                         <td>P("ATC"T)=1/2</td>
                         <td>P("AT"C)=1/2</td>
                         <td> </td>
@@ -2639,7 +2639,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--12-->
+                        <td>CTX 更新</td><!--12-->
                         <td>P("TCT"A)=1/2</td>
                         <td>P("TC"T)=1/2</td>
                         <td> </td>
@@ -2660,12 +2660,12 @@ sao分析跳过视频右边和下边边界
                         <th colspan="1">13：</th><!--13-->
                         <td>输入G</td>
                         <td>已知"CTA"</td>
-                        <td class="t-align-right">CTAGGCAATC</td>
-                        <td class="t-align-left">TAGGTA</td>
                         <td> </td>
+                        <td class="t-align-right text-blue-emph">CTAGGCAATC</td>
+                        <td class="t-align-left"><span class="text-blue-emph">TA</span><span class="text-red-emph">G</span>GTA</td>
                         <td> </td>
                     </tr>
-                    <tr class="border-lr">
+                    <tr class="border-lr text-green-dyna">
                         <td>CTX匹配</td><!--13-->
                         <td>CTX3匹配G</td>
                         <td> </td>
@@ -2674,8 +2674,8 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                         <td>小计</td>
                     </tr>
-                    <tr class="border-lr">
-                        <td>编结果</td><!--13-->
+                    <tr class="border-lr text-blue-cnsq">
+                        <td>编码结果</td><!--13-->
                         <td>G</td>
                         <td> </td>
                         <td> </td>
@@ -2683,8 +2683,8 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                         <td>"G"</td>
                     </tr>
-                    <tr class="border-lr">
-                        <td>概结果</td><!--13-->
+                    <tr class="border-lr text-pink-cnsq">
+                        <td>概率结果</td><!--13-->
                         <td>P"CTA"G=1/2</td>
                         <td> </td>
                         <td> </td>
@@ -2693,7 +2693,7 @@ sao分析跳过视频右边和下边边界
                         <td>1/2</td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--13-->
+                        <td>CTX 更新</td><!--13-->
                         <td>P("CTA"G)=2/3</td>
                         <td> </td>
                         <td> </td>
@@ -2702,7 +2702,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--13-->
+                        <td>CTX 更新</td><!--13-->
                         <td>P("TAG"G)=1/2</td>
                         <td> </td>
                         <td> </td>
@@ -2711,7 +2711,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--13-->
+                        <td>CTX 更新</td><!--13-->
                         <td>P("AGG"C)=1/2</td>
                         <td> </td>
                         <td> </td>
@@ -2720,7 +2720,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--13-->
+                        <td>CTX 更新</td><!--13-->
                         <td>P("GGC"A)=1/2</td>
                         <td> </td>
                         <td> </td>
@@ -2729,7 +2729,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--13-->
+                        <td>CTX 更新</td><!--13-->
                         <td>P("GCA"A)=1/2</td>
                         <td> </td>
                         <td> </td>
@@ -2738,7 +2738,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--13-->
+                        <td>CTX 更新</td><!--13-->
                         <td>P("CAA"T)=1/2</td>
                         <td> </td>
                         <td> </td>
@@ -2747,7 +2747,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--13-->
+                        <td>CTX 更新</td><!--13-->
                         <td>P("AAT"C)=1/2</td>
                         <td> </td>
                         <td> </td>
@@ -2756,7 +2756,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--13-->
+                        <td>CTX 更新</td><!--13-->
                         <td>P("ATC"T)=1/2</td>
                         <td> </td>
                         <td> </td>
@@ -2765,7 +2765,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--13-->
+                        <td>CTX 更新</td><!--13-->
                         <td>P("TCT"A)=1/2</td>
                         <td> </td>
                         <td> </td>
@@ -2786,12 +2786,12 @@ sao分析跳过视频右边和下边边界
                         <th colspan="1">14：</th><!--14-->
                         <td>输入G</td>
                         <td>已知"TAG"</td>
-                        <td class="t-align-right">CTAGGCAATC</td>
-                        <td class="t-align-left">TAGGTA</td>
                         <td> </td>
+                        <td class="t-align-right text-blue-emph">CTAGGCAATC</td>
+                        <td class="t-align-left"><span class="text-blue-emph">TAG</span><span class="text-red-emph">G</span>TA</td>
                         <td> </td>
                     </tr>
-                    <tr class="border-lr">
+                    <tr class="border-lr text-green-dyna">
                         <td>CTX匹配</td><!--14-->
                         <td>CTX3匹配G</td>
                         <td> </td>
@@ -2800,8 +2800,8 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                         <td>小计</td>
                     </tr>
-                    <tr class="border-lr">
-                        <td>编结果</td><!--14-->
+                    <tr class="border-lr text-blue-cnsq">
+                        <td>编码结果</td><!--14-->
                         <td>G</td>
                         <td> </td>
                         <td> </td>
@@ -2809,8 +2809,8 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                         <td>"G"</td>
                     </tr>
-                    <tr class="border-lr">
-                        <td>概结果</td><!--14-->
+                    <tr class="border-lr text-pink-cnsq">
+                        <td>概率结果</td><!--14-->
                         <td>P"CTA"G=1/2</td>
                         <td> </td>
                         <td> </td>
@@ -2819,7 +2819,7 @@ sao分析跳过视频右边和下边边界
                         <td>1/2</td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--14-->
+                        <td>CTX 更新</td><!--14-->
                         <td>P("CTA"G)=2/3</td>
                         <td> </td>
                         <td> </td>
@@ -2828,7 +2828,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--14-->
+                        <td>CTX 更新</td><!--14-->
                         <td>P("TAG"G)=2/3</td>
                         <td> </td>
                         <td> </td>
@@ -2837,7 +2837,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--14-->
+                        <td>CTX 更新</td><!--14-->
                         <td>P("AGG"C)=1/2</td>
                         <td> </td>
                         <td> </td>
@@ -2846,7 +2846,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--14-->
+                        <td>CTX 更新</td><!--14-->
                         <td>P("GGC"A)=1/2</td>
                         <td> </td>
                         <td> </td>
@@ -2855,7 +2855,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--14-->
+                        <td>CTX 更新</td><!--14-->
                         <td>P("GCA"A)=1/2</td>
                         <td> </td>
                         <td> </td>
@@ -2864,7 +2864,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--14-->
+                        <td>CTX 更新</td><!--14-->
                         <td>P("CAA"T)=1/2</td>
                         <td> </td>
                         <td> </td>
@@ -2873,7 +2873,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--14-->
+                        <td>CTX 更新</td><!--14-->
                         <td>P("AAT"C)=1/2</td>
                         <td> </td>
                         <td> </td>
@@ -2882,7 +2882,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--14-->
+                        <td>CTX 更新</td><!--14-->
                         <td>P("ATC"T)=1/2</td>
                         <td> </td>
                         <td> </td>
@@ -2891,7 +2891,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--14-->
+                        <td>CTX 更新</td><!--14-->
                         <td>P("TCT"A)=1/2</td>
                         <td> </td>
                         <td> </td>
@@ -2912,12 +2912,12 @@ sao分析跳过视频右边和下边边界
                         <th colspan="1">15：</th><!--15-->
                         <td>输入T</td>
                         <td>已知"AGG"</td>
-                        <td class="t-align-right">CTAGGCAATC</td>
-                        <td class="t-align-left">TAGGTA</td>
                         <td> </td>
+                        <td class="t-align-right text-blue-emph">CTAGGCAATC</td>
+                        <td class="t-align-left"><span class="text-blue-emph">TAGG</span><span class="text-red-emph">T</span>A</td>
                         <td> </td>
                     </tr>
-                    <tr class="border-lr">
+                    <tr class="border-lr text-green-dyna">
                         <td>CTX匹配</td><!--15-->
                         <td>CTX3匹配⊗</td>
                         <td>CTX2匹配⊗</td>
@@ -2926,8 +2926,8 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                         <td>小计</td>
                     </tr>
-                    <tr class="border-lr">
-                        <td>编结果</td><!--15-->
+                    <tr class="border-lr text-blue-cnsq">
+                        <td>编码结果</td><!--15-->
                         <td>⊗</td>
                         <td>⊗</td>
                         <td>⊗</td>
@@ -2935,8 +2935,8 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                         <td>"⊗⊗⊗T"</td>
                     </tr>
-                    <tr class="border-lr">
-                        <td>概结果</td><!--15-->
+                    <tr class="border-lr text-pink-cnsq">
+                        <td>概率结果</td><!--15-->
                         <td>P"AGG"⊗=1/2</td>
                         <td>P"GG"⊗ = 1/2</td>
                         <td>P"G"⊗ = 1/3</td>
@@ -2945,7 +2945,7 @@ sao分析跳过视频右边和下边边界
                         <td>1/2×</td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--15-->
+                        <td>CTX 更新</td><!--15-->
                         <td>P("CTA"G)=2/3</td>
                         <td>P("CT"A)=2/3</td>
                         <td>P("C"T)=2/4</td>
@@ -2954,7 +2954,7 @@ sao分析跳过视频右边和下边边界
                         <td>1/2×</td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--15-->
+                        <td>CTX 更新</td><!--15-->
                         <td>P("TAG"G)=2/3</td>
                         <td>P("TA"G)=1/2</td>
                         <td>P("T"A)=1/3</td>
@@ -2963,7 +2963,7 @@ sao分析跳过视频右边和下边边界
                         <td>1/3×</td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--15-->
+                        <td>CTX 更新</td><!--15-->
                         <td>P("AGG"C)=1/3</td>
                         <td>P("AG"G)=1/2</td>
                         <td>P("A"G)=1/4</td>
@@ -2972,7 +2972,7 @@ sao分析跳过视频右边和下边边界
                         <td>2/11</td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--15-->
+                        <td>CTX 更新</td><!--15-->
                         <td>P("GGC"A)=1/2</td>
                         <td>P("GG"C)=1/3</td>
                         <td>P("G"G)=1/3</td>
@@ -2981,7 +2981,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--15-->
+                        <td>CTX 更新</td><!--15-->
                         <td>P("GCA"A)=1/2</td>
                         <td>P("GC"A)=1/2</td>
                         <td>P("G"C)=1/3</td>
@@ -2990,7 +2990,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--15-->
+                        <td>CTX 更新</td><!--15-->
                         <td>P("CAA"T)=1/2</td>
                         <td>P("CA"A)=1/3</td>
                         <td>P("C"A)=1/3</td>
@@ -2999,7 +2999,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--15-->
+                        <td>CTX 更新</td><!--15-->
                         <td>P("AAT"C)=1/2</td>
                         <td>P("CA"T)=1/3</td>
                         <td>P("A"A)=1/4</td>
@@ -3008,7 +3008,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--15-->
+                        <td>CTX 更新</td><!--15-->
                         <td>P("ATC"T)=1/2</td>
                         <td>P("AT"C)=1/2</td>
                         <td>P("A"T)=1/4</td>
@@ -3017,7 +3017,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--15-->
+                        <td>CTX 更新</td><!--15-->
                         <td>P("TCT"A)=1/2</td>
                         <td>P("TC"T)=1/2</td>
                         <td>P("T"C)=1/3</td>
@@ -3026,7 +3026,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--15-->
+                        <td>CTX 更新</td><!--15-->
                         <td>P("AGG"T)=1/3</td>
                         <td>P("GG"T)=1/3</td>
                         <td>P("G"T)=1/4</td>
@@ -3047,12 +3047,12 @@ sao分析跳过视频右边和下边边界
                         <th colspan="1">16：</th><!--16-->
                         <td>输入A</td>
                         <td>已知"GGT"</td>
-                        <td class="t-align-right">CTAGGCAATC</td>
-                        <td class="t-align-left">TAGGTA</td>
                         <td> </td>
+                        <td class="t-align-right text-blue-emph">CTAGGCAATC</td>
+                        <td class="t-align-left"><span class="text-blue-emph">TAGTAGGT</span><span class="text-red-emph">A</span></td>
                         <td> </td>
                     </tr>
-                    <tr class="border-lr">
+                    <tr class="border-lr text-green-dyna">
                         <td>CTX匹配</td><!--16-->
                         <td>CTX3匹配⊗</td>
                         <td>CTX2匹配⊗</td>
@@ -3061,8 +3061,8 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                         <td>小计</td>
                     </tr>
-                    <tr class="border-lr">
-                        <td>编结果</td><!--16-->
+                    <tr class="border-lr text-blue-cnsq">
+                        <td>编码结果</td><!--16-->
                         <td>⊗</td>
                         <td>⊗</td>
                         <td>A</td>
@@ -3070,8 +3070,8 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                         <td>"⊗⊗A"</td>
                     </tr>
-                    <tr class="border-lr">
-                        <td>概结果</td><!--16-->
+                    <tr class="border-lr text-pink-cnsq">
+                        <td>概率结果</td><!--16-->
                         <td>P⊗=1/2</td>
                         <td>P⊗ = 1</td>
                         <td>P"T"A = 1/3</td>
@@ -3080,7 +3080,7 @@ sao分析跳过视频右边和下边边界
                         <td>1/2×</td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--16-->
+                        <td>CTX 更新</td><!--16-->
                         <td>P("CTA"G)=2/3</td>
                         <td>P("CT"A)=2/3</td>
                         <td>P("C"T)=2/4</td>
@@ -3089,7 +3089,7 @@ sao分析跳过视频右边和下边边界
                         <td>1/3</td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--16-->
+                        <td>CTX 更新</td><!--16-->
                         <td>P("TAG"G)=2/3</td>
                         <td>P("TA"G)=1/2</td>
                         <td>P("T"A)=2/4</td>
@@ -3098,7 +3098,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--16-->
+                        <td>CTX 更新</td><!--16-->
                         <td>P("AGG"C)=1/3</td>
                         <td>P("AG"G)=1/2</td>
                         <td>P("A"G)=1/4</td>
@@ -3107,7 +3107,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--16-->
+                        <td>CTX 更新</td><!--16-->
                         <td>P("GGC"A)=1/2</td>
                         <td>P("GG"C)=1/3</td>
                         <td>P("G"G)=1/3</td>
@@ -3116,7 +3116,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--16-->
+                        <td>CTX 更新</td><!--16-->
                         <td>P("GCA"A)=1/2</td>
                         <td>P("GC"A)=1/2</td>
                         <td>P("G"C)=1/3</td>
@@ -3125,7 +3125,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--16-->
+                        <td>CTX 更新</td><!--16-->
                         <td>P("CAA"T)=1/2</td>
                         <td>P("CA"A)=1/3</td>
                         <td>P("C"A)=1/3</td>
@@ -3134,7 +3134,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--16-->
+                        <td>CTX 更新</td><!--16-->
                         <td>P("AAT"C)=1/2</td>
                         <td>P("CA"T)=1/3</td>
                         <td>P("A"A)=1/4</td>
@@ -3143,7 +3143,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--16-->
+                        <td>CTX 更新</td><!--16-->
                         <td>P("ATC"T)=1/2</td>
                         <td>P("AT"C)=1/2</td>
                         <td>P("A"T)=1/4</td>
@@ -3152,7 +3152,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--16-->
+                        <td>CTX 更新</td><!--16-->
                         <td>P("TCT"A)=1/2</td>
                         <td>P("TC"T)=1/2</td>
                         <td>P("T"C)=1/4</td>
@@ -3161,7 +3161,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--16-->
+                        <td>CTX 更新</td><!--16-->
                         <td>P("AGG"T)=1/3</td>
                         <td>P("GG"T)=1/3</td>
                         <td> </td>
@@ -3170,7 +3170,7 @@ sao分析跳过视频右边和下边边界
                         <td> </td>
                     </tr>
                     <tr class="border-lr">
-                        <td class="text-blue-emph">CTX 更新</td><!--16-->
+                        <td>CTX 更新</td><!--16-->
                         <td>P("GGT"A)=1/2</td>
                         <td>P("GT"A)=1/2</td>
                         <td> </td>

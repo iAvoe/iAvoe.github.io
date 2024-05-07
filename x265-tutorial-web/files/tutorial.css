@@ -60,8 +60,8 @@
     --hex-light-green: #31BD8E; /* hyperlink green */
     --hex-light-blue: #58AEBC; /* side emphasize blue */
     --hex-light-red: #FF9999; /* side emphasize red */
-    --hex-bright-pink: #FF6CB6; /* step over action */
-    --hex-bright-blue: #7979FF; /* step over consequense */
+    --hex-bright-pink: #FF6CB6; /* step over probobility consequense */
+    --hex-bright-blue: #7979FF; /* step over encoding consequense */
     --hex-pure-red: #C00000; /* lerp triangulation visual 1 */
     --hex-pure-blue: #3F3FFF; /* lerp triangulation visual 2 */
     --hex-pure-green: #008000;  /* lerp triangulation visual 3 */
@@ -79,8 +79,8 @@
     --rgb-light-green: 49,189,142; /* hyperlink green */
     --rgb-light-blue: 88,174,188; /* side emphasize blue */
     --rgb-light-red: 255,153,153; /* side emphasize red */
-    --rgb-bright-pink: 255,108,182; /* step over action */
-    --rgb-bright-blue: 121,121,255; /* step over consequense */
+    --rgb-bright-pink: 255,108,182; /* step over probability consequense */
+    --rgb-bright-blue: 121,121,255; /* step over enbcoding consequense */
     --rgb-pure-red: 192,0,0; /* lerp triangulation visual 1 */
     --rgb-pure-blue: 63,63,255; /* lerp triangulation visual 2 */
     --rgb-pure-green: 0,128,0; /* lerp triangulation visual 3 */
@@ -123,7 +123,7 @@ pre { overflow-x: scroll; margin-top: 0; }
 .text-purple-tbl { color: rgba(var(--rgb-dark-purple), var(--no-opacity)) !important; }
 .text-blue-side { color: rgba(var(--rgb-light-blue), var(--no-opacity)) !important; }
 .text-red-side { color: rgba(var(--rgb-light-red), var(--no-opacity)) !important; }
-.text-pink-acts { color: rgba(var(--rgb-bright-pink), var(--no-opacity)) !important; }
+.text-pink-cnsq { color: rgba(var(--rgb-bright-pink), var(--no-opacity)) !important; }
 .text-blue-cnsq { color: rgba(var(--rgb-bright-blue), var(--no-opacity)) !important; }
 .text-red-pure  { color: rgba(var(--rgb-pure-red), var(--no-opacity)) !important; }
 .text-blue-pure { color: rgba(var(--rgb-pure-blue), var(--no-opacity)) !important; }
@@ -350,6 +350,10 @@ table thead { border-bottom: 1.25px solid var(--hex-light-grayblue); }
     color: white;
 }
 .thead-no-border { border-bottom: 0px; }
+.border-lr td {
+    border-left: 1px solid #dee2e6 !important;
+    border-right: 1px solid #dee2e6 !important;
+}
 
 /* Margin for all lists */
 li { margin-top: 0.25rem; }
