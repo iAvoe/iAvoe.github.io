@@ -841,7 +841,7 @@ aq-strength-edge偏给暗场的程度</code></pre>
             <p>简单地说，将失真；码率分别看做两种越大越差的程度；将其中一个程度乘以一个缩放值以对齐另一个（否则两值权重不一样），然后在各种模式决策，量化方案下找出最小的和，就有了最优方案。由代价函数「开销=失真+λ⋅码率」（越小越好）实现模式决策：
             </p>
             <span class="text-blue-math">\[J = D + \lambda \cdot R\]</span>
-            <p>由于这个式子是一元一次函数（ <span class="text-blue-math">\(y = mx + b\)</span> ），所以可画图表示为每个方案 J 作为位于 D，R 坐标系，斜度 λ 线上的点；其中失真 D 用平方差 SSE 或总差异 SAD 判断（SSE多取一步平方，使较大的差异呈指数增长）进而分到更多补偿的码率。拉格朗日值 λ 源于 qp，即 crf，abr 指定的率失真斜率 slope 区间。qp 越大斜度越小：</p>
+            <p>由于这个式子是一元一次函数（ <span class="text-blue-math">\(y = mx + b\)</span> ），所以可画图表示为每个方案 J 作为位于 D，R 坐标系，斜度 λ 线上的点；其中失真 D 用平方差 SSE 或总差异 SAD 判断（SSE多取一步平方，使较大的差异呈指数增长）进而分到更多补偿的码率。拉格朗日值 λ 源于 qp，即 crf，abr 指定的率失真斜度区间。qp 越大斜度越小：</p>
             <ul>
                 <li><span class="text-blue-math">\(\lambda=0\)</span>则无斜度，则代价等于失真——码率变而画质不变，宜压缩。</li>
                 <li><span class="text-blue-math">\(\lambda \rightarrow 0\)</span>（趋0）则开销趋失真——适当压缩就不会影响画质</li>
