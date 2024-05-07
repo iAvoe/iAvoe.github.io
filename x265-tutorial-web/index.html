@@ -376,7 +376,7 @@ Lookahead中两帧差距达到该参数值则触发转场
             <pre><code><b>--opt-qp-pps --opt-ref-list-length-pps</b>&lt;开关，默认关，已知兼容性问题&gt;
 据上个GOP改动当前PPS中默认的qp/ref参数值，从而整体上优化视频数据结构。尽管符合HEVC标准，但部分解码端，包括视频网站都不这么想
 注：兼容性问题为<a href="https://forum.doom9.org/showthread.php?p=1978837">应该用hev1而非hvc1封装进ISO-BMFF</a>
-<b>--repeat-headers</b>&lt;开关, 默认关&gt;
+<b>--repeat-headers</b>&lt;开关，默认关&gt;
 在流未封装的情况下提供SPS，PPS等信息，正常播放HEVC源码
 注：封装文件的科普<a href="https://www.nazorip.site/archives/63">见x264教程</a></code></pre>
 
@@ -573,7 +573,7 @@ P帧比IDR/I，及B/b帧相比P帧的量化值递增。B帧双向参考能从更
                         <th class="t-light-gray px-1">
                             cplxBase<span class="text-blue-math">$$ctu\_count \times (bframe?120:80)$$</span>
                         </th>
-                        <td>常数/恒定值。CRF 模式默认的复杂度。若用 B 帧编码则 CTU 或宏块数量×120, 否则×80</td>
+                        <td>常数/恒定值。CRF 模式默认的复杂度。若用 B 帧编码则 CTU 或宏块数量×120，否则×80</td>
                     </tr>
                     <tr class="t-border-bottom">
                         <th class="t-light-gray px-1">
@@ -935,7 +935,7 @@ abr/crf分配量化值的宏观调控强度，大则慢，0则关
 
             <h2>去块滤镜</h2>
             <p>修复高量化时宏块间出现明显横纵割痕瑕疵的平滑滤镜。编码器内去块利用了之前搜索到的信息而相比外部滤镜误判更少，但大体上就是检查1像素宽，且周围没有较大高度/像素值变化的横纵边缘，所以误判也不可避免。</p>
-            <p>块失真源自块间不统一的量化程度。而去块手段是平滑滤镜, 因此要降低强度才适用于高码视频, 动漫, 素材录屏等锐利画面. 边界强度 Boundary strength（去块力度判断）</p>
+            <p>块失真源自块间不统一的量化程度。而去块手段是平滑滤镜，因此要降低强度才适用于高码视频，动漫，素材录屏等锐利画面. 边界强度 Boundary strength（去块力度判断）</p>
             <div class="align-items-center">
                 <img src="files/image32.png" alt="Deblock detection visualization" class="img-medium" >
                 <img src="files/image33.png" alt="Deblock edge visualization" class="img-medium" >
@@ -1467,7 +1467,7 @@ sao分析跳过视频右边和下边边界
                 <li>CTX<sub>1</sub>——输入=字符2时，上下文为“&lt;字符1&gt;”的状态</li>
                 <li>CTX<sub>2</sub>——输入≥字符n时，上下文为“&lt;…&gt;&lt;字符n-2&gt;&lt;字符n-1&gt;”的状态</li>
                 <li>⊗———切换符，叠加以显示临时倒退了多少个 CTX 表，各个 CTX 表也因此有 ⊗ 的概率</li>
-                <li>「匹长概大, 配短概小」: 先用最长且小于等于已知上下文长度的 CTXn 编码输入符号, 该情况下出字概率最大</li>
+                <li>「匹长概大，配短概小」: 先用最长且小于等于已知上下文长度的 CTXn 编码输入符号，该情况下出字概率最大</li>
             </ul>
             <ol class="text-smaller">
                 <li>
@@ -3216,7 +3216,7 @@ sao分析跳过视频右边和下边边界
             <ul>
                 <li>小概率对时，一遍对的概率被其它次数分走，而反过来大概率对时，一遍对的概率会夺走其它次数的概率</li>
                 <li>因为尝试次数间的差距皆为整数1（如不存在0.3次尝试）所以等差</li>
-                <li>因为尝试次数每次都乘进同个 <span class="text-blue-math">\(1-p\)</span> 比率, 所以等比</li>
+                <li>因为尝试次数每次都乘进同个 <span class="text-blue-math">\(1-p\)</span> 比率，所以等比</li>
                 <li>综上所述（计算过程含多次 <span class="text-blue-math">\(1-p\)</span> 相乘）二维坐标系中可见概率的指数递减下降变化，得名几何分布</li>
             </ul>
 
@@ -3257,19 +3257,53 @@ sao分析跳过视频右边和下边边界
             <p>8bit下，十进制 3 会转为浪费码率的 00000011——因为前后都挨着其它 8bit 数而不能删；所以添加清点有效位数的标记，共有 11 两位数而设标记 00，再转后缀为前缀，就得到相对可靠的 <span class="text-blue-math">\( (a=00,b=11) \)</span>；解码器识别出变量a，b，为两位数的二进制 11 而还原</p>
 
             <h4>转二进制-一元码Unary，截短二进制码 Truncated Binary</h4>
-            <p></p>
+            <p>一元码如2，3即110，1110或001，0001，末尾分隔后续数，差在吃带宽。截短二进制如8bit的十进制5是二进制00000101。所以能截短到101，差在难以解码；被哥伦布编码统一</p>
 
             <h4>转二进制-哥伦布(-莱斯)编码 Golomb(-Rice) Coding</h4>
-            <p></p>
+            <p>将正整数转二进制并压缩。以输入 N，十进制缩放值 M 与刻度 Κ，一元码，截短二进制实现。（-莱斯）码在此基础上限制 M 仅为2的幂，对计算机更友好。此处例 M=4，输入 N=9：</p>
+            <ol>
+                <li>㏒<sub>2</sub>缩放的刻度 K：<span class="text-blue-math">Kλίμακα \( = \lceil \log_{2} M \rceil \)</span>，如 <span class="text-blue-math">\(\log_{2}{4}=2\)</span>，ceil 约2
+                    <ul class="text-gray-side">
+                        <li>注：译作刻度 klimaka，但 k 实际是公认随便写的刻度变量</li>
+                    </ul>
+                </li>
+                <li>求商去尾，转一元码：<span class="text-blue-math">\(Quotient = \text{Unary} \left\lfloor \frac{N}{M} \right\rfloor\)</span>，如 <span class="text-blue-math">\(9 \div 4 = 2.25\)</span>，floor 约2，换一元码110</li>
+                <li>求余数模，判断区间：<span class="text-blue-math">\(\text{Remainder} = N \ \% \ M\)</span>，如 <span class="text-blue-math">\(9 \% 4 = 9 - (\lfloor9 \div 4 \rfloor \times 4) = 1\)</span></li>
+                <li>余数模是否小于刻度：<span class="text-blue-math">\(0 \leq R &lt; (2^K - M) ? \)</span>，如 <span class="text-blue-math">\(0\leq 1 &lt; (2^2 - 4)\)</span> 结果否定，因为 <span class="text-blue-math">\(2^2 - 4 = 0\)</span>
+                <span class="text-blue-math">\[R\prime = \begin{cases} 
+                \text{turnc}(R) \text{ in } (K-1) \text{ bits,} & 0 \leq R < (2^K-M) \\
+                \text{turnc}(R+2^K-M) \text{ in } K \text{ bits,} & R \geq (2^K-M)
+                \end{cases} \]</span>
+                    <ol class="text-gray-side">
+                        <li>小于刻度则用 K-1 个 bit 的长度编码：<span class="text-blue-math">\(R\prime = trunc(R) \text{ in } (K-1) \text{ bits}\)</span></li>
+                        <li>大于等于则用 K 个 bit 的长度编码：<span class="text-blue-math">\(R\prime = \text{turnc}(R + 2^K - M) \text{ in Kbits}\)</span></li>
+                        <li>简单说，判断输入 N 是否位于「二进制前半」，如2bit下，00，01，10，11的前半00，01可省去首位0</li>
+                    </ol>
+                </li>
+            </ol>
             <div class="align-items-center">
-                <img src="files/image40.png" alt="Golomb Rice Coding k stands for Klimaka" class="img-medium" >
+                <img src="files/image40.png" alt="Golomb Rice Coding 2^K-M Variations" class="img-medium" >
+                <p class="text-gray-side">图：M=1~32 时，<span class="text-blue-math">\(2^K - M\)</span> 的边界变化，见<a href="https://www.desmos.com/calculator/2gonwxfc1m">Desmos例</a></p>
             </div>
 
             <h4>转二进制-零阶指数哥伦布编码Exponential Golomb k0</h4>
-            <p>将正整数转二进制并压缩。以输入 N，十进制缩放值 M 与长度 Κ，一元码，截短二进制实现。（-莱斯）码在此基础上限制 M 仅为2的幂，对计算机更友好。此处例 M=4，输入 N=9：</p>
+            <p>十进制数添一位则量增十倍，如1，10，100按×10倍增；二进制数添一位则量增二倍，如001，010，100照×2倍增。可见「刻度本是指数」，二进制刻度K的间距设为指数增加的0，1，3，7，15…或0，1，11，111，1111…，每度从底2^M-1延伸至顶2^(M+1)-1。刻度 Kλίμακα 设为对齐小的边界:</p>
             <ol>
-                <li></li>
+                <li>设定要编码的 N 并获取其二进制值+1为刻度后端。如输入 N=6，则（二进制）N = 110</li>
+                <li>求二进制刻度 K'：<span class="text-blue-math">\(K\prime = \left\lfloor \log_2 (N+1) \right\rfloor\)</span>。如输入 N=6，则 <span class="text-blue-math">\(\log_{2} (6+1) = 2.81...\)</span>，floor 约2</li>
+                <li>求刻度内偏移值：<span class="text-blue-math">\(Offset = N + 1 - 2^{K\prime}\)</span>，如输入 N=6，则<span class="text-blue-math">\(6+1-2^2=3\)</span>，代表在刻度6处偏移3下
+                    <ol class="text-gray-side">
+                        <li>输入 N=0~31时，十进制K'=[0,<span class="text-red-emph">1,1,</span><span class="text-blue-emph">2,2,2,2,</span><span class="text-purple-resv">3,3,3,3,3,3,3,3,</span>4,4,4,4,4,4,4,4,4,4, 4, 4, 4, 4, 4, 4]</li>
+                        <li>输入 N=0~31时，十进制O =[0,<span class="text-red-emph">0,1,</span><span class="text-blue-emph">0,1,2,3,</span><span class="text-purple-resv">0,1,2,3,4,5,6,7,</span>0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]</li>
+                        <li>注: O就是单纯随K'指数增加而累计偏移量</li>
+                    </ol>
+                </li>
+                <li>K' 值转换为0的数量，设为前端1。如输入 N=6，则 K'=2，则写作00</li>
+                <li>R 值转换二进制为前端2。前端1+后端 <span class="text-blue-math">\(\text{concat}(Offset_1,K\prime)\)</span> 是常见的零阶指数哥伦布码</li>
+                <li>前端2+后端 <span class="text-blue-math">\(\text{concat}(Offset_2,K\prime)\)</span></li>
             </ol>
+            <p class="text-gray-side">注: 此处因篇幅，难度和不相关而省略一阶及更高阶的哥伦布码</p>
+            
             <table class="align-items-center table-center">
                 <thead>
                     <tr>
@@ -3350,10 +3384,19 @@ sao分析跳过视频右边和下边边界
             </table>
 
             <h4>汉明距离与欧几里得距离</h4>
-            <p></p>
+            <p>前者在不考虑大小的情况下测量数字信号的差距，如100与010的汉明距离为2，可累计各位数的异或门 ⊻ 得到，构成误差和 SAD；后者测量两个点的平方差 SSE，如 GPS 的地理误差。</p>
 
             <h4>软判决与硬判决解码 Soft/Hard Decision decoding</h4>
-            <p></p>
+            <p>尝试解决以下问题的两种方法，其中软判决最优：</p>
+            <ol>
+                <li>假设二进制0为0.33V，1为0.67V；再定义编解码格式的有效字为[001，010，100，101，111]</li>
+                <li>传输码字001，电压为0.33，0.33，0.67V</li>
+                <li>结果，解码器得到偏移的0.35V，0.55V和0.75V</li>
+            </ol>
+            <p>硬判决：设置大于0.4V则1；小于0.5V则0。得0，1，1。比对有效字，汉明距离为[1，1，3，2，1]，共3个误差最小的可能</p>
+            <p>软判决：比对电压间的平方差，如同样的偏移值，对比[001]算：</p>
+            <span class="text-blue-math">\[\left(0.33-0.35\right)^2 + \left(0.35-0.55\right)^2 + \left(0.67-0.75\right)^2 = 0.0468\]</span>
+            <p>对比[010，100，…]分别得欧几里得距离为[0.1912，0.3272，0.1572，…]等远大于0.0468的误差，就在条件不变的情况下更准确的解码了信息。</p>
 
             <h4>游程/游标编码 Run-length/run-level coding</h4>
             <p></p>
