@@ -334,6 +334,8 @@ img {
 /* Tables */
 table, th, td {
     border-collapse: collapse;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
 }
 table thead { border-bottom: 1.25px solid var(--hex-light-grayblue); }
 .table-fit-container { width: 100%; }
