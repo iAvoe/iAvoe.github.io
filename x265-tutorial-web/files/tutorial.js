@@ -27,17 +27,28 @@ MathJax = {
  */
 function switchPlatform() {
     if (window.innerWidth <= window.innerHeight) { // Mobile / Vertical Layout
+        // Set class for the main container div for Mobile only
         document.querySelector('div').setAttribute("class", "container-mobile rounded-9 border-main");
         // Decrease mobile font size
         document.body.style.fontSize = "0.8rem";
+        // Decrease PPM table's font size for Mobile, because it's massive size
+        if (document.getElementsByClassName("table-fit-container align-items-center text-smaller").length > 0) {
+            document.getElementsByClassName("table-fit-container align-items-center text-smaller")[0].setAttribute("class", "table-fit-container align-items-center text-xs");
+        }
+        
     }
     else { // Desktop / Horizontal Layout
         document.body.style.fontSize = "1rem";
+        // Set class for the main container div for Desktop only
         document.querySelector('div').setAttribute("class", "container-desktop rounded-9 border-main");
         // Increase line height for Desktop
         mainPara = document.querySelectorAll('p:not([class])');
         for (let i=0; i<mainPara.length; i++) {
             mainPara[i].style.lineHeight = "2.5rem";
+        }
+        // Increase PPM table's font size for Desktop, because it's massive size
+        if (document.getElementsByClassName("table-fit-container align-items-center text-xs").length > 0) {
+            document.getElementsByClassName("table-fit-container align-items-center text-xs")[0].setAttribute("class", "table-fit-container align-items-center text-smaller");
         }
     }
 }
