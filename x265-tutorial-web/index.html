@@ -432,7 +432,7 @@ Lookahead中两帧差距达到该参数值则触发转场
             </ul>
 
             <pre><code><b>--ref</b>&lt;整数1~16，推荐<span class="text-blue-math">fps÷100+3.4</span>&gt;
-向量溯块前后帧数半径，一图流设<span class="text-blue-emph">1</span>. 要在能溯全所有块的情况下降低参考面积，所以一般设<span class="text-blue-emph">3</span>就不管了
+向量溯块前后帧数半径，一图流设<span class="text-blue-emph">1</span>。要在能溯全所有块的情况下降低参考面积，所以一般设<span class="text-blue-emph">3</span>就不管了
 <b>--radl</b>&lt;整数默认0，小于连续B帧，推荐2~3&gt;
 原理见上
 <b>--ipratio --pbratio</b>&lt;浮点,默认1.4 1.3&gt;
@@ -928,7 +928,7 @@ abr/crf分配量化值的宏观调控强度，大则慢，0则关
 
             <h2>去块滤镜</h2>
             <p>修复高量化时宏块间出现明显横纵割痕瑕疵的平滑滤镜。编码器内去块利用了之前搜索到的信息而相比外部滤镜误判更少，但大体上就是检查1像素宽，且周围没有较大高度/像素值变化的横纵边缘，所以误判也不可避免。</p>
-            <p>块失真源自块间不统一的量化程度。而去块手段是平滑滤镜，因此要降低强度才适用于高码视频，动漫，素材录屏等锐利画面. 边界强度 Boundary strength（去块力度判断）</p>
+            <p>块失真源自块间不统一的量化程度。而去块手段是平滑滤镜，因此要降低强度才适用于高码视频，动漫，素材录屏等锐利画面。边界强度 Boundary strength（去块力度判断）</p>
             <div class="align-items-center">
                 <img src="files/image32.png" alt="Deblock detection visualization" class="img-medium" >
                 <img src="files/image33.png" alt="Deblock edge visualization" class="img-medium" >
@@ -3202,7 +3202,7 @@ sao分析跳过视频右边和下边边界
             <h4>几何分布/等差等比分布类 Geometric distribution</h4>
             <p>条件过程不变，各个尝试独立，只有阴阳两结果的伯努利试验中统计 n 遍成功的概率分布所形成的概率变化曲线，为：<span class="text-blue-math">\[ P(X=x) = (1-p)^{x-1} p \]</span>其中概率 <span class="text-blue-math">\(1-p\)</span> 盖失败，<span class="text-blue-math">\(p\)</span> 盖成功。如：</p>
             <ol>
-                <li>尝试3次后得阳结果记作"阴，阴，阳": <span class="text-blue-math">\(P(X=3)=(1-p)(1-p)(p)=(1-p)^{3-1} p\)</span>. </li>
+                <li>尝试3次后得阳结果记作"阴，阴，阳"。<span class="text-blue-math">\(P(X=3)=(1-p)(1-p)(p)=(1-p)^{3-1} p\)</span>。</li>
                 <li>成功概率为90%则记做 <span class="text-blue-math">\( P(X=x) = (1-0.9)^{x-1} (0.9) \)</span>，且成功概率与尝试次数独立</li>
                 <li>所谓「重试3次后过关」是可能脱离实际的期望值 eXpectation，记做大写 X：<span class="text-blue-math">\( X(x) = \frac{1}{p} \)</span></li>
             </ol>
@@ -3389,7 +3389,7 @@ sao分析跳过视频右边和下边边界
             <p>硬判决：设置大于<span class="text-blue-math">0.4V</span>则1；小于<span class="text-blue-math">0.5V</span>则0。得<span class="text-blue-math">0,1,1</span>。比对有效字，汉明距离为<span class="text-blue-math">[1,1,3,2,1]</span>，共3个误差最小的可能</p>
             <p>软判决：比对电压间的平方差，如同样的偏移值，对比<span class="text-blue-math">001</span>算：</p>
             <span class="text-blue-math">\[\left(0.33-0.35\right)^2 + \left(0.35-0.55\right)^2 + \left(0.67-0.75\right)^2 = 0.0468\]</span>
-            <p>对比<span class="text-blue-math">[010，100，…]</span>分别得欧几里得距离为<span class="text-blue-math">[0.1912, 0.3272, 0.1572, …]</span>等远大于<span class="text-blue-math">0.0468</span>的误差，就在条件不变的情况下更准确的解码了信息。</p>
+            <p>对比<span class="text-blue-math">[010，100，…]</span>分别得欧几里得距离为<span class="text-blue-math">[0.1912,0.3272,0.1572,…]</span>等远大于<span class="text-blue-math">0.0468</span>的误差，就在条件不变的情况下更准确的解码了信息。</p>
 
             <h4>游程/游标编码 Run-length/run-level coding</h4>
             <p></p>
@@ -3429,7 +3429,7 @@ sao分析跳过视频右边和下边边界
 <b>--film-grain</b>&lt;文件名&gt;将如<a href="https://bitbucket.org/multicoreware/libfgm">libfgm</a>提取的纹理细节模型Film grain model写进SEI，将编码压缩掉的细节另存档，兼容解码器播放时恢复的功能
 <b>--idr-recovery-sei</b>&lt;开关&gt;SEI写进idr帧，串流时防止整个GOP都找不到参考帧的机制
 <b>--frame-dup</b>&lt;开关，默认关，需<span class="text-red-emph">开vbv和hrd，有bug</span>&gt;直接将2~3面极近似的连续帧换成同一帧并用SEI告知，理论上能在动漫和电脑录屏画面提高压缩率，但会降低兼容性
-<b>--dup-threshold</b>&lt;整数1~99，默认70&gt;相似度判定值, 默认达70%重复就判为相似</code></pre>
+<b>--dup-threshold</b>&lt;整数1~99，默认70&gt;相似度判定值，默认达70%重复就判为相似</code></pre>
 
             <h2>线程与节点控制</h2>
             <div class="align-items-center">
