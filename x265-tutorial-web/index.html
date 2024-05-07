@@ -838,8 +838,7 @@ aq-strength-edge偏给暗场的程度</code></pre>
 
             <h2>率失真优化控制</h2>
             <h4>率失真优化 Rate distortion optimization</h4>
-            <p>
-                多个码率下测得的 cu 失真，挑出 R-D 曲线下的平衡区间。由代价函数「开销=失真+λ⋅码率」实现模式决策：
+            <p>简单地说，将失真；码率分别看做两种越大越差的程度；将其中一个程度乘以一个缩放值以对齐另一个（否则两值权重不一样），然后在各种模式决策，量化方案下找出最小的和，就有了最优方案。由代价函数「开销=失真+λ⋅码率」实现模式决策：
                 <span class="text-blue-math">$$J = D + \lambda \cdot R$$</span>
             </p>
             <p>失真 D 用平方差 SSE 或总差异 SAD 判断（SSE多取一步平方，使较大的差异呈指数增长）进而分到更多补偿的码率。拉格朗日值λ源于 qp，即 crf，abr 指定的率失真斜率 slope 区间。qp 越大斜度越小：</p>
@@ -3414,11 +3413,11 @@ sao分析跳过视频右边和下边边界
             </div>
             <p>4x4块的16个倒序 zig-zag 系子中，预测与总结系子强度（等于1_大于1，或<span class="text-blue-math">NumEq1_NumLg1</span>）的数量归纳为8种 CABAC 上下文长度的节点（0_0~any_any），如2_0对应<span class="text-blue-math">NumLg1×2</span>，<span class="text-blue-math">NumEq1×1</span>，即 2_0 线。</p>
             <p>若<span class="text-blue-math">NumLg1 &gt; 0</span>，则从当前系子节点切到下个系子的 ×_1 线并不再回到<span class="text-blue-math">NumEq1</span></p>
-            <p>若<span class="text-blue-math">NumLg1≥4</span>则构成 any_any 或 x_x，若<span class="text-blue-math">(NumEq1≥4 && NumLg1==0)</span>时则构成 any_0 或 x_0，为两种上下文长4(最大)的CABAC路线，一种只编码0和1，另一种编码0，1，&lt;其它&gt;。各线路上的率即强度 level，失真就是其系子节点平方差 SSE，而率失真最优的线路就是失真 SSE + λ⋅码率 R 最小的线路</p>
+            <p>若<span class="text-blue-math">NumLg1≥4</span>则构成 any_any 或 x_x，若<span class="text-blue-math">(NumEq1≥4 && NumLg1==0)</span>时则构成 any_0 或 x_0，为两种上下文长4(最大)的CABAC路线，一种只编码0和1，另一种编码0，1，&lt;其它&gt;。各线路上的率即强度 level，失真就是其系子节点平方差 SSE，而率失真最优的线路就是 SSE（失真）+ λ⋅R（码率） 最小的线路</p>
             <p>叫软判决量化是因为此处SSE测了欧几里得距离，相对的硬判决量化为 qp 值所对应的 DCT 除法表。</p>
 
             <h2>SEI 补充与优化消息</h2>
-            <p>Supplemental enhance info 记录每帧的补充信息。主要有正确解码新 GOP 用的缓冲 SEI，解码校正时间戳的 pic timing SEI，让显示主控切边的 SEI，cc 字幕 SEI，HDR-SEI 等等。缓冲 SEI 记录对应 sps 的号；待解码图像缓冲 Coded picture buffer CPB 的延迟安全区等信息；时戳 SEI记录哪些帧上/下场优先的变化；连帧/三连帧的位置等信息。</p>
+            <p>Supplemental enhance info 记录每帧的补充信息。主要有正确解码新 GOP 用的缓冲 SEI，解码校正时间戳的 pic timing SEI，让显示主控切边的 SEI，cc 字幕 SEI，HDR-SEI 等等。缓冲 SEI 记录对应 sps 的号；待解码图像缓冲 Coded picture buffer CPB 的延迟安全区等信息；时戳 SEI 记录哪些帧上/下场优先的变化；连帧/三连帧的位置等信息。</p>
 
             <h2>线程与节点控制</h2>
             <div class="align-items-center">
