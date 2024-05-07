@@ -966,7 +966,7 @@ abr/crf分配量化值的宏观调控强度，大则慢，0则关
             <p>带偏移 BO 滤镜对比源+补偿编码差异的平面 CTB，适合补偿平面，斜面和曲面渐变 CU，以及修复平面量化的损失。方法是：</p>
             <ol>
                 <li>划分32条色深带来均分当前色深下的像素值</li>
-                <li>分为24~31，0~7的明带，暗带; 以及8~23的中间带</li>
+                <li>分为24~31，0~7的明带，暗带；以及8~23的中间带</li>
                 <li>限制最大只能补偿4条相连的色深带，以确保 CTB 中色深差异不会大到触发 EO 同时涵盖足够大的斜面渐变</li>
                 <li>率失真优化找出所谓的补偿值：每条色深带的偏移值</li>
             </ol>
@@ -3184,7 +3184,7 @@ sao分析跳过视频右边和下边边界
 
             <h4>有限状态机 Finite-State Machine</h4>
             <div class="row">
-                <p id="LR-UD-027" class="col-10">以状态描述程序/机器。如1~2间可过渡出无限个数字，代表机械运动到位的中间过程；去掉过程后（如取整后）剩下圆圈数字表示的①↔②两种状态，就足以抽象地表示按动式圆珠笔；将两态联系起来的操作表示为箭头，即按下笔的按钮，而输出就是下一状态。若需要将笔伸出（需②）而笔已收拢则写作①→⓶; 若需收拢而笔已伸出则②→⓵</p>
+                <p id="LR-UD-027" class="col-10">以状态描述程序/机器。如1~2间可过渡出无限个数字，代表机械运动到位的中间过程；去掉过程后（如取整后）剩下圆圈数字表示的①↔②两种状态，就足以抽象地表示按动式圆珠笔；将两态联系起来的操作表示为箭头，即按下笔的按钮，而输出就是下一状态。若需要将笔伸出（需②）而笔已收拢则写作 ①→⓶；若需收拢而笔已伸出则 ②→⓵</p>
                 <img src="files/image37.png" alt="Double Action Ball Point Pen" id="LR-UD-028" class="img-small img-right col-2 mb-auto" >
             </div>
             <div class="align-items-center">
@@ -3248,10 +3248,10 @@ sao分析跳过视频右边和下边边界
             </table>
             
             <h4>转二进制-伪哥伦布编码</h4>
-            <p>8bit下，十进制 3 会转为浪费码率的 00000011——因为前后都挨着其它 8bit 数而不能删；所以添加清点有效位数的标记，共有 11 两位数而设标记 00，再转后缀为前缀，就得到相对可靠的 <span class="text-blue-math">\( (a=00,b=11) \)</span>；解码器识别出变量a，b，为两位数的二进制 11 而还原</p>
+            <p>8bit下，十进制 3 会转为浪费码率的 00000011——因为前后都挨着其它 8bit 数而不能删；所以添加清点有效位数的标记，共有 11 两位数而设标记 00，再转后缀为前缀，就得到相对可靠的 <span class="text-blue-math">\( (a=00,b=11) \)</span>；解码器识别出变量 a，b，为两位数的二进制 11 而还原</p>
 
             <h4>转二进制-一元码Unary，截短二进制码 Truncated Binary</h4>
-            <p>一元码如2，3即110，1110或001，0001，末尾分隔后续数，差在吃带宽。截短二进制如8bit的十进制5是二进制00000101。所以能截短到101，差在难以解码；被哥伦布编码统一</p>
+            <p>一元码如2，3即<span class="text-blue-math">110</span>，<span class="text-blue-math">1110</span>或<span class="text-blue-math">001</span>，<span class="text-blue-math">0001</span>，末尾分隔后续数，差在吃带宽。截短二进制如8bit的十进制5是二进制<span class="text-blue-math">00000101</span>。所以能截短到<span class="text-blue-math">101</span>，但问题是多个数字放一起就难以解码。</p>
 
             <h4>转二进制-哥伦布(-莱斯)编码 Golomb(-Rice) Coding</h4>
             <p>将正整数转二进制并压缩。以输入 N，十进制缩放值 M 与刻度 Κ，一元码，截短二进制实现。（-莱斯）码在此基础上限制 M 仅为2的幂，对计算机更友好。此处例 M=4，输入 N=9：</p>
@@ -3281,7 +3281,7 @@ sao分析跳过视频右边和下边边界
             </div>
 
             <h4>转二进制-零阶指数哥伦布编码Exponential Golomb k0</h4>
-            <p>十进制数添一位则量增十倍，如1，10，100按×10倍增；二进制数添一位则量增二倍，如001，010，100照×2倍增。可见「刻度本是指数」，二进制刻度K的间距设为指数增加的<span class="text-blue-math">0,1,3,7,15…</span>或<span class="text-blue-math">0,1,11,111,1111…</span>，每度从底<span class="text-blue-math">\(2^{(M-1)}\)</span>延伸至顶<span class="text-blue-math">\(2^{(M+1)}-1\)</span>。刻度 Kλίμακα 设为对齐小的边界:</p>
+            <p>十进制数添一位则量增十倍，如1，10，100按×10倍增；二进制数添一位则量增二倍，如001，010，100照×2倍增。可见「刻度本是指数」，二进制刻度 K 的间距设为指数增加的<span class="text-blue-math">0,1,3,7,15…</span>或<span class="text-blue-math">0,1,11,111,1111…</span>，每度从底<span class="text-blue-math">\(2^{(M-1)}\)</span>延伸至顶<span class="text-blue-math">\(2^{(M+1)}-1\)</span>。刻度 Kλίμακα 设为对齐小的边界:</p>
             <ol>
                 <li>设定要编码的 N 并获取其二进制值+1为刻度后端。如输入 N=6，则二进制 N = 110</li>
                 <li>求二进制刻度 K'：<span class="text-blue-math">\(K\prime = \left\lfloor \log_2 (N+1) \right\rfloor\)</span>。如输入 N=6，则 <span class="text-blue-math">\(\log_{2} (6+1) = 2.81...\)</span>，floor 约2</li>
@@ -3414,8 +3414,8 @@ sao分析跳过视频右边和下边边界
             </div>
             <p>4x4块的16个倒序 zig-zag 系子中，预测与总结系子强度（等于1_大于1，或<span class="text-blue-math">NumEq1_NumLg1</span>）的数量归纳为8种 CABAC 上下文长度的节点（0_0~any_any），如2_0对应<span class="text-blue-math">NumLg1×2</span>，<span class="text-blue-math">NumEq1×1</span>，即 2_0 线。</p>
             <p>若<span class="text-blue-math">NumLg1 &gt; 0</span>，则从当前系子节点切到下个系子的 ×_1 线并不再回到<span class="text-blue-math">NumEq1</span></p>
-            <p>若<span class="text-blue-math">NumLg1≥4</span>则构成 any_any 或 x_x，若<span class="text-blue-math">(NumEq1≥4 && NumLg1==0)</span>时则构成 any_0 或 x_0，为两种上下文长4(最大)的CABAC路线，一种只编码0和1，另一种编码0，1，&lt;其它&gt;。各线路上的率即强度 level，失真就是其系子节点差异平方的和/SSE，而率失真最优的线路就是失真 SSE + λ⋅码率 R 最小的线路</p>
-            <p>叫软判决量化是因为此处SSE测了欧几里得距离，相对的硬判决量化为qp值所对应的DCT除法表。</p>
+            <p>若<span class="text-blue-math">NumLg1≥4</span>则构成 any_any 或 x_x，若<span class="text-blue-math">(NumEq1≥4 && NumLg1==0)</span>时则构成 any_0 或 x_0，为两种上下文长4(最大)的CABAC路线，一种只编码0和1，另一种编码0，1，&lt;其它&gt;。各线路上的率即强度 level，失真就是其系子节点平方差 SSE，而率失真最优的线路就是失真 SSE + λ⋅码率 R 最小的线路</p>
+            <p>叫软判决量化是因为此处SSE测了欧几里得距离，相对的硬判决量化为 qp 值所对应的 DCT 除法表。</p>
 
             <h2>SEI 补充与优化消息</h2>
             <p>Supplemental enhance info 记录每帧的补充信息。主要有正确解码新 GOP 用的缓冲 SEI，解码校正时间戳的 pic timing SEI，让显示主控切边的 SEI，cc 字幕 SEI，HDR-SEI 等等。缓冲 SEI 记录对应 sps 的号；待解码图像缓冲 Coded picture buffer CPB 的延迟安全区等信息；时戳 SEI记录哪些帧上/下场优先的变化；连帧/三连帧的位置等信息。</p>
