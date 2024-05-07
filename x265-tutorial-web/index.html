@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang='zh-hans'>
 	<head>
-        <meta charset="UTF-8" name="viewport" content="initial-scale=1" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
+        <meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="initial-scale=1">
         <!-- Basic Bootstrap Javascript <script src="./files/bootstrap.min.js"></script> -->
         <!-- Bootstrap CSS <link rel="stylesheet" href="./files/bootstrap.css"> -->
         <!-- Bootstrap Icons CSS (remote)
@@ -11,14 +9,11 @@
         -->
         <!-- Basic MathJax Javascript -->
         <script src="./files/mathJax3-tex-svg.js" defer></script>
-        
         <!-- JavaScript Codes -->
         <script src="./files/tutorial.js" defer></script>
-
         <!-- Custom CSS Codes <link rel="stylesheet" href="./files/desktopContainer.css"> -->
         <link rel="stylesheet" href="./files/tutorial.css">
         
-
         <title>x265 教程 HTML 完整版</title>
 	</head>
 	<body class="text-gray-main">
@@ -721,7 +716,7 @@ x265.exe --abr-ladder 1440p8000_2160p11000_2160p16000.txt --fps 59.94 --input-de
 自适应量化强度。搭配aq-mode，如动漫1:0.8，2:0.9，3:0.7用。录像上可加0.1~0.2，画面混乱/观众难以注意平面时可再增加。注意低成本动漫的平面居多，因此码率不足时反而要妥协纹理
 <b>--hevc-aq</b>&lt;开关&gt;
 以¼tile而非aq的边缘高频信息实现自适应。据doom9结论<a href="https://forum.doom9.org/showthread.php?p=1925373#post1925373">1</a>，<a href="https://forum.doom9.org/showthread.php?p=1925464">2</a>: hevc-aq比aq 4快且适合动漫，而aq 4更适合录播。目前学术方-官方-第三方间信息较割裂，暂无适解
-<b>--aq-motion</b>&lt;开关，<span class="text-red-emph">实验性</a>&gt;
+<b>--aq-motion</b>&lt;开关，<span class="text-red-emph">实验性</span>&gt;
 据动态信息微调自适应量化的效果mode和强度strength
 <b>--qg-size</b>&lt;64/32/16/8，默认64，<span class="text-red-emph">≥min-cu-size</span>&gt;
 偏移蓝，红色色度面相比亮度平面的qp值差异，负值降低量化。如当色度平面的量化太高则可以用这两个参数补偿回来，但x264-5会根据色度平面采样格式（4:2:2，4:4:4）自动设定这些参数。由于编码器一直不擅长深红色，而人眼又对红光敏感，所以可以给红色面设<span class="text-blue-emph">-3</span>左右
@@ -926,7 +921,6 @@ abr/crf分配量化值的宏观调控强度，大则慢，0则关
             <h4>峰值信噪比 Peak signal-noise ratio PSNR</h4>
             <p>不只是人眼对光压的感知，包括痛觉冷热音量等强度的感知皆呈对数㏒状，因此对数被用于统计信号强度，如突出重点范围变化的分贝 dB 表示。信噪比 SNR 即「信号÷噪声」，用于测量处理传输变换信号的有效信息所剩。使用㏒统计还有在坐标系中撇开信噪比太好太差数据（指数增长缩放成线性增长）的效果。</p>
             <p class="text-blue-math">$$PSNR_{8bit} = 10 \log_{10} \left( \frac{2^{8bit}-1}{MSE} \right) \, \text{(dB)}$$</p>
-            </p>
 
             <ul class="text-gray-side">
                 <li>PSNR用来判断编码前后的画面差距，此处画面差异记为均方差 MSE</li>
@@ -3271,7 +3265,7 @@ sao分析跳过视频右边和下边边界
                 <li>求余数模，判断区间：<span class="text-blue-math">\(\text{Remainder} = N \ \% \ M\)</span>，如 <span class="text-blue-math">\(9 \% 4 = 9 - (\lfloor9 \div 4 \rfloor \times 4) = 1\)</span></li>
                 <li>余数模是否小于刻度：<span class="text-blue-math">\(0 \leq R &lt; (2^K - M) ? \)</span>，如 <span class="text-blue-math">\(0\leq 1 &lt; (2^2 - 4)\)</span> 结果否定，因为 <span class="text-blue-math">\(2^2 - 4 = 0\)</span>
                 <span class="text-blue-math">\[R\prime = \begin{cases} 
-                \text{turnc}(R) \text{ in } (K-1) \text{ bits,} & 0 \leq R < (2^K-M) \\
+                \text{turnc}(R) \text{ in } (K-1) \text{ bits,} & 0 \leq R &lt; (2^K-M) \\
                 \text{turnc}(R+2^K-M) \text{ in } K \text{ bits,} & R \geq (2^K-M)
                 \end{cases} \]</span>
                     <ol class="text-gray-side">
