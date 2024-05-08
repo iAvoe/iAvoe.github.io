@@ -519,6 +519,10 @@ P帧比IDR/I，及B/b帧相比P帧的量化值递增。B帧双向参考能从更
                     <p class="text-gray-side mt-0">图：大体的精确夹角测算。见<a href="https://www.elecard.com/page/spatial_intra_prediction_in_hevc">Elecard 参考书</a></p>
                 </div>
             </div>
+            <pre><code><b>--constrained-intra</b> &lt;开关，默认关&gt;缺少生成参考点的CB时用帧内块或默认值，不用帧间块生成参考点。降低参考错误传播距离，降低压缩率和速度，增加数据损坏的恢复概率
+<b>--fast-intra</b> &lt;开关，rd大于4时关，推荐开&gt;先查夹角模式2,10,18,26,34，再加精度到5, 15, 21, 31，再用最高精度。提高速度且略微增加参考错误，关闭相对更加浪费算力
+<b>--b-intra</b> &lt;开关，rd大于4时关，推荐开&gt;B条带同样进行帧内编码压缩。关闭可以提速，但相对浪费压缩率
+<b>--no-strong-intra-smoothing</b> &lt;开关，不推荐&gt;选条件苛刻，强力平滑滤镜平滑的是参考点而非pu，还能去色带，所以不推荐关</code></pre>
 
             <h4 class="same-line">量化</h4><p class="same-line">：见<a href="https://www.nazorip.site/archives/63">x264 教程</a></p>
             <h2>率控制 - 算出量化值 Quantization Parameter</h2>
@@ -3840,7 +3844,7 @@ sao分析跳过视频右边和下边边界
             <h4>HDR 元数据设置</h4>
             <p>x264/5 皆支持的元数据设置。但因为 HDR 分为硬件标准，软件标准，以及数据标准，所以很乱。为了保证色彩正确，必须参考片源的元数据。如：</p>
             <div class="align-items-center">
-                <img src="files/image43.png" alt="Metadata for VUI HDR Info 1" class="img-medium" >
+                <img src="files/image43.png" alt="Metadata for VUI HDR Info 1" class="" >
                 <p class="text-gray-side">图 1: cll 1000,640. master-display 由 G(13250…) 开头，L(10000000,1) 结尾</p>
                 <img src="files/image44.png" alt="Metadata for VUI HDR Info 2" class="img-medium" >
                 <p class="text-gray-side">图 2: cll 1655,117/L(40000000,50)/colorprim bt2020/colormatrix bt2020nc/transfer smpte2084</p>
@@ -4024,15 +4028,15 @@ sao分析跳过视频右边和下边边界
                     <thead class="thead-no-border">
                         <tr class="t-invert-dark">
                         <th> </th>
-                        <th> superfast </th>
-                        <th> veryfast </th>
-                        <th> faster </th>
-                        <th> fast </th>
-                        <th> medium </th>
-                        <th> slow </th>
-                        <th> slower </th>
-                        <th> Very slow </th>
-                        <th> placebo </th>
+                        <th class="px-1"> superfast </th>
+                        <th class="px-1"> veryfast </th>
+                        <th class="px-1"> faster </th>
+                        <th class="px-1"> fast </th>
+                        <th class="px-1"> medium </th>
+                        <th class="px-1"> slow </th>
+                        <th class="px-1"> slower </th>
+                        <th class="px-1"> Very slow </th>
+                        <th class="px-1"> placebo </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -4042,22 +4046,22 @@ sao分析跳过视频右边和下边边界
                         <td class="px-1 t-invert-light" colspan="8"> 64 </td>
                     </tr>
                     <tr>
-                        <td class="px-1"> 最小 cu </td>
+                        <td class="px-1"> min-cu </td>
                         <td colspan="9" class="px-1"> 8 </td>
                     </tr>
                     <tr>
-                        <td class="px-1"> 连续 B 帧数 bframes </td>
+                        <td class="px-1"> bframes </td>
                         <td class="px-1"> 3 </td>
                         <td class="px-1 t-invert-light" colspan="5"> 4 </td>
                         <td class="px-1 t-invert-dark" colspan="3"> 8 </td>
                     </tr>
                     <tr>
-                        <td class="px-1"> B 帧筛选 b-adapt </td>
+                        <td class="px-1"> b-adapt </td>
                         <td class="px-1" colspan="4"> 0 </td>
                         <td class="px-1 t-invert-light" colspan="5"> 2 </td>
                     </tr>
                     <tr>
-                        <td class="px-1"> cu 树向后 rc-lookahead </td>
+                        <td class="px-1"> rc-lookahead </td>
                         <td class="px-1"> 10 </td>
                         <td class="px-1 t-invert-light" colspan="3"> 15 </td>
                         <td class="px-1 t-invert-light"> 20 </td>
@@ -4072,7 +4076,7 @@ sao分析跳过视频右边和下边边界
                         <td class="px-1 t-invert-dark" colspan="3"> 1 </td>
                     </tr>
                     <tr>
-                        <td class="px-1"> 参考帧 ref </td>
+                        <td class="px-1"> ref </td>
                         <td class="px-1"> 1 </td>
                         <td class="px-1 t-invert-light" colspan="2"> 2 </td>
                         <td class="px-1 t-invert-light" colspan="2"> 3 </td>
@@ -4080,24 +4084,24 @@ sao分析跳过视频右边和下边边界
                         <td class="px-1 t-invert-dark" colspan="3"> 5 </td>
                     </tr>
                     <tr>
-                        <td class="px-1"> 参考帧限制 limit-refs </td>
+                        <td class="px-1"> limit-refs </td>
                         <td class="px-1"> 0 </td>
                         <td class="px-1 t-invert-light" colspan="5"> 3 </td>
                         <td class="px-1 t-invert-light"> 1 </td>
                         <td class="px-1 t-invert-dark" colspan="2"> 0 </td>
                     </tr>
                     <tr>
-                        <td class="px-1"> 动态搜索算法 me </td>
+                        <td class="px-1"> me </td>
                         <td class="px-1" colspan="5"> hex </td>
                         <td class="px-1 t-invert-light" colspan="4"> star </td>
                     </tr>
                     <tr>
-                        <td class="px-1"> 动搜搜索范围 merange </td>
+                        <td class="px-1"> merange </td>
                         <td class="px-1 t-invert-light" colspan="8"> 57 </td>
                         <td class="px-1 t-invert-dark"> 92 </td>
                     </tr>
                     <tr>
-                        <td class="px-1"> MC 子像素搜索 subme </td>
+                        <td class="px-1"> subme </td>
                         <td class="px-1" colspan="2"> 1 </td>
                         <td class="px-1 t-invert-light" colspan="3"> 2 </td>
                         <td class="px-1 t-invert-light"> 3 </td>
@@ -4105,37 +4109,37 @@ sao分析跳过视频右边和下边边界
                         <td class="px-1 t-invert-dark"> 5 </td>
                     </tr>
                     <tr>
-                        <td class="px-1"> 长矩形分块 rect </td>
+                        <td class="px-1"> rect </td>
                         <td class="px-1" colspan="5"> 0 </td>
                         <td class="px-1 t-invert-light" colspan="4"> 1 </td>
                     </tr>
                     <tr>
-                        <td class="px-1"> 非矩分块 amp </td>
+                        <td class="px-1"> amp </td>
                         <td class="px-1" colspan="6"> 0 </td>
                         <td class="px-1 t-invert-dark" colspan="3"> 1 </td>
                     </tr>
                     <tr>
-                        <td class="px-1"> 分块模式快选 limit-modes </td>
+                        <td class="px-1"> limit-modes </td>
                         <td class="px-1" colspan="5"> 0 </td>
                         <td class="px-1 t-invert-light" colspan="2"> 11 </td>
                         <td class="px-1 t-invert-dark" colspan="2"> 0 </td>
                     </tr>
                     <tr>
-                        <td> 合并模式数量 max-merge </td>
+                        <td> max-merge </td>
                         <td class="px-1" colspan="5"> 2 </td>
                         <td class="px-1 t-invert-light"> 3 </td>
                         <td class="px-1 t-invert-light"> 4 </td>
                         <td class="px-1 t-invert-dark" colspan="2"> 5 </td>
                     </tr>
                     <tr>
-                        <td class="px-1"> 合并提前退出 early-skip </td>
+                        <td class="px-1"> early-skip </td>
                         <td class="px-1" colspan="3"> 1 </td>
                         <td class="px-1 t-invert-light"> 0 </td>
                         <td class="px-1 t-invert-light"> 1 </td>
                         <td class="px-1 t-invert-dark" colspan="4"> 0 </td>
                     </tr>
                     <tr>
-                        <td class="px-1"> cu 再分裂跳过 rskip </td>
+                        <td class="px-1"> rskip </td>
                         <td class="px-1" colspan="8"> 1 </td>
                         <td class="px-1 t-invert-light"> 0 </td>
                     </tr>
@@ -4199,7 +4203,17 @@ sao分析跳过视频右边和下边边界
                     </tr>
                 </tbody>
             </table>
-            <code><b>--tune</b>&lt;zerolatency/animation/grain/film/fastdecode&gt;见下表：</code>
+            <pre><code><b>--tune</b>&lt;zerolatency/animation/grain/film/fastdecode/psnr&gt;更改preset的一些参数，见下：
+    · <span class="text-blue-emph">zerolatency</span> 集中算力到一次编码一帧，并尽可能关闭率控制和B帧功能：
+    --bframes 0 --b-adapt 0 --no-cutree --no-scenecut --frame-threads 1
+    · <span class="text-blue-emph">animation</span> 优化动漫场景画面：
+    --psy-rd 0.4 --aq-strength 0.4 --deblock 1:1 --no-cutree --bframe +=2
+    · <span class="text-blue-emph">grain</span> 保留高频信号/最高画质：
+    --aq-mode 0 --no-cutree --ipratio 1.1 --pbratio 1 --qp-step 1 --no-sao --psy-rdoq 0 --rskip 0
+    · <span class="text-blue-emph">fastdecode</span> 降低解码算力占用以降低超高帧率-分辨率解码负载：
+    --no-weightb --no-weightp --no-deblock --no-sao
+    · <span class="text-blue-emph">psnr</span> 尽可能降低编码结果和原画的均方差 MSE 差异，但与画质关系不大：
+    --aq-mode 0 --rd 0 --no cutree</code></pre>
         </div>
 
         <!-- Footer -->
