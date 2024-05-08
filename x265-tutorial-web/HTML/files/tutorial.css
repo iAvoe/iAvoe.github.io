@@ -366,6 +366,10 @@ li {
     list-style-position: inside;
 }
 
+/* Primary list style - reduce indent for better mobile orientation */
+ol { padding-left: 1.5rem; }
+ul { padding-left: 1.5rem; }
+
 /* Secondary list style - differ from primary */
 ol ol { list-style-type: upper-roman; }
 ol ol ol { list-style-type: lower-alpha; }

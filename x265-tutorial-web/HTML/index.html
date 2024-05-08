@@ -460,7 +460,7 @@ P帧比IDR/I，及B/b帧相比P帧的量化值递增。B帧双向参考能从更
     
                 <div id="LR-UD-015" class="col-8">
                     <h4>强力平滑滤镜的启用条件</h4>
-                    <ol>
+                    <ol class="text-smaller">
                         <li>预测块 C 的大小小于 32x32</li>
                         <li>底 - 中 - 顶，及左 - 中 - 右三个纵/横向参考源两两差之和小于视频位深，如 8bit 下为 8</li>
                         <li>非 DC，非平行（夹角 10），非垂直（夹角 26）的帧内编码模式</li>
@@ -471,7 +471,7 @@ P帧比IDR/I，及B/b帧相比P帧的量化值递增。B帧双向参考能从更
                 
                 <div id="LR-UD-017" class="col-8">
                     <h4>强力平滑滤镜 Strong intra smoothing</h4>
-                    <ol>
+                    <ol class="text-smaller">
                         <li>从横 - 纵向两个参考点直接线性插值 lerp 出所有参考点，以及所对应的预测像素 p</li>
                         <li>缓解了色带问题</li>
                     </ol>
@@ -485,7 +485,7 @@ P帧比IDR/I，及B/b帧相比P帧的量化值递增。B帧双向参考能从更
                     <p class="text-gray-side mt-0">图：3tap FIR 滤镜。</p>
                     <p>预处理后，用趋平，夹角，或 DC 模式初步编码 PB 到 CB。</p>
                 </div>
-                <img src="files/image19.png" alt="3tap FIR Filter" id="LR-UD-020" class="img-small img-right col-2 mb-auto" >
+                <img src="files/image19.png" alt="3tap FIR Filter" id="LR-UD-020" class="img-small img-right col-4 mb-auto" >
 
                 <h4>趋平模式 Planarr</h4>
                 <div id="LR-UD-021" class="col-8">
@@ -530,7 +530,7 @@ P帧比IDR/I，及B/b帧相比P帧的量化值递增。B帧双向参考能从更
             <h2>率控制 - 算出量化值 Quantization Parameter</h2>
             <p>人眼对明暗变化与画面细节程度的感知呈对数㏒状，分别奠定了显示器的伽马曲线映射，以及量化值 qp（x 轴）到强度 qScale（y 轴）的强度映射。<span class="text-gray-side">图：量化值 qp 到 qScale 的映射，见<a href="https://www.desmos.com/calculator/vernjiiphf">desmos 互动例</a></span>；伽马矫正的科普见<a href="https://www.nazorip.site/archives/63">x264 教程</a>，<a href="https://www.artleds.com/blog/introduction-to-gamma-curves-and-gamma-correction-in-led-pixel-tapes-application">ArtLEDs 科普</a>。</p>
             <img src="files/image23.png" alt="Logrithm QP to qScale" class="" >
-            <p>由于当前帧此时还未编码（码率未知），故寻已编码前帧的量化失真程度（越高则后帧理应越复杂），做推演复杂度/模糊复杂度。CRF 越高则除进推演复杂度的分母越大/ABR 越低则分子越小，得到的推演复杂度越低，推演出的 qp 就越高。<span class="text-gray-side">表：分别以 [L<sub>-1</sub>] 和 [L] 表示上帧和当前帧</span></p>
+            <p>由于当前帧此时还未编码（码率未知），故寻已编码前帧的量化失真程度（越高则后帧理应越复杂），做推演复杂度/模糊复杂度。CRF 越高则除进推演复杂度的分母越大/ABR 越低则分子越小，得到的推演复杂度越低，推演出的 qp 就越高。</p>
             
             <div class="mt-3 align-items-center">
                 <table class="table-center text-smaller">
@@ -595,6 +595,7 @@ P帧比IDR/I，及B/b帧相比P帧的量化值递增。B帧双向参考能从更
                         <td>qScale（rdoqλ）经调整后得到当前帧的量化值 qp。各 qp 对应一套 DCT 变换量化矩阵。qp→qStep 见<a href="https://www.nazorip.site/archives/63">x264 教程</a></td>
                     </tr>
                 </table>
+                <span class="text-gray-side">表：分别以 [L<sub>-1</sub>] 和 [L] 表示上帧和当前帧</span>
             </div>
 
             <p>经此实现了帧内画面复杂则 qp 低，简则高；同时据用户设定的（对数）强度的动态变化。这种质量判断只有两帧而不宏观，所以引出了各种各样的优化步骤，如 mb/cutree，rdoq 等。</p>
@@ -745,63 +746,63 @@ x265.exe --abr-ladder 1440p8000_2160p11000_2160p16000.txt --fps 59.94 --input-de
                 <tbody>
                     <tr class="border-bottom t-light-gray">
                         <td class="text-blue-emph px-1">1</td>
-                        <td class="px-1">√</td>
+                        <td class="px-1">开</td>
                         <td class="px-1"> </td>
                         <td class="px-1"> </td>
                         <td class="px-1"> </td>
                     </tr>
                     <tr class="border-bottom">
                         <td class="text-blue-emph px-1">2,3</td>
-                        <td class="px-1">√</td>
-                        <td class="px-1">√</td>
+                        <td class="px-1">开</td>
+                        <td class="px-1">开</td>
                         <td class="px-1"> </td>
                         <td class="px-1"> </td>
                     </tr>
                     <tr class="border-bottom t-light-gray">
                         <td class="text-blue-emph px-1">4</td>
-                        <td class="px-1">√</td>
+                        <td class="px-1">开</td>
                         <td class="px-1"> </td>
-                        <td class="px-1">√</td>
+                        <td class="px-1">开</td>
                         <td class="px-1"> </td>
                     </tr>
                     <tr class="border-bottom">
                         <td class="text-blue-emph px-1">8</td>
-                        <td class="px-1">√</td>
+                        <td class="px-1">开</td>
                         <td class="px-1"> </td>
                         <td class="px-1"> </td>
-                        <td class="px-1">√</td>
+                        <td class="px-1">开</td>
                     </tr>
                     <tr class="border-bottom t-light-gray">
                         <td class="text-blue-emph px-1">6</td>
-                        <td class="px-1">√</td>
-                        <td class="px-1">√</td>
-                        <td class="px-1">√</td>
+                        <td class="px-1">开</td>
+                        <td class="px-1">开</td>
+                        <td class="px-1">开</td>
                         <td class="px-1"> </td>
                     </tr>
                     <tr class="border-bottom">
                         <td class="text-blue-emph px-1">10</td>
-                        <td class="px-1">√</td>
-                        <td class="px-1">√</td>
+                        <td class="px-1">开</td>
+                        <td class="px-1">开</td>
                         <td class="px-1"> </td>
-                        <td class="px-1">√</td>
+                        <td class="px-1">开</td>
                     </tr>
                     <tr class="border-bottom t-light-gray">
                         <td class="text-blue-emph px-1">12</td>
-                        <td class="px-1">√</td>
+                        <td class="px-1">开</td>
                         <td class="px-1"> </td>
-                        <td class="px-1">√</td>
-                        <td class="px-1">√</td>
+                        <td class="px-1">开</td>
+                        <td class="px-1">开</td>
                     </tr>
                     <tr class="border-bottom">
                         <td class="text-blue-emph px-1">14</td>
-                        <td class="px-1">√</td>
-                        <td class="px-1">√</td>
-                        <td class="px-1">√</td>
-                        <td class="px-1">√</td>
+                        <td class="px-1">开</td>
+                        <td class="px-1">开</td>
+                        <td class="px-1">开</td>
+                        <td class="px-1">开</td>
                     </tr>
                 </tbody>
             </table>
-            <pre><code><b>-aq-fast-edge</b>&lt;开关，<span class="text-red-emph">需aq-mode4,5</span>&gt;
+            <pre class="mt-3"><code><b>-aq-fast-edge</b>&lt;开关，<span class="text-red-emph">需aq-mode4,5</span>&gt;
 边缘检测跳过高斯模糊过滤，不适合脏片源
 <b>--aq-bias-strength</b>&lt;浮点，默认1，<span class="text-red-emph">需aq-mode3,5</span>&gt;
 aq-strength偏给暗场的程度
