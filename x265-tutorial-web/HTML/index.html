@@ -143,7 +143,7 @@ x265.exe [命令行] 2> [桌面路径]\报错.txt</code></pre>
 对应1/16，¼和全分辨率三画面</code></pre>
             
             <h2>帧间 - 子像素运动补偿</h2>
-            <p>动态预测 ME 除了与帧内编码后的帧做差（以便推演 P/B/I 帧，见 x264 教程）以外，还被动态补偿 MC 以「允动画之移，拦静画所变」的原理消除如噪点之类导致的动态信息误判，同时将帧间矢量表中动态矢量的精度提高到¼像素以修复「动态预测因精度低导致细节损失」的画面错误。</p>
+            <p>动态预测 ME 除了与帧内编码后的帧做差（以便推演 P/B/I 帧，见 <a href="https://www.nazorip.site/archives/63">x264 教程</a>）以外，还被动态补偿 MC 以「允动画之移，拦静画所变」的原理消除如噪点之类导致的动态信息误判，同时将帧间矢量表中动态矢量的精度提高到¼像素以修复「动态预测因精度低导致细节损失」的画面错误。</p>
             <p>大体上，补偿过程是用帧内编码所得的“粗加工 PU”与源视频对应的块做差，使用有限冲激响应滤镜 Finite impulse response (FIR) filter 放大。此处指 x264-6tap；x265-8tap，7tap 和 4tap 滤镜。放大后用 SATD 对准动态矢量，得“精加工 PU”。</p>
             <div class="row">
                 <div id="LR-UD-005" class="col-8 align-items-center">
@@ -352,7 +352,7 @@ Lookahead中两帧差距达到该参数值则触发转场
 <b>--no-cutree</b>&lt;开关&gt;
 关闭少见CTU量化增强偏移。可能只有近无损，crf小于16才用的到</code></pre>
 
-            <h4 class="same-line">P/B 帧推演-Viterbi 最短路径算法</h4><p class="same-line">：见<a href="https://www.nazorip.site/archives/63">x264 教程</a></p>
+            <h4 class="same-line">P/B 帧推演 - Viterbi 最短路径算法</h4><p class="same-line">：见<a href="https://www.nazorip.site/archives/63">x264 教程</a></p>
 
             <pre><code><b>--b-adapt</b>&lt;整数0~2，推荐<span class="text-blue-emph">2</span>&gt;
 <span class="text-blue-emph">0</span>停用，<span class="text-blue-emph">1</span>快速算法，因当今设备算力够高所以一律<span class="text-blue-emph">2</span>
@@ -704,7 +704,7 @@ x265.exe --abr-ladder 1440p8000_2160p11000_2160p16000.txt --fps 59.94 --input-de
 将无损量化cu（qp 4）作为率失真优化的结果选项之一，只要码率管够（符合λ=R/D）就不量化。用更多码率换取原画相似度，无损源能提高参考冗余</code></pre>
 
             <h2>自适应量化</h2>
-            <p>CRF/ABR设定每帧量化/qp后，方差自适应量化variance adaptive quantizer 再根据复杂度判断高低频信号，来实现精确到宏块的 qp 分配过程。讨论时注意 aq 与 vaq 的混淆。<a href="https://www.nazorip.site/archives/63">见 x264 教程</a></p>
+            <p>CRF/ABR设定每帧量化/qp后，方差自适应量化variance adaptive quantizer 再根据复杂度判断高低频信号，来实现精确到宏块的 qp 分配过程。讨论时注意 aq 与 vaq 的混淆。见 <a href="https://www.nazorip.site/archives/63">x264 教程</a></p>
             
             <pre><code><b>--aq-mode</b>&lt;整数0~3&gt;
 据原画和crf/abr设定，以及码率不足时（crf&lt;18/低码abr）如何分配qp
@@ -807,7 +807,7 @@ aq-strength-edge偏给暗场的程度</code></pre>
             <h2>模式决策</h2>
             <p>Mode decision 整合搜来的信息，宏观地定制分块参考量化等细分方案。因为码率最小的压缩方案画质也差。注意片源含明显边缘失真时反而要减少决策优化</p>
             <div class="align-items-center">
-                <img src="files/image24.png" alt="Mode Decision General" class="" >
+                <img src="files/image24.png" alt="Mode Decision General" class="img-medium" >
             </div>
 
             <pre><code><b>--rd</b>&lt;1/2/3/5，默认3，大则慢&gt;
@@ -3524,7 +3524,7 @@ sao分析跳过视频右边和下边边界
                 <tbody>
                     <tr class="border-bottom">
                         <td class="px-1">0</td>
-                        <td class="px-1">Reserved</td>
+                        <td class="px-1">保留值 Reserved</td>
                         <td class="px-1"> </td>
                         <td class="px-1"> </td>
                         <td class="px-1">国际电信联盟 - 电信标准化部门（ITU‑T） | ISO/IEC 占位留以后用</td>
@@ -3855,18 +3855,351 @@ sao分析跳过视频右边和下边边界
     · 绿蓝红GBR和白点WP指马蹄形色域的三角+白点4个位置的值×50000
     · 光强L的单位是candela×10000
     · SDR视频的L是1000,1. 压HDR视频前一定要看视频信息再设L，见上图
-        · DCI-P3电影业内:	G(13250,34500)B(7500,3000)R(34000,16000)WP(15635,16450)L(?,1)
-        · bt709:			G(15000,30000)B(7500,3000)R(32000,16500)WP(15635,16450)L(?,1)
-        · bt2020超清:		G(8500,39850)B(6550,2300)R(35400,14600)WP(15635,16450)L(?,1)
-    · RGB原信息(对照小数格式的视频信息, 然后选择上面对应的参数):
-        · DCI-P3:	G(x0.265, y0.690), B(x0.150, y0.060), R(x0.680, y0.320), WP(x0.3127, y0.329)
-        · bt709:	G(x0.30, y0.60), B(x0.150, y0.060), R(x0.640, y0.330), WP(x0.3127,y0.329)
-        · bt2020:	G(x0.170, y0.797), B(x0.131, y0.046), R(x0.708, y0.292), WP(x0.3127,y0.329)
+        · DCI-P3电影业内：	<span class="text-blue-emph">G(13250,34500)B(7500,3000)R(34000,16000)WP(15635,16450)L(?,1)</span>
+        · bt709：			<span class="text-blue-emph">G(15000,30000)B(7500,3000)R(32000,16500)WP(15635,16450)L(?,1)</span>
+        · bt2020超清：		<span class="text-blue-emph">G(8500,39850)B(6550,2300)R(35400,14600)WP(15635,16450)L(?,1)</span>
+    · RGB原信息(对照小数格式的视频信息，然后选择上面对应的参数):
+        · DCI-P3：	<span class="text-blue-emph">G(x0.265,y0.690),B(x0.150,y0.060),R(x0.680,y0.320),WP(x0.3127,y0.329)</span>
+        · bt709：	<span class="text-blue-emph">G(x0.30,y0.60),B(x0.150,y0.060),R(x0.640,y0.330),WP(x0.3127,y0.329)</span>
+        · bt2020：	<span class="text-blue-emph">G(x0.170,y0.797),B(x0.131,y0.046),R(x0.708,y0.292),WP(x0.3127,y0.329)</span>
 <b>--display-window</b>&lt;←,↑,→,↓&gt;指定黑边宽度，从而跳过加速编码，或者用--overscan crop直接裁掉</code></pre>
 
+            <h4>杜比视界 Dolby vision / DV</h4>
+            <p>一种私有格式。通过嵌入高频信号层来强化播放效果。有单流/DV-MEL 和双流/DV-FEL 两种。两者都带有 RPU。</p>
+            <p>双视频流有 Base layer 视频层 BL 和 Enhance layer 强化层 EL，EL 可被一般的解码器丢弃而正常播放；单视频流就只有私有解码器/有特定芯片 + 固件的设备能播放。</p>
+            <p>若开源播放器能播放 DV-MEL 则是假源，若支持 DV-FEL 的设备丢弃 EL，只播放 BL 则是假设备。</p>
+            <p>参考单元 Reference picture unit 是含有动态元数据的特殊 NALU，类似（到现在还没几个播放器能正常解码的）<code>opt-qp-pps</code>, <code>opt-ref-list-length-pps</code>的功能。</p>
+            <table class="table-center text-smaller">
+                <thead>
+                    <tr>
+                        <th class="px-1">样式</th>
+                        <th class="px-1">编码</th>
+                        <th class="px-1">BL:EL 分辨率</th>
+                        <th class="px-1">x265 支持</th>
+                        <th class="px-1">伽马</th>
+                        <th class="px-1">色彩空间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="t-light-gray border-lr">
+                        <td class="px-1">4</td>
+                        <td class="px-1">10bit hevc</td>
+                        <td class="px-1">1:¼</td>
+                        <td class="px-1"> </td>
+                        <td class="px-1">SDR</td>
+                        <td class="px-1">YCbCr</td>
+                    </tr>
+                    <tr class="border-lr">
+                        <td class="px-1">5</td>
+                        <td class="px-1">10bit hevc</td>
+                        <td class="px-1">仅 BL（DV-MEL）</td>
+                        <td class="px-1">√</td>
+                        <td class="px-1"> </td>
+                        <td class="px-1">ICtCp</td>
+                    </tr>
+                    <tr class="t-light-gray border-lr">
+                        <td class="px-1">7</td>
+                        <td class="px-1">10bit hevc</td>
+                        <td class="px-1">4K=1:¼; 1920x1080=1:1</td>
+                        <td class="px-1"> </td>
+                        <td class="px-1">UHD 蓝光</td>
+                        <td class="px-1">YCbCr</td>
+                    </tr>
+                    <tr class="border-lr">
+                        <td class="px-1">8.1</td>
+                        <td class="px-1">10bit hevc</td>
+                        <td class="px-1">仅 BL（DV-MEL）</td>
+                        <td class="px-1">√</td>
+                        <td class="px-1">HDR10</td>
+                        <td class="px-1">YCbCr</td>
+                    </tr>
+                    <tr class="t-light-gray border-lr">
+                        <td class="px-1">8.2</td>
+                        <td class="px-1">10bit hevc</td>
+                        <td class="px-1">仅 BL（DV-MEL）</td>
+                        <td class="px-1">√</td>
+                        <td class="px-1">SDR</td>
+                        <td class="px-1">YCbCr</td>
+                    </tr>
+                    <tr class="border-lr">
+                        <td class="px-1">8.4</td>
+                        <td class="px-1">10bit hevc</td>
+                        <td class="px-1">仅 BL（DV-MEL）</td>
+                        <td class="px-1"> </td>
+                        <td class="px-1">HLG</td>
+                        <td class="px-1">YCbCr</td>
+                    </tr>
+                    <tr class="t-light-gray border-lr">
+                        <td class="px-1">9</td>
+                        <td class="px-1">8bit avc</td>
+                        <td class="px-1">仅 BL（DV-MEL）</td>
+                        <td class="px-1"> </td>
+                        <td class="px-1">SDR</td>
+                        <td class="px-1">YCbCr</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <pre class="mt-3"><code><b>--dolby-vision-profile</b>&lt;选择5/8.1（HDR10）/8.2（SDR）&gt;8.1需要写master-display和HDR10-opt
+<b>--dolby-vision-rpu</b>&lt;路径&gt;导入RPU二进制文件（.bin）
+注：杜比视界8.1需要 --dolby-vision-profile 5.0 --dolby-vision-rpu "元数据.bin" --vbv-bufsize 20000 --vbv-maxrate 20000</code></pre>
+
+            <h4>RPU 元数据获取</h4>
+            <p>可以用<a href="https://github.com/quietvoid/dovi_tool">dovi_tool</a>提取 RPU，<a href="https://github.com/saindriches/dovi_meta">dovi_meta</a>创建 RPU。ffmpeg 提取源视频 RPU 用：</p>
+            <code>ffmpeg.exe -i "源" -c:v copy -vbsf hevc_mp4toannexb -f hevc - | dovi_tool extract-rpu - -o  "RPU.bin"</code>
+            
+
             <h2>输入输出 Input-output IO</h2>
+            <pre class="mb-0"><code><b>--seek</b>&lt;整数，默认0&gt;从第x帧开始压缩
+<b>--frames</b>&lt;整数，默认全部&gt;一共压缩x帧
+<b>--output</b>&lt;整数，默认0&gt;从第x帧开始压缩
+<b>--input-csp</b>&lt;i400/i422/i444/nv12/nv16，默认i420，<span class="text-red-emph">未使用YUV for MPEG（y4m）pipe时应设置</span>&gt;。rgb，yuvj等不支持需要滤镜转换
+<b>--dither</b>&lt;开关&gt;使用抖动功能以高质量的降低色深(比如10bit片源降8bit)，避免出现斑点和方块
+<b>--allow-non-conformance</b>&lt;开关&gt;不写入profile和level，绕过h.265标准的规定，只要不是按照h.265规定写的命令行参数值就必须使用这个参数
+<b>--force-flush</b>&lt;整数0~2，默认0&gt;低能耗设备用的编码调度控制:
+    · <span class="text-blue-emph">0</span>等全部帧输入再编码
+    · <span class="text-blue-emph">1</span>不等全部帧输入完就编码
+    · <span class="text-blue-emph">2</span>取决于条带种类，调整slice type才能用    
+<b>--field</b>&lt;开关&gt;输入分行扫描视频时用，自动获取分场视频的帧率+优先场，替代了--interlaced参数
+<b>--input-res</b>&lt;宽x高，<span class="text-red-emph">未使用YUV for MPEG（y4m）pipe或lavf时应设置</span>&gt;指定输入源的分辨率，如1920x1080
+<b>--fps</b>&lt;整数/浮点/分数，<span class="text-red-emph">未使用YUV for MPEG（y4m）pipe或lavf时应设置</span>&gt;指定输入源的帧率，如30，24000/1001等
+<b>--chunk-start --chunk-end</b>&lt;开关，<span class="text-red-emph">需no-open-gop</span>&gt;start跨GOP打包网络数据包，end将数据包结尾标注分割
+注：由于数据包接收顺序随机，所以只可参考其之前，而不可参考之后的内容，跟http串流的数据包编码协议有关
+<b>--temporal-layers</b>&lt;开关，默认关&gt;使x265更兼容svc标准，将非参考b帧（相当于空信息）分离到另一层视频流中，解码器可以选择跳过而降低性能损耗
+注：可能会造成一般编解码方案的兼容性问题</code></pre>
+
+            <h4 class="same-line">编解码图像序列</h4><p class="same-line">：见<a href="https://www.nazorip.site/archives/63">x264 教程</a></p>
 
             <h2>下载，附录，操作</h2>
+            <h4>下载 x265.exe</h4>
+            <p clas="text-gray-side">注：[8-10-12bit] 代表一个.exe 同时含三种色深，<span class="text-red-emph">未使用 YUV for MPEG（y4m）pipe 或 lavf 时应设置 <code>-D</code> 参数以选择正确的色深</span>，而 [8][10][12]bit 则代表三个 .exe 分别支持三种色深，压制时选择正确的 .exe 即可</p>
+
+            <h4>LibavFormat / lavf</h4>
+            <p>一种用于处理封装和解封装的动态链接库，同时阅读封装文件的元数据并传给嵌入该库的程序。x264 一般都嵌入了 lavf，x265 则不多。由于只是复制元数据的值而没有做检测，所以元数据写错（情况不罕见）的源会导致编码跟着错，主要错在色彩空间和 HDR 设置上。</p>
+            <p class="text-gray-side">注：.hevc 代表不含 lavf 解码封装库，只能导出.hevc 视频流，需自行封装为 .mp4 .mkv 等格式；含 lavf 或使用 ffmpeg 内置的 libx265 则可以直接导出，使用见 x264/5 <a href="https://nazorip.site/archives/334/">急用版教程</a></p>
+            <table class="table-center align-items-center text-smaller">
+                <tbody>
+                    <tr class="border-lr">
+                        <th class="t-invert-dark px-3"><a href="http://www.mediafire.com/?6lfp2jlygogwa">LigH</a></th>
+                        <td class="px-3">.hevc [8-10-12bit]</td>
+                        <td class="px-3">附 x86 32bit 版，Windows XP x86 版，附 libx265.dll</td>
+                    </tr>
+                    <tr class="border-lr">
+                        <th class="t-invert-dark px-3"><a href="https://github.com/jpsdr/x265/releases">jpsdr</a></th>
+                        <td class="px-3">.hevc [8-10-12bit] </td>
+                        <td class="px-3">GCC 12.2 + MSVC_llvm 1928，附 Broadwell 版，支持 aq-mode 5</td>
+                    </tr>
+                    <tr class="border-lr">
+                        <th class="t-invert-dark px-3"><a href="https://drive.google.com/drive/u/0/folders/0BzA4dIFteM2dWEpvWGZXV3ZhdTA">Rigaya</a></th>
+                        <td class="px-3">.hevc [8-10-12bit]</td>
+                        <td class="px-3 ">GCC 9.3，附 x86 32bit 版</td>
+                    </tr>
+                    <tr class="border-lr">
+                        <th class="t-invert-dark px-3"><a href="http://www.mediafire.com/folder/arv5xmdqyiczc">Patman</a></th>
+                        <td class="px-3">.hevc [8-10-12bit]</td>
+                        <td class="px-3">GCC 11 + MSVC 1925</td>
+                    </tr>
+                    <tr class="border-lr">
+                        <th class="t-invert-dark px-3"><a href="https://forum.doom9.org/showthread.php?p=1937773#post1937773">ShortKatz</a></th>
+                        <td class="px-3">arm64~64e（Mac OS，安卓等平台）</td>
+                        <td class="px-3">需运行编译命令文件，附 x86 32bit 版</td>
+                    </tr>
+                    <tr class="border-lr">
+                        <th class="t-invert-dark px-3"><a href="https://github.com/DJATOM/x265-aMod/releases/">DJATOM-aMod</a></th>
+                        <td class="px-3">Intel 架构与 zen1~2 优化：[10bit]，zen3 优化：[10-12bit] </td>
+                        <td class="px-3">GCC 10.2.1 + GCC10.3</td>
+                    </tr>
+                    <tr class="border-lr">
+                        <th class="t-invert-dark px-3"><a href="https://down.7086.in/">MeteorRain-yuuki</a></th>
+                        <td class="px-3">.mp4 .mkv [8][10][12bit]+[8-10-12bit]</td>
+                        <td class="px-3">GCC 9.3 + ICC 1900 + MSVC 1916</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>预设参数</h2>
+            <code><b>--preset</b>&lt;superfast/veryfast/faster/fast/medium/slow/slower/veryslow/placebo&gt;见下表：</code>
+            <div class="overflow-auto">
+                <table class="table-fit-container text-xs">
+                    <thead class="thead-no-border">
+                        <tr class="t-invert-dark">
+                        <th> </th>
+                        <th> superfast </th>
+                        <th> veryfast </th>
+                        <th> faster </th>
+                        <th> fast </th>
+                        <th> medium </th>
+                        <th> slow </th>
+                        <th> slower </th>
+                        <th> Very slow </th>
+                        <th> placebo </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="px-1"> ctu </td>
+                        <td class="px-1"> 32 </td>
+                        <td class="px-1 t-invert-light" colspan="8"> 64 </td>
+                    </tr>
+                    <tr>
+                        <td class="px-1"> 最小cu </td>
+                        <td colspan="9" class="px-1"> 8 </td>
+                    </tr>
+                    <tr>
+                        <td class="px-1"> 连续B帧数bframes </td>
+                        <td class="px-1"> 3 </td>
+                        <td class="px-1 t-invert-light" colspan="5"> 4 </td>
+                        <td class="px-1 t-invert-dark" colspan="3"> 8 </td>
+                    </tr>
+                    <tr>
+                        <td class="px-1"> B帧筛选b-adapt </td>
+                        <td class="px-1" colspan="4"> 0 </td>
+                        <td class="px-1 t-invert-light" colspan="5"> 2 </td>
+                    </tr>
+                    <tr>
+                        <td class="px-1"> cu 树向后 rc-lookahead </td>
+                        <td class="px-1"> 10 </td>
+                        <td class="px-1 t-invert-light" colspan="3"> 15 </td>
+                        <td class="px-1 t-invert-light"> 20 </td>
+                        <td class="px-1 t-invert-light"> 25 </td>
+                        <td class="px-1 t-invert-light" colspan="2"> 40 </td>
+                        <td class="px-1 t-invert-dark"> 60 </td>
+                    </tr>
+                    <tr>
+                        <td class="px-1"> lookahead-slices </td>
+                        <td class="px-1" colspan="5"> 8 </td>
+                        <td class="px-1 t-invert-light"> 4 </td>
+                        <td class="px-1 t-invert-dark" colspan="3"> 1 </td>
+                    </tr>
+                    <tr>
+                        <td class="px-1"> 参考帧ref </td>
+                        <td class="px-1"> 1 </td>
+                        <td class="px-1 t-invert-light" colspan="2"> 2 </td>
+                        <td class="px-1 t-invert-light" colspan="2"> 3 </td>
+                        <td class="px-1 t-invert-light"> 4 </td>
+                        <td class="px-1 t-invert-dark" colspan="3"> 5 </td>
+                    </tr>
+                    <tr>
+                        <td class="px-1"> 参考帧限制limit-refs </td>
+                        <td class="px-1"> 0 </td>
+                        <td class="px-1 t-invert-light" colspan="5"> 3 </td>
+                        <td class="px-1 t-invert-light"> 1 </td>
+                        <td class="px-1 t-invert-dark" colspan="2"> 0 </td>
+                    </tr>
+                    <tr>
+                        <td class="px-1"> 动态搜索算法 me </td>
+                        <td class="px-1" colspan="5"> hex </td>
+                        <td class="px-1 t-invert-light" colspan="4"> star </td>
+                    </tr>
+                    <tr>
+                        <td class="px-1"> 动搜搜索范围 merange </td>
+                        <td class="px-1 t-invert-light" colspan="8"> 57 </td>
+                        <td class="px-1 t-invert-dark"> 92 </td>
+                    </tr>
+                    <tr>
+                        <td class="px-1"> MC 子像素搜索 subme </td>
+                        <td class="px-1" colspan="2"> 1 </td>
+                        <td class="px-1 t-invert-light" colspan="3"> 2 </td>
+                        <td class="px-1 t-invert-light"> 3 </td>
+                        <td class="px-1 t-invert-light" colspan="2"> 4 </td>
+                        <td class="px-1 t-invert-dark"> 5 </td>
+                    </tr>
+                    <tr>
+                        <td class="px-1"> 长矩形分块 rect </td>
+                        <td class="px-1" colspan="5"> 0 </td>
+                        <td class="px-1 t-invert-light" colspan="4"> 1 </td>
+                    </tr>
+                    <tr>
+                        <td class="px-1"> 非矩分块 amp </td>
+                        <td class="px-1" colspan="6"> 0 </td>
+                        <td class="px-1 t-invert-dark" colspan="3"> 1 </td>
+                    </tr>
+                    <tr>
+                        <td class="px-1"> 分块模式快选 limit-modes </td>
+                        <td class="px-1" colspan="5"> 0 </td>
+                        <td class="px-1 t-invert-light" colspan="2"> 11 </td>
+                        <td class="px-1 t-invert-dark" colspan="2"> 0 </td>
+                    </tr>
+                    <tr>
+                        <td> 合并模式数量 max-merge </td>
+                        <td class="px-1" colspan="5"> 2 </td>
+                        <td class="px-1 t-invert-light"> 3 </td>
+                        <td class="px-1 t-invert-light"> 4 </td>
+                        <td class="px-1 t-invert-dark" colspan="2"> 5 </td>
+                    </tr>
+                    <tr>
+                        <td class="px-1"> 合并提前退出 early-skip </td>
+                        <td class="px-1" colspan="3"> 1 </td>
+                        <td class="px-1 t-invert-light"> 0 </td>
+                        <td class="px-1 t-invert-light"> 1 </td>
+                        <td class="px-1 t-invert-dark" colspan="4"> 0 </td>
+                    </tr>
+                    <tr>
+                        <td class="px-1"> cu 再分裂跳过 rskip </td>
+                        <td class="px-1" colspan="8"> 1 </td>
+                        <td class="px-1 t-invert-light"> 0 </td>
+                    </tr>
+                    <tr>
+                        <td class="px-1"> 帧内夹角模式优化 </td>
+                        <td class="px-1" colspan="4"> 1 </td>
+                        <td class="px-1 t-invert-light" colspan="5"> 0 </td>
+                    </tr>
+                    <tr>
+                        <td class="px-1"> B 条带帧内搜索 b-intra </td>
+                        <td class="px-1" colspan="6"> 0 </td>
+                        <td class="px-1 t-invert-light" colspan="3"> 1 </td>
+                    </tr>
+                    <tr>
+                        <td class="px-1"> 取样迁就偏移 sao </td>
+                        <td class="px-1"> 关 </td>
+                        <td class="px-1 t-invert-light" colspan="8"> 开 </td>
+                    </tr>
+                    <tr>
+                        <td class="px-1"> P帧权重 weightp </td>
+                        <td class="px-1"> 0 </td>
+                        <td class="px-1 t-invert-light" colspan="8"> 1 </td>
+                    </tr>
+                    <tr>
+                        <td class="px-1"> B 帧权重 weightb </td>
+                        <td class="px-1" colspan="6"> 0 </td>
+                        <td class="px-1 t-invert-light" colspan="3"> 1 </td>
+                    </tr>
+                    <tr>
+                        <td class="px-1"> 自适应量化 aq-mode </td>
+                        <td class="px-1"> 0 </td>
+                        <td class="px-1 t-invert-light" colspan="8"> 2 </td>
+                    </tr>
+                    <tr>
+                        <td class="px-1"> cutree </td>
+                        <td class="px-1" colspan="9"> 开 </td>
+                    </tr>
+                    <tr>
+                        <td class="px-1"> 率失真优化rd </td>
+                        <td class="px-1" colspan="4"> 2 </td>
+                        <td class="px-1 t-invert-light"> 3 </td>
+                        <td class="px-1 t-invert-light"> 4 </td>
+                        <td class="px-1 t-invert-dark" colspan="3"> 6 </td>
+                    </tr>
+                    <tr>
+                        <td class="px-1"> 心率失优程度rdoq-level </td>
+                        <td class="px-1" colspan="5"> 0 </td>
+                        <td class="px-1 t-invert-light" colspan="4"> 2 </td>
+                    </tr>
+                    <tr>
+                        <td class="px-1"> tu帧内/间上限tu-intra-depth </td>
+                        <td class="px-1" colspan="6"> 1 </td>
+                        <td class="px-1 t-invert-light" colspan="2"> 3 </td>
+                        <td class="px-1 t-invert-dark"> 4 </td>
+                    </tr>
+                    <tr>
+                        <td class="px-1"> tu分裂上限tu-inter-depth </td>
+                        <td class="px-1" colspan="6"> 0 </td>
+                        <td class="px-1 t-invert-light"> 4 </td>
+                        <td class="px-1 t-invert-dark" colspan="2"> 0 </td>
+                    </tr>
+                </tbody>
+            </table>
+            <code><b>--tune</b>&lt;zerolatency/animation/grain/film/fastdecode&gt;见下表：</code>
         </div>
 
         <!-- Footer -->
