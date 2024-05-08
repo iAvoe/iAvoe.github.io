@@ -3,6 +3,7 @@
 /*eslint no-extend-native: ["error", { "exceptions": ["Object"] }]*/
 var document; // Rectifying 'document not defined'
 var window; // Rectifying 'window not defined'
+var mainPara;
 if (document !== "undefined") {
     // Code that relies on the document object
     document.cookie = 'CookieName=NULL; SameSite=Strict';
