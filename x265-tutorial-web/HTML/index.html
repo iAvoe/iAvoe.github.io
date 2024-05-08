@@ -572,7 +572,7 @@ P帧比IDR/I，及B/b帧相比P帧的量化值递增。B帧双向参考能从更
                     </tr>
                     <tr class="border-bottom">
                         <th class="t-light-gray px-1">
-                            CRF_rate_factor<span class="text-blue-math">$$\frac{cplxBase^{1-qcomp}}{qScale \times (crf + cutree + bframe\_offset)}$$</span>
+                            CRF_rate_factor<span class="text-blue-math text-smaller">$$\frac{cplxBase^{1-qcomp}}{qScale \times (crf + cutree + bframe\_offset)}$$</span>
                         </th>
                         <td>GOP 内累计，经 cutree，B 帧偏移乘进 qScale 后得 1-qcomp 与 CRF_qScale 对齐（仅 cplxBase，cplxBlur 运算）</td>
                     </tr>
@@ -1481,1705 +1481,1706 @@ sao分析跳过视频右边和下边边界
                 </li>
             </ol>
 
-            <table class="table-fit-container align-items-center text-xs">
-                <thead class="thead-no-border">
-                    <tr class="t-invert-dark">
-                        <th>出字词典</th>
-                        <th>C</th>
-                        <th>T</th>
-                        <th>A</th>
-                        <th>G</th>
-                        <th>⊗</th>
-                        <th> </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="t-invert-dark">
-                        <td>等概 CTX<sub>-1</sub></td>
-                        <td>1/5</td>
-                        <td>1/5</td>
-                        <td>1/5</td>
-                        <td>1/5</td>
-                        <td>1/5</td>
-                        <td> </td>
-                    </tr>
-                    <tr class="t-invert-light"><!--1-->
-                        <th>1:</th>
-                        <td>输入 C</td>
-                        <td>已知 null</td>
-                        <td>null 长 0</td>
-                        <td class="t-align-right"><span class="text-red-emph">C</span>TAGGCAATC</td>
-                        <td class="t-align-left">TAGGTA</td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr text-green-dyna">
-                        <td>CTX 匹配</td><!--1-->
-                        <td>CTX3 匹配⊗</td>
-                        <td>CTX2 匹配⊗</td>
-                        <td>CTX1 匹配⊗</td>
-                        <td>CTX0 匹配⊗</td>
-                        <td>CTX<sub>-1</sub>配 C</td>
-                        <td>小计</td>
-                    </tr>
-                    <tr class="border-lr text-blue-cnsq">
-                        <td>编码结果</td><!--1-->
-                        <td>已知长 0 跳过 </td>
-                        <td>已知长 0 跳过</td>
-                        <td>已知长 0 跳过</td>
-                        <td>⊗</td>
-                        <td>C</td>
-                        <td>"⊗C"</td>
-                    </tr>
-                    <tr class="border-lr text-pink-cnsq">
-                        <td>概率结果</td><!--1-->
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td>P⊗ = 1</td>
-                        <td>P(C)=1/5</td>
-                        <td>1×1/5</td>
-                    </tr>
-                    <tr class="border-lr border-bottom">
-                        <td>CTX 更新</td><!--1-->
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td>P(""C)=1/2</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr"><!--1-->
-                        <td>⊗ 概率</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td>P⊗=1/2</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="t-invert-light"><!--2-->
-                        <th>2：</th>
-                        <td>输入 T</td>
-                        <td>已知"C"</td>
-                        <td>已知长 1</td>
-                        <td class="t-align-right"><span class="text-blue-emph">C</span><span class="text-red-emph">T</span>AGGCAATC</td>
-                        <td class="t-align-left">TAGGTA</td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr text-green-dyna">
-                        <td>CTX 匹配</td><!--2-->
-                        <td>CTX3 匹配⊗</td>
-                        <td>CTX2 匹配⊗</td>
-                        <td>CTX1 匹配⊗</td>
-                        <td>CTX0 匹配⊗</td>
-                        <td>CTX<sub>-1</sub>配 T</td>
-                        <td>小计</td>
-                    </tr>
-                     <tr class="border-lr text-blue-cnsq">
-                        <td>编码结果</td><!--2-->
-                        <td>已知长 1 跳过 </td>
-                        <td>已知长 1 跳过</td>
-                        <td>⊗</td>
-                        <td>⊗</td>
-                        <td>T</td>
-                        <td>"⊗⊗T"</td>
-                    </tr>
-                    <tr class="border-lr text-pink-cnsq">
-                        <td>概率结果</td><!--2-->
-                        <td> </td>
-                        <td> </td>
-                        <td>P⊗ = 1</td>
-                        <td>P⊗ = 1/2</td>
-                        <td>P(T)=1/5</td>
-                        <td>1×1/2×<br>1/5</td>
-                    </tr>
-                     <tr class="border-lr">
-                        <td>CTX 更新</td><!--2-->
-                        <td> </td>
-                        <td> </td>
-                        <td>P("C"T)=1/2</td>
-                        <td>P(""C)=1/3</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                     <tr class="border-lr border-bottom">
-                        <td>CTX 更新</td><!--2-->
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td>P(""T)=1/3</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr"><!--2-->
-                        <td>⊗ 概率</td>
-                        <td> </td>
-                        <td> </td>
-                        <td>P⊗=1/2</td>
-                        <td>P⊗=1/3</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="t-invert-light"><!--3-->
-                        <th>3：</th>
-                        <td>输入 A</td>
-                        <td>已知"CT"</td>
-                        <td>已知长 2</td>
-                        <td class="t-align-right"><span class="text-blue-emph">CT</span><span class="text-red-emph">A</span>GGCAATC</td>
-                        <td class="t-align-left">TAGGTA</td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr text-green-dyna">
-                        <td>CTX 匹配</td><!--3-->
-                        <td>CTX3 匹配⊗</td>
-                        <td>CTX2 匹配⊗</td>
-                        <td>CTX1 匹配⊗</td>
-                        <td>CTX0 匹配⊗</td>
-                        <td>CTX<sub>-1</sub>配 A</td>
-                        <td>小计</td>
-                    </tr>
-                    <tr class="border-lr text-blue-cnsq">
-                        <td>编码结果</td><!--3-->
-                        <td>已知长 2 跳过 </td>
-                        <td>⊗</td>
-                        <td>⊗</td>
-                        <td>⊗</td>
-                        <td>A</td>
-                        <td>"⊗⊗⊗A"</td>
-                    </tr>
-                    <tr class="border-lr text-pink-cnsq">
-                        <td>概率结果</td><!--3-->
-                        <td> </td>
-                        <td>P⊗ = 1</td>
-                        <td>P⊗ = 1</td>
-                        <td>P⊗ = 1/3</td>
-                        <td>P(A)=1/5</td>
-                        <td>1×1×<br>1/3×1/5</td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--3-->
-                        <td> </td>
-                        <td>P("CT"A)=1/2</td>
-                        <td>P("C"T)=1/2</td>
-                        <td>P(""C)=1/4</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--3-->
-                        <td> </td>
-                        <td> </td>
-                        <td>P("T"A)=1/2</td>
-                        <td>P(""T)=1/4</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr border-bottom">
-                        <td>CTX 更新</td><!--3-->
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td>P(""A)=1/4</td>
-                        <td> </td>
-                        <td> </td><!--3-->
-                    </tr>
-                    <tr class="border-lr">
-                        <td>⊗ 概率</td>
-                        <td> </td>
-                        <td>P⊗=1/2</td>
-                        <td>P⊗=1/2,1/2</td>
-                        <td>P⊗=1/4</td>
-                        <td> </td>
-                        <td> </td><!--3-->
-                    </tr>
-                    <tr class="t-invert-light"><!--4-->
-                        <th>4：</th>
-                        <td>输入 G</td>
-                        <td>已知"CTA"</td>
-                        <td>已知长 3</td>
-                        <td class="t-align-right"><span class="text-blue-emph">CTA</span><span class="text-red-emph">G</span>GCAATC</td>
-                        <td class="t-align-left">TAGGTA</td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr text-green-dyna">
-                        <td>CTX 匹配</td><!--4-->
-                        <td>CTX3 匹配⊗</td>
-                        <td>CTX2 匹配⊗</td>
-                        <td>CTX1 匹配⊗</td>
-                        <td>CTX0 匹配⊗</td>
-                        <td>CTX<sub>-1</sub>配 G</td>
-                        <td>小计</td>
-                    </tr>
-                    <tr class="border-lr text-blue-cnsq">
-                        <td>编码结果</td><!--4-->
-                        <td>⊗ </td>
-                        <td>⊗</td>
-                        <td>⊗</td>
-                        <td>⊗</td>
-                        <td>G</td>
-                        <td>"⊗⊗⊗⊗G"</td>
-                    </tr>
-                    <tr class="border-lr text-pink-cnsq">
-                        <td>概率结果</td><!--4-->
-                        <td>P⊗ = 1</td>
-                        <td>P⊗ = 1</td>
-                        <td>P⊗ = 1</td>
-                        <td>P⊗ = 1/4</td>
-                        <td>P(G)=1/5</td>
-                        <td>1×1×<br>1×1/5×<br>1/4×1/5</td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--4-->
-                        <td>P("CTA"G)=1/2</td>
-                        <td>P("CT"A)=1/2</td>
-                        <td>P("C"T)=1/2</td>
-                        <td>P(""C)=1/5</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--4-->
-                        <td> </td>
-                        <td>P("TA"G)=1/2</td>
-                        <td>P("T"A)=1/2</td>
-                        <td>P(""T)=1/5</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--4-->
-                        <td> </td>
-                        <td> </td>
-                        <td>P("A"G)=1/2</td>
-                        <td>P(""A)=1/5</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr border-bottom">
-                        <td>CTX 更新</td><!--4-->
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td>P(""G)=1/5</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr"><!--5-->
-                        <td>⊗ 概率</td>
-                        <td>P⊗=1/2</td>
-                        <td>P⊗=1/2,1/2</td>
-                        <td>P⊗=1/2,1/2,<br>1/2</td>
-                        <td>P⊗=1/5</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="t-invert-light"><!--5-->
-                        <th>5：</th>
-                        <td>输入 G</td>
-                        <td>已知"TAG"</td>
-                        <td> </td>
-                        <td class="t-align-right"><span class="text-blue-emph">CTAG</span><span class=text-red-emph>G</span>CAATC</td>
-                        <td class="t-align-left">TAGGTA</td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr text-green-dyna">
-                        <td>CTX 匹配</td><!--5-->
-                        <td>CTX3 匹配⊗</td>
-                        <td>CTX2 匹配⊗</td>
-                        <td>CTX1 匹配⊗</td>
-                        <td>CTX0 配 G</td>
-                        <td> </td>
-                        <td>小计</td>
-                    </tr>
-                    <tr class="border-lr text-blue-cnsq">
-                        <td>编码结果</td><!--5-->
-                        <td>⊗ </td>
-                        <td>⊗</td>
-                        <td>⊗</td>
-                        <td>G</td>
-                        <td> </td>
-                        <td>"⊗⊗⊗G"</td>
-                    </tr>
-                    <tr class="border-lr text-pink-cnsq">
-                        <td>概率结果</td><!--5-->
-                        <td>P⊗ = 1</td>
-                        <td>P⊗ = 1</td>
-                        <td>P⊗ = 1</td>
-                        <td>P(""G)=1/5</td>
-                        <td> </td>
-                        <td>1×1×1</td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--5-->
-                        <td>P("CTA"G)=1/2</td>
-                        <td>P("CT"A)=1/2</td>
-                        <td>P("C"T)=1/2</td>
-                        <td>P(""C)=1/6</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--5-->
-                        <td>P("TAG"G)=1/2</td>
-                        <td>P("TA"A)=1/2</td>
-                        <td>P("T"A)=1/2</td>
-                        <td>P(""T)=1/6</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--5-->
-                        <td>P("AG"G)=1/2</td>
-                        <td>P("A"G)=1/2</td>
-                        <td>P(""A)=1/6</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr border-bottom">
-                        <td>CTX 更新</td><!--5-->
-                        <td> </td>
-                        <td>P("G"G)=1/2</td>
-                        <td>P(""G)=2/6</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr"><!--5-->
-                        <td>⊗ 概率</td>
-                        <td>P⊗=1/2,1/2</td>
-                        <td>P⊗=1/2,1/2,<br>1/2</td>
-                        <td>P⊗=1/2,1/2,<br>1/2,1/2</td>
-                        <td>P⊗=1/6</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="t-invert-light"><!--6-->
-                        <th>6：</th>
-                        <td>输入 C</td>
-                        <td>已知"AGG"</td>
-                        <td> </td>
-                        <td class="t-align-right"><span class="text-blue-emph">CTAGG</span><span class="text-red-emph">C</span>AATC</td>
-                        <td class="t-align-left">TAGGTA</td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr text-green-dyna">
-                        <td>CTX 匹配</td><!--6-->
-                        <td>CTX3 匹配⊗</td>
-                        <td>CTX2 匹配⊗</td>
-                        <td>CTX1 匹配⊗</td>
-                        <td>CTX0 配 C</td>
-                        <td> </td>
-                        <td>小计</td>
-                    </tr>
-                    <tr class="border-lr text-blue-cnsq">
-                        <td>编码结果</td><!--6-->
-                        <td>⊗</td>
-                        <td>⊗</td>
-                        <td>⊗</td>
-                        <td>C</td>
-                        <td> </td>
-                        <td>"⊗⊗⊗C"</td>
-                    </tr>
-                    <tr class="border-lr text-pink-cnsq">
-                        <td>概率结果</td><!--6-->
-                        <td>P⊗ = 1</td>
-                        <td>P⊗ = 1</td>
-                        <td>P"G"⊗ = 1/2</td>
-                        <td>P(""C)=1/6</td>
-                        <td> </td>
-                        <td>1×1×<br>1/2×1/6</td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--6-->
-                        <td>P("CTA"G)=1/2</td>
-                        <td>P("CT"A)=1/2</td>
-                        <td>P("C"T)=1/2</td>
-                        <td>P(""C)=2/7</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--6-->
-                        <td>P("TAG"G)=1/2</td>
-                        <td>P("TA"G)=1/2</td>
-                        <td>P("T"A)=1/2</td>
-                        <td>P(""T)=1/7</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--6-->
-                        <td>P("AGG"C)=1/2</td>
-                        <td>P("AG"G)=1/2</td>
-                        <td>P("A"G)=1/2</td>
-                        <td>P(""A)=1/7</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--6-->
-                        <td> </td>
-                        <td>P("GG"C)=1/2</td>
-                        <td>P("G"G)=1/3</td>
-                        <td>P(""G)=2/7</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr border-bottom">
-                        <td>CTX 更新</td><!--6-->
-                        <td> </td>
-                        <td> </td>
-                        <td>P("G"C)=1/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr"><!--6-->
-                        <td>⊗ 概率</td>
-                        <td>P⊗=1/2,1/2,<br>1/2</td>
-                        <td>P⊗=1/2,1/2,<br>1/2,1/2</td>
-                        <td>P⊗=1/2,1/2,<br>1/2,1/3</td>
-                        <td>P⊗=1/7</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="t-invert-light">
-                        <th>7：</th><!--7-->
-                        <td>输入 A</td>
-                        <td>已知"GGC"</td>
-                        <td> </td>
-                        <td class="t-align-right"><span class="text-blue-emph">CTAGGC</span><span class="text-red-emph">A</span>ATC</td>
-                        <td class="t-align-left">TAGGTA</td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr text-green-dyna">
-                        <td>CTX 匹配</td><!--7-->
-                        <td>CTX3 匹配⊗</td>
-                        <td>CTX2 匹配⊗</td>
-                        <td>CTX1 匹配⊗</td>
-                        <td>CTX0 配 A</td>
-                        <td> </td>
-                        <td>小计</td>
-                    </tr>
-                    <tr class="border-lr text-blue-cnsq">
-                        <td>编码结果</td><!--7-->
-                        <td>⊗</td>
-                        <td>⊗</td>
-                        <td>⊗</td>
-                        <td>A</td>
-                        <td> </td>
-                        <td>"⊗⊗⊗A"</td>
-                    </tr>
-                    <tr class="border-lr text-pink-cnsq">
-                        <td>概率结果</td><!--7-->
-                        <td>P⊗ = 1</td>
-                        <td>P⊗ = 1</td>
-                        <td>P⊗ = 1/2</td>
-                        <td>P(""A)=1/7</td>
-                        <td> </td>
-                        <td>1/2×1/7</td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--7-->
-                        <td>P("CTA"G)=1/2</td>
-                        <td>P("CT"A)=1/2</td>
-                        <td>P("C"T)=1/3</td>
-                        <td>P(""C)=2/8</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--7-->
-                        <td>P("TAG"G)=1/2</td>
-                        <td>P("TA"G)=1/2</td>
-                        <td>P("T"A)=1/2</td>
-                        <td>P(""T)=1/8</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--7-->
-                        <td>P("AGG"C)=1/2</td>
-                        <td>P("AG"G)=1/2</td>
-                        <td>P("A"G)=1/2</td>
-                        <td>P(""A)=2/8</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--7-->
-                        <td>P("GGC"A)=1/2</td>
-                        <td>P("GG"C)=1/2</td>
-                        <td>P("G"G)=1/3</td>
-                        <td>P(""G)=2/8</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--7-->
-                        <td> </td>
-                        <td>P("GC"A)=1/2</td>
-                        <td>P("G"C)=1/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr border-bottom">
-                        <td>CTX 更新</td><!--7-->
-                        <td> </td>
-                        <td> </td>
-                        <td>P("C"A)=1/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>⊗ 概率</td><!--7-->
-                        <td>1/2,1/2,1/2,<br>1/2</td>
-                        <td>1/2,1/2,1/2,<br>1/2,1/2</td>
-                        <td>1/3,1/2,1/2,<br>1/3</td>
-                        <td>P⊗=1/8</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="t-invert-light">
-                        <th>8：</th><!--8-->
-                        <td>输入 A</td>
-                        <td>已知"GCA"</td>
-                        <td> </td>
-                        <td class="t-align-right"><span class="text-blue-emph">CTAGGCA</span><span class="text-red-emph">A</span>TC</td>
-                        <td class="t-align-left">TAGGTA</td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr text-green-dyna">
-                        <td>CTX 匹配</td><!--8-->
-                        <td>CTX3 匹配⊗</td>
-                        <td>CTX2 匹配⊗</td>
-                        <td>CTX1 匹配⊗</td>
-                        <td>CTX0 配 A</td>
-                        <td> </td>
-                        <td>小计</td>
-                    </tr>
-                    <tr class="border-lr text-blue-cnsq">
-                        <td>编码结果</td><!--8-->
-                        <td>⊗</td>
-                        <td>⊗</td>
-                        <td>⊗</td>
-                        <td>A</td>
-                        <td> </td>
-                        <td>"⊗⊗⊗A"</td>
-                    </tr>
-                    <tr class="border-lr text-pink-cnsq">
-                        <td>概率结果</td><!--8-->
-                        <td>P⊗ = 1</td>
-                        <td>P⊗ = 1</td>
-                        <td>P"A"⊗ = 1/2</td>
-                        <td>P(""A)=1/8</td>
-                        <td> </td>
-                        <td>1/2×2/8</td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--8-->
-                        <td>P("CTA"G)=1/2</td>
-                        <td>P("CT"A)=1/2</td>
-                        <td>P("C"T)=1/3</td>
-                        <td>P(""C)=2/9</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--8-->
-                        <td>P("TAG"G)=1/2</td>
-                        <td>P("TA"G)=1/2</td>
-                        <td>P("T"A)=1/2</td>
-                        <td>P(""T)=1/9</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--8-->
-                        <td>P("AGG"C)=1/2</td>
-                        <td>P("AG"G)=1/2</td>
-                        <td>P("A"G)=1/3</td>
-                        <td>P(""A)=3/9</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--8-->
-                        <td>P("GGC"A)=1/2</td>
-                        <td>P("GG"C)=1/2</td>
-                        <td>P("G"G)=1/3</td>
-                        <td>P(""G)=2/9</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--8-->
-                        <td>P("GCA"A)=1/2</td>
-                        <td>P("GC"A)=1/2</td>
-                        <td>P("G"C)=1/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--8-->
-                        <td> </td>
-                        <td>P("CA"A)=1/2</td>
-                        <td>P("C"A)=1/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr border-bottom">
-                        <td>CTX 更新</td><!--8-->
-                        <td> </td>
-                        <td> </td>
-                        <td>P("A"A)=1/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>⊗ 概率</td><!--8-->
-                        <td>1/2,1/2,1/2,<br>1/2,1/2</td>
-                        <td>1/2,1/2,1/2,<br>1/2,1/2,1/2</td>
-                        <td>1/3,1/2,1/3,<br>1/3</td>
-                        <td>P⊗=1/9</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="t-invert-light">
-                        <th>9：</th><!--9-->
-                        <td> </td>
-                        <td>已知"CAA"</td>
-                        <td> </td>
-                        <td class="t-align-right"><span class="text-blue-emph">CTAGGCAA</span><span class="text-red-emph">T</span>C</td>
-                        <td class="t-align-left">TAGGTA</td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr text-green-dyna">
-                        <td>CTX 匹配</td><!--9-->
-                        <td>CTX3 匹配⊗</td>
-                        <td>CTX2 匹配⊗</td>
-                        <td>CTX1 匹配⊗</td>
-                        <td>CTX0 配 T</td>
-                        <td> </td>
-                        <td>小计</td>
-                    </tr>
-                    <tr class="border-lr text-blue-cnsq">
-                        <td>编码结果</td><!--9-->
-                        <td>⊗</td>
-                        <td>⊗</td>
-                        <td>⊗</td>
-                        <td>T</td>
-                        <td> </td>
-                        <td>"⊗⊗⊗T"</td>
-                    </tr>
-                    <tr class="border-lr text-pink-cnsq">
-                        <td>概率结果</td><!--9-->
-                        <td>P⊗ = 1</td>
-                        <td>P"CA"⊗ = 1/2</td>
-                        <td>P"A"⊗ = 1/3</td>
-                        <td>P(""A)=1/9</td>
-                        <td> </td>
-                        <td>1/2×1/3×<br>1/9</td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--9-->
-                        <td>P("CTA"G)=1/2</td>
-                        <td>P("CT"A)=1/2</td>
-                        <td>P("C"T)=1/3</td>
-                        <td>P(""C)=2/10</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--9-->
-                        <td>P("TAG"G)=1/2</td>
-                        <td>P("TA"G)=1/2</td>
-                        <td>P("T"A)=1/2</td>
-                        <td>P(""T)=2/10</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--9-->
-                        <td>P("AGG"C)=1/2</td>
-                        <td>P("AG"G)=1/2</td>
-                        <td>P("A"G)=1/4</td>
-                        <td>P(""A)=3/10</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--9-->
-                        <td>P("GGC"A)=1/2</td>
-                        <td>P("GG"C)=1/2</td>
-                        <td>P("G"G)=1/3</td>
-                        <td>P(""G)=2/10</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--9-->
-                        <td>P("GCA"A)=1/2</td>
-                        <td>P("GC"A)=1/2</td>
-                        <td>P("G"C)=1/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--9-->
-                        <td>P("CAA"T)=1/2</td>
-                        <td>P("CA"A)=1/3</td>
-                        <td>P("C"A)=1/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--9-->
-                        <td> </td>
-                        <td>P("CA"T)=1/3</td>
-                        <td>P("A"A)=1/4</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr border-bottom">
-                        <td>CTX 更新</td><!--9-->
-                        <td> </td>
-                        <td> </td>
-                        <td>P("A"T)=1/4</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>⊗ 概率</td><!--9-->
-                        <td>1/2,1/2,1/2,<br>1/2,1/2</td>
-                        <td>1/2,1/2,1/2,<br>1/2,1/2,1/3</td>
-                        <td>1/3,1/2,1/4,<br>1/3</td>
-                        <td>P⊗=1/10</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="t-invert-light">
-                        <th>10：</th><!--10-->
-                        <td>输入 C</td>
-                        <td>已知"AAT"</td>
-                        <td> </td>
-                        <td class="t-align-right"><span class="text-blue-emph">CTAGGCAAT</span><span class="text-red-emph">C</span></td>
-                        <td class="t-align-left">TAGGTA</td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr text-green-dyna">
-                        <td>CTX 匹配</td><!--10-->
-                        <td>CTX3 匹配⊗</td>
-                        <td>CTX2 匹配⊗</td>
-                        <td>CTX1 匹配⊗</td>
-                        <td>CTX0 配 C</td>
-                        <td> </td>
-                        <td>小计</td>
-                    </tr>
-                    <tr class="border-lr text-blue-cnsq">
-                        <td>编码结果</td><!--10-->
-                        <td>⊗</td>
-                        <td>⊗</td>
-                        <td>⊗</td>
-                        <td>C</td>
-                        <td> </td>
-                        <td>"⊗⊗⊗C"</td>
-                    </tr>
-                    <tr class="border-lr text-pink-cnsq">
-                        <td>概率结果</td><!--10-->
-                        <td>P⊗ = 1</td>
-                        <td>P⊗ = 1</td>
-                        <td>P"T"⊗ = 1/2</td>
-                        <td>P(""C)=2/10</td>
-                        <td> </td>
-                        <td>1/2×2/10</td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--10-->
-                        <td>P("CTA"G)=1/2</td>
-                        <td>P("CT"A)=1/2</td>
-                        <td>P("C"T)=1/3</td>
-                        <td>P(""C)=3/11</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--10-->
-                        <td>P("TAG"G)=1/2</td>
-                        <td>P("TA"G)=1/2</td>
-                        <td>P("T"A)=1/3</td>
-                        <td>P(""T)=2/11</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--10-->
-                        <td>P("AGG"C)=1/2</td>
-                        <td>P("AG"G)=1/2</td>
-                        <td>P("A"G)=1/4</td>
-                        <td>P(""A)=3/11</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--10-->
-                        <td>P("GGC"A)=1/2</td>
-                        <td>P("GG"C)=1/2</td>
-                        <td>P("G"G)=1/3</td>
-                        <td>P(""G)=2/11</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--10-->
-                        <td>P("GCA"A)=1/2</td>
-                        <td>P("GC"A)=1/2</td>
-                        <td>P("G"C)=1/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--10-->
-                        <td>P("CAA"T)=1/2</td>
-                        <td>P("CA"A)=1/3</td>
-                        <td>P("C"A)=1/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--10-->
-                        <td>P("AAT"C)=1/2</td>
-                        <td>P("CA"T)=1/3</td>
-                        <td>P("A"A)=1/4</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--10-->
-                        <td> </td>
-                        <td>P("AT"C)=1/2</td>
-                        <td>P("A"T)=1/4</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr border-bottom">
-                        <td>CTX 更新</td><!--10-->
-                        <td> </td>
-                        <td> </td>
-                        <td>P("T"C)=1/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>⊗ 概率</td><!--10-->
-                        <td>1/2,1/2,1/2,<br>1/2,1/2,1/2</td>
-                        <td>1/2,1/2,1/2,<br>1/2,1/2,1/3,<br>1/2</td>
-                        <td>1/3,1/3,1/4,<br>1/3</td>
-                        <td>P⊗=1/11</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="t-invert-light">
-                        <th>11：</th><!--11-->
-                        <td>输入 T</td>
-                        <td>已知"ATC"</td>
-                        <td> </td>
-                        <td class="t-align-right text-blue-emph">CTAGGCAATC</td>
-                        <td class="t-align-left"><span class="text-red-emph">T</span>AGGTA</td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr text-green-dyna">
-                        <td>CTX 匹配</td><!--11-->
-                        <td>CTX3 匹配⊗</td>
-                        <td>CTX2 匹配⊗</td>
-                        <td>CTX1 匹配⊗</td>
-                        <td> </td>
-                        <td> </td>
-                        <td>小计</td>
-                    </tr>
-                    <tr class="border-lr text-blue-cnsq">
-                        <td>编码结果</td><!--11-->
-                        <td>⊗</td>
-                        <td>⊗</td>
-                        <td>T</td>
-                        <td> </td>
-                        <td> </td>
-                        <td>"⊗⊗T"</td>
-                    </tr>
-                    <tr class="border-lr text-pink-cnsq">
-                        <td>概率结果</td><!--11-->
-                        <td>P⊗ = 1</td>
-                        <td>P⊗ = 1</td>
-                        <td>P"T"⊗ = 1/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td>1/3</td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--11-->
-                        <td>P("CTA"G)=1/2</td>
-                        <td>P("CT"A)=1/2</td>
-                        <td>P("C"T)=2/4</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--11-->
-                        <td>P("TAG"G)=1/2</td>
-                        <td>P("TA"G)=1/2</td>
-                        <td>P("T"A)=1/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--11-->
-                        <td>P("AGG"C)=1/2</td>
-                        <td>P("AG"G)=1/2</td>
-                        <td>P("A"G)=1/4</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--11-->
-                        <td>P("GGC"A)=1/2</td>
-                        <td>P("GG"C)=1/2</td>
-                        <td>P("G"G)=1/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--11-->
-                        <td>P("GCA"A)=1/2</td>
-                        <td>P("GC"A)=1/2</td>
-                        <td>P("G"C)=1/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--11-->
-                        <td>P("CAA"T)=1/2</td>
-                        <td>P("CA"A)=1/3</td>
-                        <td>P("C"A)=1/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--11-->
-                        <td>P("AAT"C)=1/2</td>
-                        <td>P("CA"T)=1/3</td>
-                        <td>P("A"A)=1/4</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--11-->
-                        <td>P("ATC"T)=1/2</td>
-                        <td>P("AT"C)=1/2</td>
-                        <td>P("A"T)=1/4</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr border-bottom">
-                        <td>CTX 更新</td><!--11-->
-                        <td> </td>
-                        <td>P("TC"T)=1/2</td>
-                        <td>P("T"C)=1/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>⊗ 概率</td>
-                        <td>1/2,1/2,1/2,<br>1/2,1/2,1/2,<br>1/2</td><!--11-->
-                        <td>1/2,1/2,1/2,<br>1/2,1/2,1/3,<br>1/2,1/2</td>
-                        <td>1/4,1/3,1/4,<br>1/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="t-invert-light">
-                        <th>12：</th><!--12-->
-                        <td>输入 A</td>
-                        <td>已知"TCT"</td>
-                        <td> </td>
-                        <td class="t-align-right text-blue-emph">CTAGGCAATC</td>
-                        <td class="t-align-left"><span class="text-blue-emph">T</span><span class="text-red-emph">A</span>GGTA</td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr text-green-dyna">
-                        <td>CTX 匹配</td><!--12-->
-                        <td>CTX3 匹配⊗</td>
-                        <td>CTX2 匹配 A</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td>小计</td>
-                    </tr>
-                    <tr class="border-lr text-blue-cnsq">
-                        <td>编码结果</td><!--12-->
-                        <td>⊗</td>
-                        <td>A</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td>"⊗A"</td>
-                    </tr>
-                    <tr class="border-lr text-pink-cnsq">
-                        <td>概率结果</td><!--12-->
-                        <td>P⊗ = 1</td>
-                        <td>P⊗ = 1/2</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td>1/2</td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--12-->
-                        <td>P("CTA"G)=1/2</td>
-                        <td>P("CT"A)=2/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--12-->
-                        <td>P("TAG"G)=1/2</td>
-                        <td>P("TA"G)=1/2</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--12-->
-                        <td>P("AGG"C)=1/2</td>
-                        <td>P("AG"G)=1/2</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--12-->
-                        <td>P("GGC"A)=1/2</td>
-                        <td>P("GG"C)=1/2</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--12-->
-                        <td>P("GCA"A)=1/2</td>
-                        <td>P("GC"A)=1/2</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--12-->
-                        <td>P("CAA"T)=1/2</td>
-                        <td>P("CA"A)=1/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--12-->
-                        <td>P("AAT"C)=1/2</td>
-                        <td>P("CA"T)=1/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--12-->
-                        <td>P("ATC"T)=1/2</td>
-                        <td>P("AT"C)=1/2</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr border-bottom">
-                        <td>CTX 更新</td><!--12-->
-                        <td>P("TCT"A)=1/2</td>
-                        <td>P("TC"T)=1/2</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>⊗ 概率</td><!--12-->
-                        <td>1/2,1/2,1/2,<br>1/2,1/2,1/2,<br>1/2,1/2</td>
-                        <td>1/3,1/2,1/2,<br>1/2,1/2,1/3,<br>1/2,1/2</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-bottom t-invert-light">
-                        <th>13：</th><!--13-->
-                        <td>输入 G</td>
-                        <td>已知"CTA"</td>
-                        <td> </td>
-                        <td class="t-align-right text-blue-emph">CTAGGCAATC</td>
-                        <td class="t-align-left"><span class="text-blue-emph">TA</span><span class="text-red-emph">G</span>GTA</td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr text-green-dyna">
-                        <td>CTX 匹配</td><!--13-->
-                        <td>CTX3 匹配 G</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td>小计</td>
-                    </tr>
-                    <tr class="border-lr text-blue-cnsq">
-                        <td>编码结果</td><!--13-->
-                        <td>G</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td>"G"</td>
-                    </tr>
-                    <tr class="border-lr text-pink-cnsq">
-                        <td>概率结果</td><!--13-->
-                        <td>P"CTA"G=1/2</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td>1/2</td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--13-->
-                        <td>P("CTA"G)=2/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--13-->
-                        <td>P("TAG"G)=1/2</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--13-->
-                        <td>P("AGG"C)=1/2</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--13-->
-                        <td>P("GGC"A)=1/2</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--13-->
-                        <td>P("GCA"A)=1/2</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--13-->
-                        <td>P("CAA"T)=1/2</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--13-->
-                        <td>P("AAT"C)=1/2</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--13-->
-                        <td>P("ATC"T)=1/2</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr border-bottom">
-                        <td>CTX 更新</td><!--13-->
-                        <td>P("TCT"A)=1/2</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>⊗ 概率</td><!--13-->
-                        <td>1/3,1/2,1/2,<br>1/2,1/2,1/2,<br>1/2,1/2</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="t-invert-light">
-                        <th>14：</th><!--14-->
-                        <td>输入 G</td>
-                        <td>已知"TAG"</td>
-                        <td> </td>
-                        <td class="t-align-right text-blue-emph">CTAGGCAATC</td>
-                        <td class="t-align-left"><span class="text-blue-emph">TAG</span><span class="text-red-emph">G</span>TA</td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr text-green-dyna">
-                        <td>CTX 匹配</td><!--14-->
-                        <td>CTX3 匹配 G</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td>小计</td>
-                    </tr>
-                    <tr class="border-lr text-blue-cnsq">
-                        <td>编码结果</td><!--14-->
-                        <td>G</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td>"G"</td>
-                    </tr>
-                    <tr class="border-lr text-pink-cnsq">
-                        <td>概率结果</td><!--14-->
-                        <td>P"CTA"G=1/2</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td>1/2</td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--14-->
-                        <td>P("CTA"G)=2/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--14-->
-                        <td>P("TAG"G)=2/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--14-->
-                        <td>P("AGG"C)=1/2</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--14-->
-                        <td>P("GGC"A)=1/2</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--14-->
-                        <td>P("GCA"A)=1/2</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--14-->
-                        <td>P("CAA"T)=1/2</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--14-->
-                        <td>P("AAT"C)=1/2</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--14-->
-                        <td>P("ATC"T)=1/2</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr border-bottom">
-                        <td>CTX 更新</td><!--14-->
-                        <td>P("TCT"A)=1/2</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>⊗ 概率</td><!--14-->
-                        <td>1/3,1/3,1/2,<br>1/2,1/2,1/2,<br>1/2,1/2</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-bottom t-invert-light">
-                        <th>15：</th><!--15-->
-                        <td>输入 T</td>
-                        <td>已知"AGG"</td>
-                        <td> </td>
-                        <td class="t-align-right text-blue-emph">CTAGGCAATC</td>
-                        <td class="t-align-left"><span class="text-blue-emph">TAGG</span><span class="text-red-emph">T</span>A</td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr text-green-dyna">
-                        <td>CTX 匹配</td><!--15-->
-                        <td>CTX3 匹配⊗</td>
-                        <td>CTX2 匹配⊗</td>
-                        <td>CTX1 匹配⊗</td>
-                        <td>CTX0 配 T</td>
-                        <td> </td>
-                        <td>小计</td>
-                    </tr>
-                    <tr class="border-lr text-blue-cnsq">
-                        <td>编码结果</td><!--15-->
-                        <td>⊗</td>
-                        <td>⊗</td>
-                        <td>⊗</td>
-                        <td>T</td>
-                        <td> </td>
-                        <td>"⊗⊗⊗T"</td>
-                    </tr>
-                    <tr class="border-lr text-pink-cnsq">
-                        <td>概率结果</td><!--15-->
-                        <td>P"AGG"⊗=1/2</td>
-                        <td>P"GG"⊗ = 1/2</td>
-                        <td>P"G"⊗ = 1/3</td>
-                        <td>P(""C)=2/11</td>
-                        <td> </td>
-                        <td>1/2×1/2×<br>1/3×2/11</td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--15-->
-                        <td>P("CTA"G)=2/3</td>
-                        <td>P("CT"A)=2/3</td>
-                        <td>P("C"T)=2/4</td>
-                        <td>P(""C)=3/12</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--15-->
-                        <td>P("TAG"G)=2/3</td>
-                        <td>P("TA"G)=1/2</td>
-                        <td>P("T"A)=1/3</td>
-                        <td>P(""T)=3/12</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--15-->
-                        <td>P("AGG"C)=1/3</td>
-                        <td>P("AG"G)=1/2</td>
-                        <td>P("A"G)=1/4</td>
-                        <td>P(""A)=3/11</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--15-->
-                        <td>P("GGC"A)=1/2</td>
-                        <td>P("GG"C)=1/3</td>
-                        <td>P("G"G)=1/3</td>
-                        <td>P(""G)=2/11</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--15-->
-                        <td>P("GCA"A)=1/2</td>
-                        <td>P("GC"A)=1/2</td>
-                        <td>P("G"C)=1/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--15-->
-                        <td>P("CAA"T)=1/2</td>
-                        <td>P("CA"A)=1/3</td>
-                        <td>P("C"A)=1/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--15-->
-                        <td>P("AAT"C)=1/2</td>
-                        <td>P("CA"T)=1/3</td>
-                        <td>P("A"A)=1/4</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--15-->
-                        <td>P("ATC"T)=1/2</td>
-                        <td>P("AT"C)=1/2</td>
-                        <td>P("A"T)=1/4</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--15-->
-                        <td>P("TCT"A)=1/2</td>
-                        <td>P("TC"T)=1/2</td>
-                        <td>P("T"C)=1/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr border-bottom">
-                        <td>CTX 更新</td><!--15-->
-                        <td>P("AGG"T)=1/3</td>
-                        <td>P("GG"T)=1/3</td>
-                        <td>P("G"T)=1/4</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>⊗ 概率</td><!--15-->
-                        <td>1/3,1/3,1/3,<br>1/2,1/2,1/2,<br>1/2,1/2</td>
-                        <td>1/3,1/2,1/2,<br>1/3,1/2,1/3,<br>1/2,1/2</td>
-                        <td>1/4,1/3,1/4,<br>1/4</td>
-                        <td>P⊗=1/12</td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="t-invert-light">
-                        <th>16：</th><!--16-->
-                        <td>输入 A</td>
-                        <td>已知"GGT"</td>
-                        <td> </td>
-                        <td class="t-align-right text-blue-emph">CTAGGCAATC</td>
-                        <td class="t-align-left"><span class="text-blue-emph">TAGTAGGT</span><span class="text-red-emph">A</span></td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr text-green-dyna">
-                        <td>CTX 匹配</td><!--16-->
-                        <td>CTX3 匹配⊗</td>
-                        <td>CTX2 匹配⊗</td>
-                        <td>CTX1 匹配 A</td>
-                        <td> </td>
-                        <td> </td>
-                        <td>小计</td>
-                    </tr>
-                    <tr class="border-lr text-blue-cnsq">
-                        <td>编码结果</td><!--16-->
-                        <td>⊗</td>
-                        <td>⊗</td>
-                        <td>A</td>
-                        <td> </td>
-                        <td> </td>
-                        <td>"⊗⊗A"</td>
-                    </tr>
-                    <tr class="border-lr text-pink-cnsq">
-                        <td>概率结果</td><!--16-->
-                        <td>P⊗=1/2</td>
-                        <td>P⊗ = 1</td>
-                        <td>P"T"A = 1/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td>1/2×1/3</td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--16-->
-                        <td>P("CTA"G)=2/3</td>
-                        <td>P("CT"A)=2/3</td>
-                        <td>P("C"T)=2/4</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--16-->
-                        <td>P("TAG"G)=2/3</td>
-                        <td>P("TA"G)=1/2</td>
-                        <td>P("T"A)=2/4</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--16-->
-                        <td>P("AGG"C)=1/3</td>
-                        <td>P("AG"G)=1/2</td>
-                        <td>P("A"G)=1/4</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--16-->
-                        <td>P("GGC"A)=1/2</td>
-                        <td>P("GG"C)=1/3</td>
-                        <td>P("G"G)=1/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--16-->
-                        <td>P("GCA"A)=1/2</td>
-                        <td>P("GC"A)=1/2</td>
-                        <td>P("G"C)=1/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--16-->
-                        <td>P("CAA"T)=1/2</td>
-                        <td>P("CA"A)=1/3</td>
-                        <td>P("C"A)=1/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--16-->
-                        <td>P("AAT"C)=1/2</td>
-                        <td>P("CA"T)=1/3</td>
-                        <td>P("A"A)=1/4</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--16-->
-                        <td>P("ATC"T)=1/2</td>
-                        <td>P("AT"C)=1/2</td>
-                        <td>P("A"T)=1/4</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--16-->
-                        <td>P("TCT"A)=1/2</td>
-                        <td>P("TC"T)=1/2</td>
-                        <td>P("T"C)=1/4</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr">
-                        <td>CTX 更新</td><!--16-->
-                        <td>P("AGG"T)=1/3</td>
-                        <td>P("GG"T)=1/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr border-bottom">
-                        <td>CTX 更新</td><!--16-->
-                        <td>P("GGT"A)=1/2</td>
-                        <td>P("GT"A)=1/2</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                    <tr class="border-lr border-bottom">
-                        <td>⊗ 概率</td><!--16-->
-                        <td>1/3,1/3,1/3,<br>1/2,1/2,1/2,<br>1/2,1/2,1/2</td>
-                        <td>1/3,1/2,1/2,<br>1/3,1/2,1/3,<br>1/2,1/2,1/2</td>
-                        <td>1/4,1/4,1/4,<br>1/3</td>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                    </tr>
-                </tbody>
-            </table>
-
+            <div class="overflow-auto">
+                <table class="table-fit-container align-items-center text-xs">
+                    <thead class="thead-no-border">
+                        <tr class="t-invert-dark">
+                            <th>出字词典</th>
+                            <th>C</th>
+                            <th>T</th>
+                            <th>A</th>
+                            <th>G</th>
+                            <th>⊗</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="t-invert-dark">
+                            <td>等概 CTX<sub>-1</sub></td>
+                            <td>1/5</td>
+                            <td>1/5</td>
+                            <td>1/5</td>
+                            <td>1/5</td>
+                            <td>1/5</td>
+                            <td> </td>
+                        </tr>
+                        <tr class="t-invert-light"><!--1-->
+                            <th>1:</th>
+                            <td>输入 C</td>
+                            <td>已知 null</td>
+                            <td>null 长 0</td>
+                            <td class="t-align-right"><span class="text-red-emph">C</span>TAGGCAATC</td>
+                            <td class="t-align-left">TAGGTA</td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr text-green-dyna">
+                            <td>CTX 匹配</td><!--1-->
+                            <td>CTX3 匹配⊗</td>
+                            <td>CTX2 匹配⊗</td>
+                            <td>CTX1 匹配⊗</td>
+                            <td>CTX0 匹配⊗</td>
+                            <td>CTX<sub>-1</sub>配 C</td>
+                            <td>小计</td>
+                        </tr>
+                        <tr class="border-lr text-blue-cnsq">
+                            <td>编码结果</td><!--1-->
+                            <td>已知长 0 跳过 </td>
+                            <td>已知长 0 跳过</td>
+                            <td>已知长 0 跳过</td>
+                            <td>⊗</td>
+                            <td>C</td>
+                            <td>"⊗C"</td>
+                        </tr>
+                        <tr class="border-lr text-pink-cnsq">
+                            <td>概率结果</td><!--1-->
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td>P⊗ = 1</td>
+                            <td>P(C)=1/5</td>
+                            <td>1×1/5</td>
+                        </tr>
+                        <tr class="border-lr border-bottom">
+                            <td>CTX 更新</td><!--1-->
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td>P(""C)=1/2</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr"><!--1-->
+                            <td>⊗ 概率</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td>P⊗=1/2</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="t-invert-light"><!--2-->
+                            <th>2：</th>
+                            <td>输入 T</td>
+                            <td>已知"C"</td>
+                            <td>已知长 1</td>
+                            <td class="t-align-right"><span class="text-blue-emph">C</span><span class="text-red-emph">T</span>AGGCAATC</td>
+                            <td class="t-align-left">TAGGTA</td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr text-green-dyna">
+                            <td>CTX 匹配</td><!--2-->
+                            <td>CTX3 匹配⊗</td>
+                            <td>CTX2 匹配⊗</td>
+                            <td>CTX1 匹配⊗</td>
+                            <td>CTX0 匹配⊗</td>
+                            <td>CTX<sub>-1</sub>配 T</td>
+                            <td>小计</td>
+                        </tr>
+                        <tr class="border-lr text-blue-cnsq">
+                            <td>编码结果</td><!--2-->
+                            <td>已知长 1 跳过 </td>
+                            <td>已知长 1 跳过</td>
+                            <td>⊗</td>
+                            <td>⊗</td>
+                            <td>T</td>
+                            <td>"⊗⊗T"</td>
+                        </tr>
+                        <tr class="border-lr text-pink-cnsq">
+                            <td>概率结果</td><!--2-->
+                            <td> </td>
+                            <td> </td>
+                            <td>P⊗ = 1</td>
+                            <td>P⊗ = 1/2</td>
+                            <td>P(T)=1/5</td>
+                            <td>1×1/2×<br>1/5</td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--2-->
+                            <td> </td>
+                            <td> </td>
+                            <td>P("C"T)=1/2</td>
+                            <td>P(""C)=1/3</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr border-bottom">
+                            <td>CTX 更新</td><!--2-->
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td>P(""T)=1/3</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr"><!--2-->
+                            <td>⊗ 概率</td>
+                            <td> </td>
+                            <td> </td>
+                            <td>P⊗=1/2</td>
+                            <td>P⊗=1/3</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="t-invert-light"><!--3-->
+                            <th>3：</th>
+                            <td>输入 A</td>
+                            <td>已知"CT"</td>
+                            <td>已知长 2</td>
+                            <td class="t-align-right"><span class="text-blue-emph">CT</span><span class="text-red-emph">A</span>GGCAATC</td>
+                            <td class="t-align-left">TAGGTA</td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr text-green-dyna">
+                            <td>CTX 匹配</td><!--3-->
+                            <td>CTX3 匹配⊗</td>
+                            <td>CTX2 匹配⊗</td>
+                            <td>CTX1 匹配⊗</td>
+                            <td>CTX0 匹配⊗</td>
+                            <td>CTX<sub>-1</sub>配 A</td>
+                            <td>小计</td>
+                        </tr>
+                        <tr class="border-lr text-blue-cnsq">
+                            <td>编码结果</td><!--3-->
+                            <td>已知长 2 跳过 </td>
+                            <td>⊗</td>
+                            <td>⊗</td>
+                            <td>⊗</td>
+                            <td>A</td>
+                            <td>"⊗⊗⊗A"</td>
+                        </tr>
+                        <tr class="border-lr text-pink-cnsq">
+                            <td>概率结果</td><!--3-->
+                            <td> </td>
+                            <td>P⊗ = 1</td>
+                            <td>P⊗ = 1</td>
+                            <td>P⊗ = 1/3</td>
+                            <td>P(A)=1/5</td>
+                            <td>1×1×<br>1/3×1/5</td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--3-->
+                            <td> </td>
+                            <td>P("CT"A)=1/2</td>
+                            <td>P("C"T)=1/2</td>
+                            <td>P(""C)=1/4</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--3-->
+                            <td> </td>
+                            <td> </td>
+                            <td>P("T"A)=1/2</td>
+                            <td>P(""T)=1/4</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr border-bottom">
+                            <td>CTX 更新</td><!--3-->
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td>P(""A)=1/4</td>
+                            <td> </td>
+                            <td> </td><!--3-->
+                        </tr>
+                        <tr class="border-lr">
+                            <td>⊗ 概率</td>
+                            <td> </td>
+                            <td>P⊗=1/2</td>
+                            <td>P⊗=1/2,1/2</td>
+                            <td>P⊗=1/4</td>
+                            <td> </td>
+                            <td> </td><!--3-->
+                        </tr>
+                        <tr class="t-invert-light"><!--4-->
+                            <th>4：</th>
+                            <td>输入 G</td>
+                            <td>已知"CTA"</td>
+                            <td>已知长 3</td>
+                            <td class="t-align-right"><span class="text-blue-emph">CTA</span><span class="text-red-emph">G</span>GCAATC</td>
+                            <td class="t-align-left">TAGGTA</td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr text-green-dyna">
+                            <td>CTX 匹配</td><!--4-->
+                            <td>CTX3 匹配⊗</td>
+                            <td>CTX2 匹配⊗</td>
+                            <td>CTX1 匹配⊗</td>
+                            <td>CTX0 匹配⊗</td>
+                            <td>CTX<sub>-1</sub>配 G</td>
+                            <td>小计</td>
+                        </tr>
+                        <tr class="border-lr text-blue-cnsq">
+                            <td>编码结果</td><!--4-->
+                            <td>⊗ </td>
+                            <td>⊗</td>
+                            <td>⊗</td>
+                            <td>⊗</td>
+                            <td>G</td>
+                            <td>"⊗⊗⊗⊗G"</td>
+                        </tr>
+                        <tr class="border-lr text-pink-cnsq">
+                            <td>概率结果</td><!--4-->
+                            <td>P⊗ = 1</td>
+                            <td>P⊗ = 1</td>
+                            <td>P⊗ = 1</td>
+                            <td>P⊗ = 1/4</td>
+                            <td>P(G)=1/5</td>
+                            <td>1×1×<br>1×1/5×<br>1/4×1/5</td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--4-->
+                            <td>P("CTA"G)=1/2</td>
+                            <td>P("CT"A)=1/2</td>
+                            <td>P("C"T)=1/2</td>
+                            <td>P(""C)=1/5</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--4-->
+                            <td> </td>
+                            <td>P("TA"G)=1/2</td>
+                            <td>P("T"A)=1/2</td>
+                            <td>P(""T)=1/5</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--4-->
+                            <td> </td>
+                            <td> </td>
+                            <td>P("A"G)=1/2</td>
+                            <td>P(""A)=1/5</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr border-bottom">
+                            <td>CTX 更新</td><!--4-->
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td>P(""G)=1/5</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr"><!--5-->
+                            <td>⊗ 概率</td>
+                            <td>P⊗=1/2</td>
+                            <td>P⊗=1/2,1/2</td>
+                            <td>P⊗=1/2,1/2,<br>1/2</td>
+                            <td>P⊗=1/5</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="t-invert-light"><!--5-->
+                            <th>5：</th>
+                            <td>输入 G</td>
+                            <td>已知"TAG"</td>
+                            <td> </td>
+                            <td class="t-align-right"><span class="text-blue-emph">CTAG</span><span class=text-red-emph>G</span>CAATC</td>
+                            <td class="t-align-left">TAGGTA</td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr text-green-dyna">
+                            <td>CTX 匹配</td><!--5-->
+                            <td>CTX3 匹配⊗</td>
+                            <td>CTX2 匹配⊗</td>
+                            <td>CTX1 匹配⊗</td>
+                            <td>CTX0 配 G</td>
+                            <td> </td>
+                            <td>小计</td>
+                        </tr>
+                        <tr class="border-lr text-blue-cnsq">
+                            <td>编码结果</td><!--5-->
+                            <td>⊗ </td>
+                            <td>⊗</td>
+                            <td>⊗</td>
+                            <td>G</td>
+                            <td> </td>
+                            <td>"⊗⊗⊗G"</td>
+                        </tr>
+                        <tr class="border-lr text-pink-cnsq">
+                            <td>概率结果</td><!--5-->
+                            <td>P⊗ = 1</td>
+                            <td>P⊗ = 1</td>
+                            <td>P⊗ = 1</td>
+                            <td>P(""G)=1/5</td>
+                            <td> </td>
+                            <td>1×1×1</td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--5-->
+                            <td>P("CTA"G)=1/2</td>
+                            <td>P("CT"A)=1/2</td>
+                            <td>P("C"T)=1/2</td>
+                            <td>P(""C)=1/6</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--5-->
+                            <td>P("TAG"G)=1/2</td>
+                            <td>P("TA"A)=1/2</td>
+                            <td>P("T"A)=1/2</td>
+                            <td>P(""T)=1/6</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--5-->
+                            <td>P("AG"G)=1/2</td>
+                            <td>P("A"G)=1/2</td>
+                            <td>P(""A)=1/6</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr border-bottom">
+                            <td>CTX 更新</td><!--5-->
+                            <td> </td>
+                            <td>P("G"G)=1/2</td>
+                            <td>P(""G)=2/6</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr"><!--5-->
+                            <td>⊗ 概率</td>
+                            <td>P⊗=1/2,1/2</td>
+                            <td>P⊗=1/2,1/2,<br>1/2</td>
+                            <td>P⊗=1/2,1/2,<br>1/2,1/2</td>
+                            <td>P⊗=1/6</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="t-invert-light"><!--6-->
+                            <th>6：</th>
+                            <td>输入 C</td>
+                            <td>已知"AGG"</td>
+                            <td> </td>
+                            <td class="t-align-right"><span class="text-blue-emph">CTAGG</span><span class="text-red-emph">C</span>AATC</td>
+                            <td class="t-align-left">TAGGTA</td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr text-green-dyna">
+                            <td>CTX 匹配</td><!--6-->
+                            <td>CTX3 匹配⊗</td>
+                            <td>CTX2 匹配⊗</td>
+                            <td>CTX1 匹配⊗</td>
+                            <td>CTX0 配 C</td>
+                            <td> </td>
+                            <td>小计</td>
+                        </tr>
+                        <tr class="border-lr text-blue-cnsq">
+                            <td>编码结果</td><!--6-->
+                            <td>⊗</td>
+                            <td>⊗</td>
+                            <td>⊗</td>
+                            <td>C</td>
+                            <td> </td>
+                            <td>"⊗⊗⊗C"</td>
+                        </tr>
+                        <tr class="border-lr text-pink-cnsq">
+                            <td>概率结果</td><!--6-->
+                            <td>P⊗ = 1</td>
+                            <td>P⊗ = 1</td>
+                            <td>P"G"⊗ = 1/2</td>
+                            <td>P(""C)=1/6</td>
+                            <td> </td>
+                            <td>1×1×<br>1/2×1/6</td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--6-->
+                            <td>P("CTA"G)=1/2</td>
+                            <td>P("CT"A)=1/2</td>
+                            <td>P("C"T)=1/2</td>
+                            <td>P(""C)=2/7</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--6-->
+                            <td>P("TAG"G)=1/2</td>
+                            <td>P("TA"G)=1/2</td>
+                            <td>P("T"A)=1/2</td>
+                            <td>P(""T)=1/7</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--6-->
+                            <td>P("AGG"C)=1/2</td>
+                            <td>P("AG"G)=1/2</td>
+                            <td>P("A"G)=1/2</td>
+                            <td>P(""A)=1/7</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--6-->
+                            <td> </td>
+                            <td>P("GG"C)=1/2</td>
+                            <td>P("G"G)=1/3</td>
+                            <td>P(""G)=2/7</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr border-bottom">
+                            <td>CTX 更新</td><!--6-->
+                            <td> </td>
+                            <td> </td>
+                            <td>P("G"C)=1/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr"><!--6-->
+                            <td>⊗ 概率</td>
+                            <td>P⊗=1/2,1/2,<br>1/2</td>
+                            <td>P⊗=1/2,1/2,<br>1/2,1/2</td>
+                            <td>P⊗=1/2,1/2,<br>1/2,1/3</td>
+                            <td>P⊗=1/7</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="t-invert-light">
+                            <th>7：</th><!--7-->
+                            <td>输入 A</td>
+                            <td>已知"GGC"</td>
+                            <td> </td>
+                            <td class="t-align-right"><span class="text-blue-emph">CTAGGC</span><span class="text-red-emph">A</span>ATC</td>
+                            <td class="t-align-left">TAGGTA</td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr text-green-dyna">
+                            <td>CTX 匹配</td><!--7-->
+                            <td>CTX3 匹配⊗</td>
+                            <td>CTX2 匹配⊗</td>
+                            <td>CTX1 匹配⊗</td>
+                            <td>CTX0 配 A</td>
+                            <td> </td>
+                            <td>小计</td>
+                        </tr>
+                        <tr class="border-lr text-blue-cnsq">
+                            <td>编码结果</td><!--7-->
+                            <td>⊗</td>
+                            <td>⊗</td>
+                            <td>⊗</td>
+                            <td>A</td>
+                            <td> </td>
+                            <td>"⊗⊗⊗A"</td>
+                        </tr>
+                        <tr class="border-lr text-pink-cnsq">
+                            <td>概率结果</td><!--7-->
+                            <td>P⊗ = 1</td>
+                            <td>P⊗ = 1</td>
+                            <td>P⊗ = 1/2</td>
+                            <td>P(""A)=1/7</td>
+                            <td> </td>
+                            <td>1/2×1/7</td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--7-->
+                            <td>P("CTA"G)=1/2</td>
+                            <td>P("CT"A)=1/2</td>
+                            <td>P("C"T)=1/3</td>
+                            <td>P(""C)=2/8</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--7-->
+                            <td>P("TAG"G)=1/2</td>
+                            <td>P("TA"G)=1/2</td>
+                            <td>P("T"A)=1/2</td>
+                            <td>P(""T)=1/8</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--7-->
+                            <td>P("AGG"C)=1/2</td>
+                            <td>P("AG"G)=1/2</td>
+                            <td>P("A"G)=1/2</td>
+                            <td>P(""A)=2/8</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--7-->
+                            <td>P("GGC"A)=1/2</td>
+                            <td>P("GG"C)=1/2</td>
+                            <td>P("G"G)=1/3</td>
+                            <td>P(""G)=2/8</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--7-->
+                            <td> </td>
+                            <td>P("GC"A)=1/2</td>
+                            <td>P("G"C)=1/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr border-bottom">
+                            <td>CTX 更新</td><!--7-->
+                            <td> </td>
+                            <td> </td>
+                            <td>P("C"A)=1/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>⊗ 概率</td><!--7-->
+                            <td>1/2,1/2,1/2,<br>1/2</td>
+                            <td>1/2,1/2,1/2,<br>1/2,1/2</td>
+                            <td>1/3,1/2,1/2,<br>1/3</td>
+                            <td>P⊗=1/8</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="t-invert-light">
+                            <th>8：</th><!--8-->
+                            <td>输入 A</td>
+                            <td>已知"GCA"</td>
+                            <td> </td>
+                            <td class="t-align-right"><span class="text-blue-emph">CTAGGCA</span><span class="text-red-emph">A</span>TC</td>
+                            <td class="t-align-left">TAGGTA</td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr text-green-dyna">
+                            <td>CTX 匹配</td><!--8-->
+                            <td>CTX3 匹配⊗</td>
+                            <td>CTX2 匹配⊗</td>
+                            <td>CTX1 匹配⊗</td>
+                            <td>CTX0 配 A</td>
+                            <td> </td>
+                            <td>小计</td>
+                        </tr>
+                        <tr class="border-lr text-blue-cnsq">
+                            <td>编码结果</td><!--8-->
+                            <td>⊗</td>
+                            <td>⊗</td>
+                            <td>⊗</td>
+                            <td>A</td>
+                            <td> </td>
+                            <td>"⊗⊗⊗A"</td>
+                        </tr>
+                        <tr class="border-lr text-pink-cnsq">
+                            <td>概率结果</td><!--8-->
+                            <td>P⊗ = 1</td>
+                            <td>P⊗ = 1</td>
+                            <td>P"A"⊗ = 1/2</td>
+                            <td>P(""A)=1/8</td>
+                            <td> </td>
+                            <td>1/2×2/8</td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--8-->
+                            <td>P("CTA"G)=1/2</td>
+                            <td>P("CT"A)=1/2</td>
+                            <td>P("C"T)=1/3</td>
+                            <td>P(""C)=2/9</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--8-->
+                            <td>P("TAG"G)=1/2</td>
+                            <td>P("TA"G)=1/2</td>
+                            <td>P("T"A)=1/2</td>
+                            <td>P(""T)=1/9</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--8-->
+                            <td>P("AGG"C)=1/2</td>
+                            <td>P("AG"G)=1/2</td>
+                            <td>P("A"G)=1/3</td>
+                            <td>P(""A)=3/9</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--8-->
+                            <td>P("GGC"A)=1/2</td>
+                            <td>P("GG"C)=1/2</td>
+                            <td>P("G"G)=1/3</td>
+                            <td>P(""G)=2/9</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--8-->
+                            <td>P("GCA"A)=1/2</td>
+                            <td>P("GC"A)=1/2</td>
+                            <td>P("G"C)=1/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--8-->
+                            <td> </td>
+                            <td>P("CA"A)=1/2</td>
+                            <td>P("C"A)=1/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr border-bottom">
+                            <td>CTX 更新</td><!--8-->
+                            <td> </td>
+                            <td> </td>
+                            <td>P("A"A)=1/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>⊗ 概率</td><!--8-->
+                            <td>1/2,1/2,1/2,<br>1/2,1/2</td>
+                            <td>1/2,1/2,1/2,<br>1/2,1/2,1/2</td>
+                            <td>1/3,1/2,1/3,<br>1/3</td>
+                            <td>P⊗=1/9</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="t-invert-light">
+                            <th>9：</th><!--9-->
+                            <td> </td>
+                            <td>已知"CAA"</td>
+                            <td> </td>
+                            <td class="t-align-right"><span class="text-blue-emph">CTAGGCAA</span><span class="text-red-emph">T</span>C</td>
+                            <td class="t-align-left">TAGGTA</td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr text-green-dyna">
+                            <td>CTX 匹配</td><!--9-->
+                            <td>CTX3 匹配⊗</td>
+                            <td>CTX2 匹配⊗</td>
+                            <td>CTX1 匹配⊗</td>
+                            <td>CTX0 配 T</td>
+                            <td> </td>
+                            <td>小计</td>
+                        </tr>
+                        <tr class="border-lr text-blue-cnsq">
+                            <td>编码结果</td><!--9-->
+                            <td>⊗</td>
+                            <td>⊗</td>
+                            <td>⊗</td>
+                            <td>T</td>
+                            <td> </td>
+                            <td>"⊗⊗⊗T"</td>
+                        </tr>
+                        <tr class="border-lr text-pink-cnsq">
+                            <td>概率结果</td><!--9-->
+                            <td>P⊗ = 1</td>
+                            <td>P"CA"⊗ = 1/2</td>
+                            <td>P"A"⊗ = 1/3</td>
+                            <td>P(""A)=1/9</td>
+                            <td> </td>
+                            <td>1/2×1/3×<br>1/9</td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--9-->
+                            <td>P("CTA"G)=1/2</td>
+                            <td>P("CT"A)=1/2</td>
+                            <td>P("C"T)=1/3</td>
+                            <td>P(""C)=2/10</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--9-->
+                            <td>P("TAG"G)=1/2</td>
+                            <td>P("TA"G)=1/2</td>
+                            <td>P("T"A)=1/2</td>
+                            <td>P(""T)=2/10</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--9-->
+                            <td>P("AGG"C)=1/2</td>
+                            <td>P("AG"G)=1/2</td>
+                            <td>P("A"G)=1/4</td>
+                            <td>P(""A)=3/10</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--9-->
+                            <td>P("GGC"A)=1/2</td>
+                            <td>P("GG"C)=1/2</td>
+                            <td>P("G"G)=1/3</td>
+                            <td>P(""G)=2/10</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--9-->
+                            <td>P("GCA"A)=1/2</td>
+                            <td>P("GC"A)=1/2</td>
+                            <td>P("G"C)=1/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--9-->
+                            <td>P("CAA"T)=1/2</td>
+                            <td>P("CA"A)=1/3</td>
+                            <td>P("C"A)=1/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--9-->
+                            <td> </td>
+                            <td>P("CA"T)=1/3</td>
+                            <td>P("A"A)=1/4</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr border-bottom">
+                            <td>CTX 更新</td><!--9-->
+                            <td> </td>
+                            <td> </td>
+                            <td>P("A"T)=1/4</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>⊗ 概率</td><!--9-->
+                            <td>1/2,1/2,1/2,<br>1/2,1/2</td>
+                            <td>1/2,1/2,1/2,<br>1/2,1/2,1/3</td>
+                            <td>1/3,1/2,1/4,<br>1/3</td>
+                            <td>P⊗=1/10</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="t-invert-light">
+                            <th>10：</th><!--10-->
+                            <td>输入 C</td>
+                            <td>已知"AAT"</td>
+                            <td> </td>
+                            <td class="t-align-right"><span class="text-blue-emph">CTAGGCAAT</span><span class="text-red-emph">C</span></td>
+                            <td class="t-align-left">TAGGTA</td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr text-green-dyna">
+                            <td>CTX 匹配</td><!--10-->
+                            <td>CTX3 匹配⊗</td>
+                            <td>CTX2 匹配⊗</td>
+                            <td>CTX1 匹配⊗</td>
+                            <td>CTX0 配 C</td>
+                            <td> </td>
+                            <td>小计</td>
+                        </tr>
+                        <tr class="border-lr text-blue-cnsq">
+                            <td>编码结果</td><!--10-->
+                            <td>⊗</td>
+                            <td>⊗</td>
+                            <td>⊗</td>
+                            <td>C</td>
+                            <td> </td>
+                            <td>"⊗⊗⊗C"</td>
+                        </tr>
+                        <tr class="border-lr text-pink-cnsq">
+                            <td>概率结果</td><!--10-->
+                            <td>P⊗ = 1</td>
+                            <td>P⊗ = 1</td>
+                            <td>P"T"⊗ = 1/2</td>
+                            <td>P(""C)=2/10</td>
+                            <td> </td>
+                            <td>1/2×2/10</td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--10-->
+                            <td>P("CTA"G)=1/2</td>
+                            <td>P("CT"A)=1/2</td>
+                            <td>P("C"T)=1/3</td>
+                            <td>P(""C)=3/11</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--10-->
+                            <td>P("TAG"G)=1/2</td>
+                            <td>P("TA"G)=1/2</td>
+                            <td>P("T"A)=1/3</td>
+                            <td>P(""T)=2/11</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--10-->
+                            <td>P("AGG"C)=1/2</td>
+                            <td>P("AG"G)=1/2</td>
+                            <td>P("A"G)=1/4</td>
+                            <td>P(""A)=3/11</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--10-->
+                            <td>P("GGC"A)=1/2</td>
+                            <td>P("GG"C)=1/2</td>
+                            <td>P("G"G)=1/3</td>
+                            <td>P(""G)=2/11</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--10-->
+                            <td>P("GCA"A)=1/2</td>
+                            <td>P("GC"A)=1/2</td>
+                            <td>P("G"C)=1/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--10-->
+                            <td>P("CAA"T)=1/2</td>
+                            <td>P("CA"A)=1/3</td>
+                            <td>P("C"A)=1/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--10-->
+                            <td>P("AAT"C)=1/2</td>
+                            <td>P("CA"T)=1/3</td>
+                            <td>P("A"A)=1/4</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--10-->
+                            <td> </td>
+                            <td>P("AT"C)=1/2</td>
+                            <td>P("A"T)=1/4</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr border-bottom">
+                            <td>CTX 更新</td><!--10-->
+                            <td> </td>
+                            <td> </td>
+                            <td>P("T"C)=1/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>⊗ 概率</td><!--10-->
+                            <td>1/2,1/2,1/2,<br>1/2,1/2,1/2</td>
+                            <td>1/2,1/2,1/2,<br>1/2,1/2,1/3,<br>1/2</td>
+                            <td>1/3,1/3,1/4,<br>1/3</td>
+                            <td>P⊗=1/11</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="t-invert-light">
+                            <th>11：</th><!--11-->
+                            <td>输入 T</td>
+                            <td>已知"ATC"</td>
+                            <td> </td>
+                            <td class="t-align-right text-blue-emph">CTAGGCAATC</td>
+                            <td class="t-align-left"><span class="text-red-emph">T</span>AGGTA</td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr text-green-dyna">
+                            <td>CTX 匹配</td><!--11-->
+                            <td>CTX3 匹配⊗</td>
+                            <td>CTX2 匹配⊗</td>
+                            <td>CTX1 匹配⊗</td>
+                            <td> </td>
+                            <td> </td>
+                            <td>小计</td>
+                        </tr>
+                        <tr class="border-lr text-blue-cnsq">
+                            <td>编码结果</td><!--11-->
+                            <td>⊗</td>
+                            <td>⊗</td>
+                            <td>T</td>
+                            <td> </td>
+                            <td> </td>
+                            <td>"⊗⊗T"</td>
+                        </tr>
+                        <tr class="border-lr text-pink-cnsq">
+                            <td>概率结果</td><!--11-->
+                            <td>P⊗ = 1</td>
+                            <td>P⊗ = 1</td>
+                            <td>P"T"⊗ = 1/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td>1/3</td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--11-->
+                            <td>P("CTA"G)=1/2</td>
+                            <td>P("CT"A)=1/2</td>
+                            <td>P("C"T)=2/4</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--11-->
+                            <td>P("TAG"G)=1/2</td>
+                            <td>P("TA"G)=1/2</td>
+                            <td>P("T"A)=1/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--11-->
+                            <td>P("AGG"C)=1/2</td>
+                            <td>P("AG"G)=1/2</td>
+                            <td>P("A"G)=1/4</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--11-->
+                            <td>P("GGC"A)=1/2</td>
+                            <td>P("GG"C)=1/2</td>
+                            <td>P("G"G)=1/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--11-->
+                            <td>P("GCA"A)=1/2</td>
+                            <td>P("GC"A)=1/2</td>
+                            <td>P("G"C)=1/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--11-->
+                            <td>P("CAA"T)=1/2</td>
+                            <td>P("CA"A)=1/3</td>
+                            <td>P("C"A)=1/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--11-->
+                            <td>P("AAT"C)=1/2</td>
+                            <td>P("CA"T)=1/3</td>
+                            <td>P("A"A)=1/4</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--11-->
+                            <td>P("ATC"T)=1/2</td>
+                            <td>P("AT"C)=1/2</td>
+                            <td>P("A"T)=1/4</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr border-bottom">
+                            <td>CTX 更新</td><!--11-->
+                            <td> </td>
+                            <td>P("TC"T)=1/2</td>
+                            <td>P("T"C)=1/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>⊗ 概率</td>
+                            <td>1/2,1/2,1/2,<br>1/2,1/2,1/2,<br>1/2</td><!--11-->
+                            <td>1/2,1/2,1/2,<br>1/2,1/2,1/3,<br>1/2,1/2</td>
+                            <td>1/4,1/3,1/4,<br>1/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="t-invert-light">
+                            <th>12：</th><!--12-->
+                            <td>输入 A</td>
+                            <td>已知"TCT"</td>
+                            <td> </td>
+                            <td class="t-align-right text-blue-emph">CTAGGCAATC</td>
+                            <td class="t-align-left"><span class="text-blue-emph">T</span><span class="text-red-emph">A</span>GGTA</td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr text-green-dyna">
+                            <td>CTX 匹配</td><!--12-->
+                            <td>CTX3 匹配⊗</td>
+                            <td>CTX2 匹配 A</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td>小计</td>
+                        </tr>
+                        <tr class="border-lr text-blue-cnsq">
+                            <td>编码结果</td><!--12-->
+                            <td>⊗</td>
+                            <td>A</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td>"⊗A"</td>
+                        </tr>
+                        <tr class="border-lr text-pink-cnsq">
+                            <td>概率结果</td><!--12-->
+                            <td>P⊗ = 1</td>
+                            <td>P⊗ = 1/2</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td>1/2</td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--12-->
+                            <td>P("CTA"G)=1/2</td>
+                            <td>P("CT"A)=2/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--12-->
+                            <td>P("TAG"G)=1/2</td>
+                            <td>P("TA"G)=1/2</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--12-->
+                            <td>P("AGG"C)=1/2</td>
+                            <td>P("AG"G)=1/2</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--12-->
+                            <td>P("GGC"A)=1/2</td>
+                            <td>P("GG"C)=1/2</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--12-->
+                            <td>P("GCA"A)=1/2</td>
+                            <td>P("GC"A)=1/2</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--12-->
+                            <td>P("CAA"T)=1/2</td>
+                            <td>P("CA"A)=1/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--12-->
+                            <td>P("AAT"C)=1/2</td>
+                            <td>P("CA"T)=1/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--12-->
+                            <td>P("ATC"T)=1/2</td>
+                            <td>P("AT"C)=1/2</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr border-bottom">
+                            <td>CTX 更新</td><!--12-->
+                            <td>P("TCT"A)=1/2</td>
+                            <td>P("TC"T)=1/2</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>⊗ 概率</td><!--12-->
+                            <td>1/2,1/2,1/2,<br>1/2,1/2,1/2,<br>1/2,1/2</td>
+                            <td>1/3,1/2,1/2,<br>1/2,1/2,1/3,<br>1/2,1/2</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-bottom t-invert-light">
+                            <th>13：</th><!--13-->
+                            <td>输入 G</td>
+                            <td>已知"CTA"</td>
+                            <td> </td>
+                            <td class="t-align-right text-blue-emph">CTAGGCAATC</td>
+                            <td class="t-align-left"><span class="text-blue-emph">TA</span><span class="text-red-emph">G</span>GTA</td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr text-green-dyna">
+                            <td>CTX 匹配</td><!--13-->
+                            <td>CTX3 匹配 G</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td>小计</td>
+                        </tr>
+                        <tr class="border-lr text-blue-cnsq">
+                            <td>编码结果</td><!--13-->
+                            <td>G</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td>"G"</td>
+                        </tr>
+                        <tr class="border-lr text-pink-cnsq">
+                            <td>概率结果</td><!--13-->
+                            <td>P"CTA"G=1/2</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td>1/2</td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--13-->
+                            <td>P("CTA"G)=2/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--13-->
+                            <td>P("TAG"G)=1/2</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--13-->
+                            <td>P("AGG"C)=1/2</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--13-->
+                            <td>P("GGC"A)=1/2</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--13-->
+                            <td>P("GCA"A)=1/2</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--13-->
+                            <td>P("CAA"T)=1/2</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--13-->
+                            <td>P("AAT"C)=1/2</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--13-->
+                            <td>P("ATC"T)=1/2</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr border-bottom">
+                            <td>CTX 更新</td><!--13-->
+                            <td>P("TCT"A)=1/2</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>⊗ 概率</td><!--13-->
+                            <td>1/3,1/2,1/2,<br>1/2,1/2,1/2,<br>1/2,1/2</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="t-invert-light">
+                            <th>14：</th><!--14-->
+                            <td>输入 G</td>
+                            <td>已知"TAG"</td>
+                            <td> </td>
+                            <td class="t-align-right text-blue-emph">CTAGGCAATC</td>
+                            <td class="t-align-left"><span class="text-blue-emph">TAG</span><span class="text-red-emph">G</span>TA</td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr text-green-dyna">
+                            <td>CTX 匹配</td><!--14-->
+                            <td>CTX3 匹配 G</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td>小计</td>
+                        </tr>
+                        <tr class="border-lr text-blue-cnsq">
+                            <td>编码结果</td><!--14-->
+                            <td>G</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td>"G"</td>
+                        </tr>
+                        <tr class="border-lr text-pink-cnsq">
+                            <td>概率结果</td><!--14-->
+                            <td>P"CTA"G=1/2</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td>1/2</td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--14-->
+                            <td>P("CTA"G)=2/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--14-->
+                            <td>P("TAG"G)=2/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--14-->
+                            <td>P("AGG"C)=1/2</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--14-->
+                            <td>P("GGC"A)=1/2</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--14-->
+                            <td>P("GCA"A)=1/2</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--14-->
+                            <td>P("CAA"T)=1/2</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--14-->
+                            <td>P("AAT"C)=1/2</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--14-->
+                            <td>P("ATC"T)=1/2</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr border-bottom">
+                            <td>CTX 更新</td><!--14-->
+                            <td>P("TCT"A)=1/2</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>⊗ 概率</td><!--14-->
+                            <td>1/3,1/3,1/2,<br>1/2,1/2,1/2,<br>1/2,1/2</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-bottom t-invert-light">
+                            <th>15：</th><!--15-->
+                            <td>输入 T</td>
+                            <td>已知"AGG"</td>
+                            <td> </td>
+                            <td class="t-align-right text-blue-emph">CTAGGCAATC</td>
+                            <td class="t-align-left"><span class="text-blue-emph">TAGG</span><span class="text-red-emph">T</span>A</td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr text-green-dyna">
+                            <td>CTX 匹配</td><!--15-->
+                            <td>CTX3 匹配⊗</td>
+                            <td>CTX2 匹配⊗</td>
+                            <td>CTX1 匹配⊗</td>
+                            <td>CTX0 配 T</td>
+                            <td> </td>
+                            <td>小计</td>
+                        </tr>
+                        <tr class="border-lr text-blue-cnsq">
+                            <td>编码结果</td><!--15-->
+                            <td>⊗</td>
+                            <td>⊗</td>
+                            <td>⊗</td>
+                            <td>T</td>
+                            <td> </td>
+                            <td>"⊗⊗⊗T"</td>
+                        </tr>
+                        <tr class="border-lr text-pink-cnsq">
+                            <td>概率结果</td><!--15-->
+                            <td>P"AGG"⊗=1/2</td>
+                            <td>P"GG"⊗ = 1/2</td>
+                            <td>P"G"⊗ = 1/3</td>
+                            <td>P(""C)=2/11</td>
+                            <td> </td>
+                            <td>1/2×1/2×<br>1/3×2/11</td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--15-->
+                            <td>P("CTA"G)=2/3</td>
+                            <td>P("CT"A)=2/3</td>
+                            <td>P("C"T)=2/4</td>
+                            <td>P(""C)=3/12</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--15-->
+                            <td>P("TAG"G)=2/3</td>
+                            <td>P("TA"G)=1/2</td>
+                            <td>P("T"A)=1/3</td>
+                            <td>P(""T)=3/12</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--15-->
+                            <td>P("AGG"C)=1/3</td>
+                            <td>P("AG"G)=1/2</td>
+                            <td>P("A"G)=1/4</td>
+                            <td>P(""A)=3/11</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--15-->
+                            <td>P("GGC"A)=1/2</td>
+                            <td>P("GG"C)=1/3</td>
+                            <td>P("G"G)=1/3</td>
+                            <td>P(""G)=2/11</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--15-->
+                            <td>P("GCA"A)=1/2</td>
+                            <td>P("GC"A)=1/2</td>
+                            <td>P("G"C)=1/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--15-->
+                            <td>P("CAA"T)=1/2</td>
+                            <td>P("CA"A)=1/3</td>
+                            <td>P("C"A)=1/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--15-->
+                            <td>P("AAT"C)=1/2</td>
+                            <td>P("CA"T)=1/3</td>
+                            <td>P("A"A)=1/4</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--15-->
+                            <td>P("ATC"T)=1/2</td>
+                            <td>P("AT"C)=1/2</td>
+                            <td>P("A"T)=1/4</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--15-->
+                            <td>P("TCT"A)=1/2</td>
+                            <td>P("TC"T)=1/2</td>
+                            <td>P("T"C)=1/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr border-bottom">
+                            <td>CTX 更新</td><!--15-->
+                            <td>P("AGG"T)=1/3</td>
+                            <td>P("GG"T)=1/3</td>
+                            <td>P("G"T)=1/4</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>⊗ 概率</td><!--15-->
+                            <td>1/3,1/3,1/3,<br>1/2,1/2,1/2,<br>1/2,1/2</td>
+                            <td>1/3,1/2,1/2,<br>1/3,1/2,1/3,<br>1/2,1/2</td>
+                            <td>1/4,1/3,1/4,<br>1/4</td>
+                            <td>P⊗=1/12</td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="t-invert-light">
+                            <th>16：</th><!--16-->
+                            <td>输入 A</td>
+                            <td>已知"GGT"</td>
+                            <td> </td>
+                            <td class="t-align-right text-blue-emph">CTAGGCAATC</td>
+                            <td class="t-align-left"><span class="text-blue-emph">TAGTAGGT</span><span class="text-red-emph">A</span></td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr text-green-dyna">
+                            <td>CTX 匹配</td><!--16-->
+                            <td>CTX3 匹配⊗</td>
+                            <td>CTX2 匹配⊗</td>
+                            <td>CTX1 匹配 A</td>
+                            <td> </td>
+                            <td> </td>
+                            <td>小计</td>
+                        </tr>
+                        <tr class="border-lr text-blue-cnsq">
+                            <td>编码结果</td><!--16-->
+                            <td>⊗</td>
+                            <td>⊗</td>
+                            <td>A</td>
+                            <td> </td>
+                            <td> </td>
+                            <td>"⊗⊗A"</td>
+                        </tr>
+                        <tr class="border-lr text-pink-cnsq">
+                            <td>概率结果</td><!--16-->
+                            <td>P⊗=1/2</td>
+                            <td>P⊗ = 1</td>
+                            <td>P"T"A = 1/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td>1/2×1/3</td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--16-->
+                            <td>P("CTA"G)=2/3</td>
+                            <td>P("CT"A)=2/3</td>
+                            <td>P("C"T)=2/4</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--16-->
+                            <td>P("TAG"G)=2/3</td>
+                            <td>P("TA"G)=1/2</td>
+                            <td>P("T"A)=2/4</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--16-->
+                            <td>P("AGG"C)=1/3</td>
+                            <td>P("AG"G)=1/2</td>
+                            <td>P("A"G)=1/4</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--16-->
+                            <td>P("GGC"A)=1/2</td>
+                            <td>P("GG"C)=1/3</td>
+                            <td>P("G"G)=1/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--16-->
+                            <td>P("GCA"A)=1/2</td>
+                            <td>P("GC"A)=1/2</td>
+                            <td>P("G"C)=1/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--16-->
+                            <td>P("CAA"T)=1/2</td>
+                            <td>P("CA"A)=1/3</td>
+                            <td>P("C"A)=1/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--16-->
+                            <td>P("AAT"C)=1/2</td>
+                            <td>P("CA"T)=1/3</td>
+                            <td>P("A"A)=1/4</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--16-->
+                            <td>P("ATC"T)=1/2</td>
+                            <td>P("AT"C)=1/2</td>
+                            <td>P("A"T)=1/4</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--16-->
+                            <td>P("TCT"A)=1/2</td>
+                            <td>P("TC"T)=1/2</td>
+                            <td>P("T"C)=1/4</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr">
+                            <td>CTX 更新</td><!--16-->
+                            <td>P("AGG"T)=1/3</td>
+                            <td>P("GG"T)=1/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr border-bottom">
+                            <td>CTX 更新</td><!--16-->
+                            <td>P("GGT"A)=1/2</td>
+                            <td>P("GT"A)=1/2</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                        <tr class="border-lr border-bottom">
+                            <td>⊗ 概率</td><!--16-->
+                            <td>1/3,1/3,1/3,<br>1/2,1/2,1/2,<br>1/2,1/2,1/2</td>
+                            <td>1/3,1/2,1/2,<br>1/3,1/2,1/3,<br>1/2,1/2,1/2</td>
+                            <td>1/4,1/4,1/4,<br>1/3</td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <p>PPM 非常适合推演 DNA 链 的出字概率，因为人类细胞染色体多达 0.5~25 亿端，而上表在全文未知的情况下已经把最优的出字概率分布总结得差不多了。这种以查表推演 Table lookup 是一种计算特性，与之相对的特性是有限状态机推演。</p>
 
             <h4>有限状态机 Finite-State Machine</h4>
@@ -3203,7 +3204,7 @@ sao分析跳过视频右边和下边边界
             <h4>几何分布/等差等比分布类 Geometric distribution</h4>
             <p>条件过程不变，各个尝试独立，只有阴阳两结果的伯努利试验中统计 n 遍成功的概率分布所形成的概率变化曲线，为：<span class="text-blue-math">\[ P(X=x) = (1-p)^{x-1} p \]</span>其中概率 <span class="text-blue-math">\(1-p\)</span> 盖失败，<span class="text-blue-math">\(p\)</span> 盖成功。如：</p>
             <ol>
-                <li>尝试 3 次后得阳结果记作"阴，阴，阳"。<span class="text-blue-math">\(P(X=3)=(1-p)(1-p)(p)=(1-p)^{3-1} p\)</span>。</li>
+                <li>尝试 3 次后得阳结果记作"阴，阴，阳"。<span class="text-blue-math">\(P(X=3)=(1-p)(1-p)(p)=(1-p)^{3-1} p\)</span></li>
                 <li>成功概率为 90% 则记做 <span class="text-blue-math">\( P(X=x) = (1-0.9)^{x-1} (0.9) \)</span>，且成功概率与尝试次数独立</li>
                 <li>所谓「重试 3 次后过关」是可能脱离实际的期望值 eXpectation，记做大写 X：<span class="text-blue-math">\( X(x) = \frac{1}{p} \)</span></li>
             </ol>
@@ -3388,8 +3389,7 @@ sao分析跳过视频右边和下边边界
                 <li>结果，解码器得到偏移的<span class="text-blue-math">0.35V,0.55V,0.75V</span></li>
             </ol>
             <p>硬判决：设置大于<span class="text-blue-math">0.4V</span>则 1；小于<span class="text-blue-math">0.5V</span>则 0。得<span class="text-blue-math">0,1,1</span>。比对有效字，汉明距离为<span class="text-blue-math">[1,1,3,2,1]</span>，共 3 个误差最小的可能</p>
-            <p>软判决：比对电压间的平方差，如同样的偏移值，对比<span class="text-blue-math">001</span>算：</p>
-            <span class="text-blue-math">\[\left(0.33-0.35\right)^2 + \left(0.35-0.55\right)^2 + \left(0.67-0.75\right)^2 = 0.0468\]</span>
+            <p class="overflow-auto">软判决：比对电压间的平方差，如同样的偏移值，对比<span class="text-blue-math">001</span>算：<span class="text-blue-math">\[\left(0.33-0.35\right)^2 + \left(0.35-0.55\right)^2 + \left(0.67-0.75\right)^2 = 0.0468\]</span></p>
             <p>对比<span class="text-blue-math">[010，100，…]</span>分别得欧几里得距离为<span class="text-blue-math">[0.1912,0.3272,0.1572,…]</span>等远大于<span class="text-blue-math">0.0468</span>的误差，就在条件不变的情况下更准确的解码了信息。</p>
 
             <h4>游程/游标编码 Run-length/run-level coding</h4>
