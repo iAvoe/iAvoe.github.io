@@ -359,8 +359,12 @@ table thead { border-bottom: 1.25px solid var(--hex-light-grayblue); }
     border-right: 1px solid #dee2e6 !important;
 }
 
-/* Margin for all lists */
-li { margin-top: 0.25rem; overflow: auto; }
+/* Margin for all lists, and fix list discs not showing */
+li {
+    margin-top: 0.25rem;
+    overflow: auto;
+    list-style-position: inside;
+}
 
 /* Secondary list style - differ from primary */
 ol ol { list-style-type: upper-roman; }

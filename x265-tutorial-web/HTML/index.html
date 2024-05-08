@@ -202,10 +202,10 @@ x265.exe [命令行] 2> [桌面路径]\报错.txt</code></pre>
             </div>
             <p class="text-gray-side mt-0">图：Y 平面 FIR 插值和 subme 并行，调用 8²或 16²块的横/纵向参考源。若 subme 所得动态的：</p>
             <ul>
-                <li class="text-gray-side">向量横分量==0: [d][n] 分别用 7tapα或β采样整像素 [A]</li>
-                <li class="text-gray-side">向量横分量!=0: [f][q] 分别用 7tapα或β采样子像素 [b]</li>
-                <li class="text-gray-side">向量纵分量==0: [a][c] 分别用 7tapα或β采样整像素 [A]</li>
-                <li class="text-gray-side">向量纵分量!=0: [i][k] 用 8tap 分别采样子像素 [a][c]</li>
+                <li>向量横分量==0: [d][n] 分别用 7tapα或β采样整像素 [A]</li>
+                <li>向量横分量!=0: [f][q] 分别用 7tapα或β采样子像素 [b]</li>
+                <li>向量纵分量==0: [a][c] 分别用 7tapα或β采样整像素 [A]</li>
+                <li>向量纵分量!=0: [i][k] 用 8tap 分别采样子像素 [a][c]</li>
             </ul>
             <div class="align-items-center">
                 <img src="files/image11.png" alt="7tap 8tap interpolation 2" class="img-medium" >
@@ -322,9 +322,11 @@ x265.exe [命令行] 2> [桌面路径]\报错.txt</code></pre>
                 <li>在帧内看当前 PU 左下的邻 PU，优先匹配向量往帧内指的邻 PU</li>
                 <li>参考向量指向其它帧的临 PU；并等比缩放，对齐到邻 PU 已按帧间差异对齐好的向量</li>
                 <li>若以上步骤没找到参选向量，就把同样的步骤于当前 PU 右上角进行一次</li>
-                <li>若应了如早批 PU 刚开始算，找不到参选向量的情况下就直接从时域搜索：<ul>
-                    <li class="text-gray-side">照帧间参考图像变化的内容差异做缩放调整，从右下角的相邻 PU 找参选</li>
-                </ul></li>
+                <li>若应了如早批 PU 刚开始算，找不到参选向量的情况下就直接从时域搜索：
+                    <ul>
+                        <li class="text-gray-side">照帧间参考图像变化的内容差异做缩放调整，从右下角的相邻 PU 找参选</li>
+                    </ul>
+                </li>
                 <li>若仍不可用，就找当前 PU 中心位置的其它同位 PU；若最后没凑不齐两个参选向量，代入 v=0,0</li>
             </ol>
             <div class="row">
@@ -3404,7 +3406,7 @@ sao分析跳过视频右边和下边边界
 
             <h4>Trellis</h4>
             <p>原指北欧建筑的白墙木条棋盘格子装修。在动态规划编程 Dynamic programming 中代表过程的可视化——各状态为节点，且都遵循一种从左推演到右的规则而相互连成的网格，视频编码中包括：</p>
-            <ul>
+            <ul id="10">
                 <li>Psy-trellis 心理学优化，于 x264 的 --psy-rd</li>
                 <li>Viterbi-trellis，解决最短路径，隐马尔科夫问题的导航寻路算法，用于推演 B 帧位置</li>
                 <li>Trellis-coded quantization（TCQ，h.263+，trellis 卷积内核的有限状态机）中涉及的量化优化，停留在理论</li>
@@ -3870,8 +3872,12 @@ sao分析跳过视频右边和下边边界
 
             <h4>杜比视界 Dolby vision / DV</h4>
             <p>一种私有格式。通过嵌入高频信号层来强化播放效果。有单流/DV-MEL 和双流/DV-FEL 两种。两者都带有 RPU。</p>
-            <p>双视频流有 Base layer 视频层 BL 和 Enhance layer 强化层 EL，EL 可被一般的解码器丢弃而正常播放；单视频流就只有私有解码器/有特定芯片 + 固件的设备能播放。</p>
-            <p>若开源播放器能播放 DV-MEL 则是假源，若支持 DV-FEL 的设备丢弃 EL，只播放 BL 则是假设备。</p>
+            <ul class="text-gray-side">
+                <li>双视频流有 Base layer 视频层 BL 和 Enhance layer 强化层 EL，EL 可被一般的解码器丢弃而正常播放</li>
+                <li>单视频流就只有私有解码器/有特定芯片 + 固件的设备能播放</li>
+                <li>若开源播放器能播放 DV-MEL 则是假源</li>
+                <li>若支持 DV-FEL 的设备丢弃 EL，只播放 BL 则是假设备</li>
+            </ul>
             <p>参考单元 Reference picture unit 是含有动态元数据的特殊 NALU，类似（到现在还没几个播放器能正常解码的）<code>opt-qp-pps</code>, <code>opt-ref-list-length-pps</code>的功能。</p>
             <table class="table-center text-smaller">
                 <thead>
@@ -3976,7 +3982,7 @@ sao分析跳过视频右边和下边边界
 
             <h2>下载，附录，操作</h2>
             <h4>下载 x265.exe</h4>
-            <p clas="text-gray-side">注：[8-10-12bit] 代表一个.exe 同时含三种色深，<span class="text-red-emph">未使用 YUV for MPEG（y4m）pipe 或 lavf 时应设置 <code>-D</code> 参数以选择正确的色深</span>，而 [8][10][12]bit 则代表三个 .exe 分别支持三种色深，压制时选择正确的 .exe 即可</p>
+            <p clas="text-gray-side">[8-10-12bit] 代表一个.exe 同时含三种色深，<span class="text-red-emph">未使用 YUV for MPEG（y4m）pipe 或 lavf 时应设置 <code>-D</code> 参数以选择正确的色深</span>，而 [8][10][12]bit 则代表三个 .exe 分别支持三种色深，压制时选择正确的 .exe 即可</p>
 
             <h4>LibavFormat / lavf</h4>
             <p>一种用于处理封装和解封装的动态链接库，同时阅读封装文件的元数据并传给嵌入该库的程序。x264 一般都嵌入了 lavf，x265 则不多。由于只是复制元数据的值而没有做检测，所以元数据写错（情况不罕见）的源会导致编码跟着错，主要错在色彩空间和 HDR 设置上。</p>
@@ -4204,7 +4210,7 @@ sao分析跳过视频右边和下边边界
                     </tr>
                 </tbody>
             </table>
-            <pre><code><b>--tune</b>&lt;zerolatency/animation/grain/film/fastdecode/psnr&gt;更改preset的一些参数，见下：
+            <pre class="mt-3"><code><b>--tune</b>&lt;zerolatency/animation/grain/film/fastdecode/psnr&gt;更改preset的一些参数，见下：
     · <span class="text-blue-emph">zerolatency</span> 集中算力到一次编码一帧，并尽可能关闭率控制和B帧功能：
     --bframes 0 --b-adapt 0 --no-cutree --no-scenecut --frame-threads 1
     · <span class="text-blue-emph">animation</span> 优化动漫场景画面：
@@ -4226,6 +4232,5 @@ sao分析跳过视频右边和下边边界
             </p>
             &#x24B8; iAvoe，2024
         </footer>
-        
 	</body>
 </html>
