@@ -860,7 +860,7 @@ aq-strength-edge偏给暗场的程度</code></pre>
             <p>x264 中默认用更快的平方差 Sum of Squared Error（SSE），或 Sum of Squared Difference（SSD）:</p>
             <span class="text-blue-math">$$\sum_{x=0}^{n-1}{\sum_{y=0}^{n-1}{\ |f(x,y) - f\prime(x,y)|^2}}$$</span>
             <p>x264 中还可选用画质优先的高频加权平方差 Noise SSE（见 <a href="https://web.archive.org/web/20090916181521/http://x264dev.blogspot.com/2008/05/film-grain-optimization.html">Dark Shikari 帖子</a>和<a href="https://forum.doom9.org/showthread.php?p=1127999">doom9 论坛</a>）：</p>
-            <span class="text-blue-math">$$\sum_{x=0}^{n-1}{\sum_{y=0}^{n-1}{\ \left| \left\lbrack N(x,y) - \ N\prime(x,y) \right\rbrack \cdot fgo \right| + |f(x,y) - f\prime(x,y)|^2}}$$</span>
+            <span class="text-blue-math text-smaller">$$\sum_{x=0}^{n-1}{\sum_{y=0}^{n-1}{\ \left| \left\lbrack N(x,y) - \ N\prime(x,y) \right\rbrack \cdot fgo \right| + |f(x,y) - f\prime(x,y)|^2}}$$</span>
             <p>其中 N/Noise 代表块的噪点强度，在一个 2x2 的区间下为四个像素两两加减得到，因为噪点和其它高频信号一样都是突兀的像素值（所以速度很慢）：</p>
             <span class="text-blue-math">$$N(0,0)=|f(0,0)-f(0,1)+f(1,1)-f(0,1)|$$</span>
             <ul class="text-gray-side">
@@ -3264,7 +3264,7 @@ sao分析跳过视频右边和下边边界
                 <li>求商去尾，转一元码：<span class="text-blue-math">\(Quotient = \text{Unary} \left\lfloor \frac{N}{M} \right\rfloor\)</span>，如 <span class="text-blue-math">\(9 \div 4 = 2.25\)</span>，floor 约 2，换一元码 110</li>
                 <li>求余数模，判断区间：<span class="text-blue-math">\(\text{Remainder} = N \ \% \ M\)</span>，如 <span class="text-blue-math">\(9 \% 4 = 9 - (\lfloor9 \div 4 \rfloor \times 4) = 1\)</span></li>
                 <li>余数模是否小于刻度：<span class="text-blue-math">\(0 \leq R &lt; (2^K - M) ? \)</span>，如 <span class="text-blue-math">\(0\leq 1 &lt; (2^2 - 4)\)</span> 结果否定，因为 <span class="text-blue-math">\(2^2 - 4 = 0\)</span>
-                <span class="text-blue-math">\[R\prime = \begin{cases} 
+                <span class="text-blue-math text-smaller">\[R\prime = \begin{cases} 
                 \text{turnc}(R) \text{ in } (K-1) \text{ bits,} & 0 \leq R &lt; (2^K-M) \\
                 \text{turnc}(R+2^K-M) \text{ in } K \text{ bits,} & R \geq (2^K-M)
                 \end{cases} \]</span>
@@ -3287,8 +3287,8 @@ sao分析跳过视频右边和下边边界
                 <li>求二进制刻度 K'：<span class="text-blue-math">\(K\prime = \left\lfloor \log_2 (N+1) \right\rfloor\)</span>。如输入 N=6，则 <span class="text-blue-math">\(\log_{2} (6+1) = 2.81...\)</span>，floor 约 2</li>
                 <li>求刻度内偏移值：<span class="text-blue-math">\(Offset = N + 1 - 2^{K\prime}\)</span>，如输入 N=6，则<span class="text-blue-math">\(6+1-2^2=3\)</span>，代表在刻度 6 处偏移 3 下
                     <ol class="text-gray-side">
-                        <li>输入 N=0~31 时，十进制 K'=[0,<span class="text-red-emph">1,1,</span><span class="text-blue-emph">2,2,2,2,</span><span class="text-purple-resv">3,3,3,3,3,3,3,3,</span>4,4,4,4,4,4,4,4,4,4, 4, 4, 4, 4, 4, 4]</li>
-                        <li>输入 N=0~31 时，十进制 O =[0,<span class="text-red-emph">0,1,</span><span class="text-blue-emph">0,1,2,3,</span><span class="text-purple-resv">0,1,2,3,4,5,6,7,</span>0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]</li>
+                        <li class="text-xs">输入 N=0~31 时，十进制 K'=[0,<span class="text-red-emph">1,1,</span><span class="text-blue-emph">2,2,2,2,</span><span class="text-purple-resv">3,3,3,3,3,3,3,3,</span>4,4,4,4,4,4,4,4,4,4, 4, 4, 4, 4, 4, 4]</li>
+                        <li class="text-xs">输入 N=0~31 时，十进制 O =[0,<span class="text-red-emph">0,1,</span><span class="text-blue-emph">0,1,2,3,</span><span class="text-purple-resv">0,1,2,3,4,5,6,7,</span>0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]</li>
                         <li>注：O 就是单纯随 K'指数增加而累计偏移量</li>
                     </ol>
                 </li>
@@ -3836,7 +3836,7 @@ sao分析跳过视频右边和下边边界
             <h4>高动态范围 High Dynamic Range HDR</h4>
             <p>原本是高端音响的标准，代表最小音量下没有一点电流噪声，最大音量可以和真实场景媲美。与扬声器的大小和材质是否匹配场景相关，即「重硬件轻软件」。因为只要硬件达到 HDR1000 规格，那么只要调高亮度就可以了。</p>
             <p>注意高亮度的显示只适合电影和部分游戏场景，在工作学习用途下高亮度极其伤眼。</p>
-            
+
 
             <div class="align-items-center">
                 <img src="files/image43.png" alt="Metadata for VUI HDR Info 1" class="img-medium" >
