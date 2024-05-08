@@ -3831,7 +3831,7 @@ sao分析跳过视频右边和下边边界
                         <td class="px-1"> </td>
                     </tr>
                     <tr>
-                        <td class="px-1 t-invert-light">11~255</td>
+                        <td class="px-1 t-invert-light">11~<br>255</td>
                         <td class="px-1">保留值 Reserved</td>
                         <td class="px-1 t-light-gray"> </td>
                         <td class="px-1 t-light-gray"> </td>
@@ -3983,7 +3983,7 @@ sao分析跳过视频右边和下边边界
 
             <h2>下载，附录，操作</h2>
             <h4>下载 x265.exe</h4>
-            <p clas="text-gray-side">[8-10-12bit] 代表一个.exe 同时含三种色深，<span class="text-red-emph">未使用 YUV for MPEG（y4m）pipe 或 lavf 时应设置 <code>-D</code> 参数以选择正确的色深</span>，而 [8][10][12]bit 则代表三个 .exe 分别支持三种色深，压制时选择正确的 .exe 即可</p>
+            <p class="text-gray-side">[8-10-12bit] 代表一个.exe 同时含三种色深，<span class="text-red-emph">未使用 YUV for MPEG（y4m）pipe 或 lavf 时应设置 <code>-D</code> 参数以选择正确的色深</span>，而 [8][10][12]bit 则代表三个 .exe 分别支持三种色深，压制时选择正确的 .exe 即可</p>
 
             <h4>LibavFormat / lavf</h4>
             <p>一种用于处理封装和解封装的动态链接库，同时阅读封装文件的元数据并传给嵌入该库的程序。x264 一般都嵌入了 lavf，x265 则不多。由于只是复制元数据的值而没有做检测，所以元数据写错（情况不罕见）的源会导致编码跟着错，主要错在色彩空间和 HDR 设置上。</p>
@@ -4001,7 +4001,8 @@ sao分析跳过视频右边和下边边界
                         <td class="px-3">GCC 12.2 + MSVC_llvm 1928，附 Broadwell 版，支持 aq-mode 5</td>
                     </tr>
                     <tr class="border-lr">
-                        <th class="t-invert-dark px-3"><a href="https://drive.google.com/drive/u/0/folders/0BzA4dIFteM2dWEpvWGZXV3ZhdTA">Rigaya</a></th>
+                        <th class="t-invert-dark px-3"><a
+                                href="https://drive.google.com/drive/u/0/folders/0BzA4dIFteM2dWEpvWGZXV3ZhdTA">Rigaya</a></th>
                         <td class="px-3">.hevc [8-10-12bit]</td>
                         <td class="px-3 ">GCC 9.3，附 x86 32bit 版</td>
                     </tr>
@@ -4011,7 +4012,8 @@ sao分析跳过视频右边和下边边界
                         <td class="px-3">GCC 11 + MSVC 1925</td>
                     </tr>
                     <tr class="border-lr">
-                        <th class="t-invert-dark px-3"><a href="https://forum.doom9.org/showthread.php?p=1937773#post1937773">ShortKatz</a></th>
+                        <th class="t-invert-dark px-3"><a
+                                href="https://forum.doom9.org/showthread.php?p=1937773#post1937773">ShortKatz</a></th>
                         <td class="px-3">arm64~64e（Mac OS，安卓等平台）</td>
                         <td class="px-3">需运行编译命令文件，附 x86 32bit 版</td>
                     </tr>
@@ -4035,182 +4037,183 @@ sao分析跳过视频右边和下边边界
                 <table class="table-fit-container text-xs">
                     <thead class="thead-no-border">
                         <tr class="t-invert-dark">
-                        <th> </th>
-                        <th class="px-1"> superfast </th>
-                        <th class="px-1"> veryfast </th>
-                        <th class="px-1"> faster </th>
-                        <th class="px-1"> fast </th>
-                        <th class="px-1"> medium </th>
-                        <th class="px-1"> slow </th>
-                        <th class="px-1"> slower </th>
-                        <th class="px-1"> Very slow </th>
-                        <th class="px-1"> placebo </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="px-1"> ctu </td>
-                        <td class="px-1"> 32 </td>
-                        <td class="px-1 t-invert-light" colspan="8"> 64 </td>
-                    </tr>
-                    <tr>
-                        <td class="px-1"> min-cu </td>
-                        <td colspan="9" class="px-1"> 8 </td>
-                    </tr>
-                    <tr>
-                        <td class="px-1"> bframes </td>
-                        <td class="px-1"> 3 </td>
-                        <td class="px-1 t-invert-light" colspan="5"> 4 </td>
-                        <td class="px-1 t-invert-dark" colspan="3"> 8 </td>
-                    </tr>
-                    <tr>
-                        <td class="px-1"> b-adapt </td>
-                        <td class="px-1" colspan="4"> 0 </td>
-                        <td class="px-1 t-invert-light" colspan="5"> 2 </td>
-                    </tr>
-                    <tr>
-                        <td class="px-1"> rc-lookahead </td>
-                        <td class="px-1"> 10 </td>
-                        <td class="px-1 t-light-gray" colspan="3"> 15 </td>
-                        <td class="px-1 t-invert-light"> 20 </td>
-                        <td class="px-1 t-invert-light"> 25 </td>
-                        <td class="px-1 t-invert-light" colspan="2"> 40 </td>
-                        <td class="px-1 t-invert-dark"> 60 </td>
-                    </tr>
-                    <tr>
-                        <td class="px-1"> lookahead-slices </td>
-                        <td class="px-1" colspan="5"> 8 </td>
-                        <td class="px-1 t-invert-light"> 4 </td>
-                        <td class="px-1 t-invert-dark" colspan="3"> 1 </td>
-                    </tr>
-                    <tr>
-                        <td class="px-1"> ref </td>
-                        <td class="px-1"> 1 </td>
-                        <td class="px-1 t-light-gray" colspan="2"> 2 </td>
-                        <td class="px-1 t-invert-light" colspan="2"> 3 </td>
-                        <td class="px-1 t-invert-light"> 4 </td>
-                        <td class="px-1 t-invert-dark" colspan="3"> 5 </td>
-                    </tr>
-                    <tr>
-                        <td class="px-1"> limit-refs </td>
-                        <td class="px-1"> 0 </td>
-                        <td class="px-1 t-light-gray" colspan="5"> 3 </td>
-                        <td class="px-1 t-invert-light"> 1 </td>
-                        <td class="px-1 t-invert-dark" colspan="2"> 0 </td>
-                    </tr>
-                    <tr>
-                        <td class="px-1"> me </td>
-                        <td class="px-1" colspan="5"> hex </td>
-                        <td class="px-1 t-invert-light" colspan="4"> star </td>
-                    </tr>
-                    <tr>
-                        <td class="px-1"> merange </td>
-                        <td class="px-1 t-invert-light" colspan="8"> 57 </td>
-                        <td class="px-1 t-invert-dark"> 92 </td>
-                    </tr>
-                    <tr>
-                        <td class="px-1"> subme </td>
-                        <td class="px-1" colspan="2"> 1 </td>
-                        <td class="px-1 t-invert-light" colspan="3"> 2 </td>
-                        <td class="px-1 t-invert-light"> 3 </td>
-                        <td class="px-1 t-invert-light" colspan="2"> 4 </td>
-                        <td class="px-1 t-invert-dark"> 5 </td>
-                    </tr>
-                    <tr>
-                        <td class="px-1"> rect </td>
-                        <td class="px-1" colspan="5"> 0 </td>
-                        <td class="px-1 t-invert-dark" colspan="4"> 1 </td>
-                    </tr>
-                    <tr>
-                        <td class="px-1"> amp </td>
-                        <td class="px-1" colspan="6"> 0 </td>
-                        <td class="px-1 t-invert-dark" colspan="3"> 1 </td>
-                    </tr>
-                    <tr>
-                        <td class="px-1"> limit-modes </td>
-                        <td class="px-1" colspan="5"> 0 </td>
-                        <td class="px-1 t-invert-light" colspan="2"> 11 </td>
-                        <td class="px-1 t-invert-dark" colspan="2"> 0 </td>
-                    </tr>
-                    <tr>
-                        <td> max-merge </td>
-                        <td class="px-1" colspan="5"> 2 </td>
-                        <td class="px-1 t-light-gray"> 3 </td>
-                        <td class="px-1 t-invert-light"> 4 </td>
-                        <td class="px-1 t-invert-dark" colspan="2"> 5 </td>
-                    </tr>
-                    <tr>
-                        <td class="px-1"> early-skip </td>
-                        <td class="px-1" colspan="3"> 1 </td>
-                        <td class="px-1 t-light-gray"> 0 </td>
-                        <td class="px-1 t-invert-light"> 1 </td>
-                        <td class="px-1 t-invert-dark" colspan="4"> 0 </td>
-                    </tr>
-                    <tr>
-                        <td class="px-1"> rskip </td>
-                        <td class="px-1" colspan="8"> 1 </td>
-                        <td class="px-1 t-invert-light"> 0 </td>
-                    </tr>
-                    <tr>
-                        <td class="px-1"> 帧内夹角模式优化 </td>
-                        <td class="px-1" colspan="4"> 1 </td>
-                        <td class="px-1 t-invert-light" colspan="5"> 0 </td>
-                    </tr>
-                    <tr>
-                        <td class="px-1"> B 条带帧内搜索 b-intra </td>
-                        <td class="px-1" colspan="6"> 0 </td>
-                        <td class="px-1 t-invert-light" colspan="3"> 1 </td>
-                    </tr>
-                    <tr>
-                        <td class="px-1"> 取样迁就偏移 sao </td>
-                        <td class="px-1"> 关 </td>
-                        <td class="px-1 t-invert-light" colspan="8"> 开 </td>
-                    </tr>
-                    <tr>
-                        <td class="px-1"> P 帧权重 weightp </td>
-                        <td class="px-1"> 0 </td>
-                        <td class="px-1 t-invert-light" colspan="8"> 1 </td>
-                    </tr>
-                    <tr>
-                        <td class="px-1"> B 帧权重 weightb </td>
-                        <td class="px-1" colspan="6"> 0 </td>
-                        <td class="px-1 t-invert-light" colspan="3"> 1 </td>
-                    </tr>
-                    <tr>
-                        <td class="px-1"> 自适应量化 aq-mode </td>
-                        <td class="px-1"> 0 </td>
-                        <td class="px-1 t-invert-light" colspan="8"> 2 </td>
-                    </tr>
-                    <tr>
-                        <td class="px-1"> cutree </td>
-                        <td class="px-1" colspan="9"> 开 </td>
-                    </tr>
-                    <tr>
-                        <td class="px-1"> 率失真优化 rd </td>
-                        <td class="px-1" colspan="4"> 2 </td>
-                        <td class="px-1 t-light-gray"> 3 </td>
-                        <td class="px-1 t-invert-light"> 4 </td>
-                        <td class="px-1 t-invert-dark" colspan="3"> 6 </td>
-                    </tr>
-                    <tr>
-                        <td class="px-1"> 心率失优程度 rdoq-level </td>
-                        <td class="px-1" colspan="5"> 0 </td>
-                        <td class="px-1 t-invert-light" colspan="4"> 2 </td>
-                    </tr>
-                    <tr>
-                        <td class="px-1"> tu 帧内/间上限 tu-intra-depth </td>
-                        <td class="px-1" colspan="6"> 1 </td>
-                        <td class="px-1 t-invert-light" colspan="2"> 3 </td>
-                        <td class="px-1 t-invert-dark"> 4 </td>
-                    </tr>
-                    <tr>
-                        <td class="px-1"> tu 分裂上限 tu-inter-depth </td>
-                        <td class="px-1" colspan="6"> 0 </td>
-                        <td class="px-1 t-invert-light"> 4 </td>
-                        <td class="px-1 t-invert-dark" colspan="2"> 0 </td>
-                    </tr>
-                </tbody>
-            </table>
+                            <th> </th>
+                            <th class="px-1"> superfast </th>
+                            <th class="px-1"> veryfast </th>
+                            <th class="px-1"> faster </th>
+                            <th class="px-1"> fast </th>
+                            <th class="px-1"> medium </th>
+                            <th class="px-1"> slow </th>
+                            <th class="px-1"> slower </th>
+                            <th class="px-1"> Very slow </th>
+                            <th class="px-1"> placebo </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="px-1"> ctu </td>
+                            <td class="px-1"> 32 </td>
+                            <td class="px-1 t-invert-light" colspan="8"> 64 </td>
+                        </tr>
+                        <tr>
+                            <td class="px-1"> min-cu </td>
+                            <td colspan="9" class="px-1"> 8 </td>
+                        </tr>
+                        <tr>
+                            <td class="px-1"> bframes </td>
+                            <td class="px-1"> 3 </td>
+                            <td class="px-1 t-invert-light" colspan="5"> 4 </td>
+                            <td class="px-1 t-invert-dark" colspan="3"> 8 </td>
+                        </tr>
+                        <tr>
+                            <td class="px-1"> b-adapt </td>
+                            <td class="px-1" colspan="4"> 0 </td>
+                            <td class="px-1 t-invert-light" colspan="5"> 2 </td>
+                        </tr>
+                        <tr>
+                            <td class="px-1"> rc-lookahead </td>
+                            <td class="px-1"> 10 </td>
+                            <td class="px-1 t-light-gray" colspan="3"> 15 </td>
+                            <td class="px-1 t-invert-light"> 20 </td>
+                            <td class="px-1 t-invert-light"> 25 </td>
+                            <td class="px-1 t-invert-light" colspan="2"> 40 </td>
+                            <td class="px-1 t-invert-dark"> 60 </td>
+                        </tr>
+                        <tr>
+                            <td class="px-1"> lookahead-slices </td>
+                            <td class="px-1" colspan="5"> 8 </td>
+                            <td class="px-1 t-invert-light"> 4 </td>
+                            <td class="px-1 t-invert-dark" colspan="3"> 1 </td>
+                        </tr>
+                        <tr>
+                            <td class="px-1"> ref </td>
+                            <td class="px-1"> 1 </td>
+                            <td class="px-1 t-light-gray" colspan="2"> 2 </td>
+                            <td class="px-1 t-invert-light" colspan="2"> 3 </td>
+                            <td class="px-1 t-invert-light"> 4 </td>
+                            <td class="px-1 t-invert-dark" colspan="3"> 5 </td>
+                        </tr>
+                        <tr>
+                            <td class="px-1"> limit-refs </td>
+                            <td class="px-1"> 0 </td>
+                            <td class="px-1 t-light-gray" colspan="5"> 3 </td>
+                            <td class="px-1 t-invert-light"> 1 </td>
+                            <td class="px-1 t-invert-dark" colspan="2"> 0 </td>
+                        </tr>
+                        <tr>
+                            <td class="px-1"> me </td>
+                            <td class="px-1" colspan="5"> hex </td>
+                            <td class="px-1 t-invert-light" colspan="4"> star </td>
+                        </tr>
+                        <tr>
+                            <td class="px-1"> merange </td>
+                            <td class="px-1 t-invert-light" colspan="8"> 57 </td>
+                            <td class="px-1 t-invert-dark"> 92 </td>
+                        </tr>
+                        <tr>
+                            <td class="px-1"> subme </td>
+                            <td class="px-1" colspan="2"> 1 </td>
+                            <td class="px-1 t-invert-light" colspan="3"> 2 </td>
+                            <td class="px-1 t-invert-light"> 3 </td>
+                            <td class="px-1 t-invert-light" colspan="2"> 4 </td>
+                            <td class="px-1 t-invert-dark"> 5 </td>
+                        </tr>
+                        <tr>
+                            <td class="px-1"> rect </td>
+                            <td class="px-1" colspan="5"> 0 </td>
+                            <td class="px-1 t-invert-dark" colspan="4"> 1 </td>
+                        </tr>
+                        <tr>
+                            <td class="px-1"> amp </td>
+                            <td class="px-1" colspan="6"> 0 </td>
+                            <td class="px-1 t-invert-dark" colspan="3"> 1 </td>
+                        </tr>
+                        <tr>
+                            <td class="px-1"> limit-modes </td>
+                            <td class="px-1" colspan="5"> 0 </td>
+                            <td class="px-1 t-invert-light" colspan="2"> 11 </td>
+                            <td class="px-1 t-invert-dark" colspan="2"> 0 </td>
+                        </tr>
+                        <tr>
+                            <td> max-merge </td>
+                            <td class="px-1" colspan="5"> 2 </td>
+                            <td class="px-1 t-light-gray"> 3 </td>
+                            <td class="px-1 t-invert-light"> 4 </td>
+                            <td class="px-1 t-invert-dark" colspan="2"> 5 </td>
+                        </tr>
+                        <tr>
+                            <td class="px-1"> early-skip </td>
+                            <td class="px-1" colspan="3"> 1 </td>
+                            <td class="px-1 t-light-gray"> 0 </td>
+                            <td class="px-1 t-invert-light"> 1 </td>
+                            <td class="px-1 t-invert-dark" colspan="4"> 0 </td>
+                        </tr>
+                        <tr>
+                            <td class="px-1"> rskip </td>
+                            <td class="px-1" colspan="8"> 1 </td>
+                            <td class="px-1 t-invert-light"> 0 </td>
+                        </tr>
+                        <tr>
+                            <td class="px-1"> 帧内夹角模式优化 </td>
+                            <td class="px-1" colspan="4"> 1 </td>
+                            <td class="px-1 t-invert-light" colspan="5"> 0 </td>
+                        </tr>
+                        <tr>
+                            <td class="px-1"> B 条带帧内搜索 b-intra </td>
+                            <td class="px-1" colspan="6"> 0 </td>
+                            <td class="px-1 t-invert-light" colspan="3"> 1 </td>
+                        </tr>
+                        <tr>
+                            <td class="px-1"> 取样迁就偏移 sao </td>
+                            <td class="px-1"> 关 </td>
+                            <td class="px-1 t-invert-light" colspan="8"> 开 </td>
+                        </tr>
+                        <tr>
+                            <td class="px-1"> P 帧权重 weightp </td>
+                            <td class="px-1"> 0 </td>
+                            <td class="px-1 t-invert-light" colspan="8"> 1 </td>
+                        </tr>
+                        <tr>
+                            <td class="px-1"> B 帧权重 weightb </td>
+                            <td class="px-1" colspan="6"> 0 </td>
+                            <td class="px-1 t-invert-light" colspan="3"> 1 </td>
+                        </tr>
+                        <tr>
+                            <td class="px-1"> 自适应量化 aq-mode </td>
+                            <td class="px-1"> 0 </td>
+                            <td class="px-1 t-invert-light" colspan="8"> 2 </td>
+                        </tr>
+                        <tr>
+                            <td class="px-1"> cutree </td>
+                            <td class="px-1" colspan="9"> 开 </td>
+                        </tr>
+                        <tr>
+                            <td class="px-1"> 率失真优化 rd </td>
+                            <td class="px-1" colspan="4"> 2 </td>
+                            <td class="px-1 t-light-gray"> 3 </td>
+                            <td class="px-1 t-invert-light"> 4 </td>
+                            <td class="px-1 t-invert-dark" colspan="3"> 6 </td>
+                        </tr>
+                        <tr>
+                            <td class="px-1"> 心率失优程度 rdoq-level </td>
+                            <td class="px-1" colspan="5"> 0 </td>
+                            <td class="px-1 t-invert-light" colspan="4"> 2 </td>
+                        </tr>
+                        <tr>
+                            <td class="px-1"> tu 帧内/间上限 tu-intra-depth </td>
+                            <td class="px-1" colspan="6"> 1 </td>
+                            <td class="px-1 t-invert-light" colspan="2"> 3 </td>
+                            <td class="px-1 t-invert-dark"> 4 </td>
+                        </tr>
+                        <tr>
+                            <td class="px-1"> tu 分裂上限 tu-inter-depth </td>
+                            <td class="px-1" colspan="6"> 0 </td>
+                            <td class="px-1 t-invert-light"> 4 </td>
+                            <td class="px-1 t-invert-dark" colspan="2"> 0 </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
             <pre class="mt-3"><code><b>--tune</b>&lt;zerolatency/animation/grain/film/fastdecode/psnr&gt;更改preset的一些参数，见下：
     · <span class="text-blue-emph">zerolatency</span> 集中算力到一次编码一帧，并尽可能关闭率控制和B帧功能：
     --bframes 0 --b-adapt 0 --no-cutree --no-scenecut --frame-threads 1
