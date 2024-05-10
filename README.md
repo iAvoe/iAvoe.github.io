@@ -1,1 +1,1 @@
---> [x265 教程 HTML 完整版](iavoe.github.io/x265-tutorial-web)
+--> [x265 教程 HTML 完整版](iavoe.github.io/x265-web-tutorial)
