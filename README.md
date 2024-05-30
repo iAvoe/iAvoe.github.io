@@ -2,7 +2,7 @@
 -----
 
 1.  入门——[x264 教程网页版](https://iavoe.github.io/x264-web-tutorial/HTML/index.html)
-2.  [x265 教程网页版](https://iavoe.github.io/x265-web-tutorial/HTML/index.html)
+2.  进阶——[x265 教程网页版](https://iavoe.github.io/x265-web-tutorial/HTML/index.html)
 3.  进阶——附录 α：[QAAC 音频压缩教程](https://www.nazorip.site/archives/44/) 或 [Github 副本](https://github.com/iAvoe/QAAC-Tutorial-Standalone/blob/master/%E6%95%99%E7%A8%8B.md)
 4.  上工——附录 β：[x264，libx264，x265，libx265 压制教程急用版](https://nazorip.site/archives/334/) 或 Github 副本
 5.  进阶——附录 γ：[ffprobe 教程](https://nazorip.site/archives/169/) 或 [Github 副本](https://github.com/iAvoe/FFprobe-Tutorial-Standalone/blob/master/%E6%95%99%E7%A8%8B.md)
