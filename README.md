@@ -8,5 +8,5 @@
 5.  进阶——附录 γ：[ffprobe 教程](https://nazorip.site/archives/169/) 或 [Github 副本](https://github.com/iAvoe/FFprobe-Tutorial-Standalone/blob/master/%E6%95%99%E7%A8%8B.md)
 6.  进阶——附录 δ：[ffprobe + Excel 绘制码率曲线，帧类型饼图](https://nazorip.site/archives/1068/)
 7.  进阶——附录 ε：[交错转逐行与 IVTC 处理](https://iavoe.github.io/deint-ivtc-web-tutorial/HTML/index.html)
-8.  进阶——附录 ζ: [图像序列的处理](https://iavoe.github.io/img-sequence-enc-web-tutorial/HTML/index.html)
+8.  进阶——附录 ζ：[图像序列的处理](https://iavoe.github.io/img-sequence-enc-web-tutorial/HTML/index.html)
 9.  打理——[mpv 播放器的安装与设置](https://nazorip.site/archives/1052/)
