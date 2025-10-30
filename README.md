@@ -1,6 +1,13 @@
 压制教程地图
 -----
 
+## x264 x265 AV1 视频压制相关工具下载合集
+
+- 主页：[NazoRip](https://nazorip.site/archives/1482/)
+- 主页镜像：[GitHub](https://github.com/iAvoe/encoding-tools-download-tutorial)
+
+---
+
 ## 完整版压制教程
 
 用于理解编码原理和参数配置策略。x264 编码教程完整版是新手特别定制款，专门用来系统性地科普基本概念。
@@ -33,7 +40,6 @@
 
 1. 打理——[mpv 播放器的安装与设置](https://nazorip.site/archives/1052/)
 2. 入门——[QAAC 音频压缩教程](https://www.nazorip.site/archives/44/) 或 [GitHub 副本](https://github.com/iAvoe/QAAC-Tutorial-Standalone/blob/master/%E6%95%99%E7%A8%8B.md)
-3. 打理——[x264 x265 AV1 视频压制相关工具下载合集](https://nazorip.site/archives/1482/) 或 [GitHub 副本](https://github.com/iAvoe/encoding-tools-download-tutorial)
 3. 进阶——[ffprobe 教程](https://nazorip.site/archives/169/) 或 [GitHub 副本](https://github.com/iAvoe/FFprobe-Tutorial-Standalone/blob/master/%E6%95%99%E7%A8%8B.md)
 4. 进阶——[ffprobe + Excel 绘制码率曲线，帧类型饼图](https://nazorip.site/archives/1068/)
 5. 进阶——[使用 Excel 绘制逐帧 VMAF 画质图表的数据可视化教程](https://nazorip.site/archives/1458)
