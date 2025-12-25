@@ -1,16 +1,15 @@
-压制教程地图
------
+# 压制教程地图
 
-## x264 x265 AV1 视频压制教程与工具下载合集
+## x264 x265 AV1 视频压制相关工具下载
 
-### 压制与播放工具下载与安装
+用于检查并补完视频编码与播放所需的软件工具
 
 - 主页：[NazoRip](https://nazorip.site/archives/1482/)
 - 主页镜像：[GitHub](https://github.com/iAvoe/encoding-tools-download-tutorial)
 
 ---
 
-### 完整版压制教程
+## 完整版压制教程
 
 用于理解编码原理和参数配置策略。x264 编码教程完整版是新手特别定制款，专门用来系统性地科普基本概念。
 
@@ -18,7 +17,9 @@
 2.  进阶——[x265 教程网页完整版](https://iavoe.github.io/x265-web-tutorial/HTML/index.html)
 3.  进阶——[AV1 教程网页完整版](https://iavoe.github.io/av1-web-tutorial/HTML/index.html)
 
-### 急用版压制教程
+---
+
+## 急用版压制教程
 
 用于直接拷贝参数使用，并根据视频属性（帧率、分辨率）补完一点相关参数的教程
 
@@ -26,15 +27,24 @@
 - [百度云（pan.baidu.com）](https://pan.baidu.com/s/1sbz8WztGTz3lcLzirHW_2w)
 - [QQ 群 691892901 的群文件](https://jq.qq.com/?_wv=1027&k=5YJFXyf)
 
-### x264、x265、libx264、libx265 教程急用版
+### x264、x265、libx264、libx265 教程急用版主页
 
 - 主页：[NazoRip](https://nazorip.site/archives/334)
 - 主页镜像：[GitHub](https://github.com/iAvoe/x264-x265-copypaste-tutorial-with-obs-record-setting/blob/master/%E6%95%99%E7%A8%8B.md)
 
-### SVT-AV1 与 libsvtav1 教程急用版
+### SVT-AV1 与 libsvtav1 教程急用版主页
 
 - 主页：[NazoRip](https://nazorip.site/archives/1476)
 - 主页镜像：[GitHub](https://github.com/iAvoe/x264-x265-copypaste-tutorial-with-obs-record-setting/blob/master/%E6%95%99%E7%A8%8B.md)
+
+---
+
+## PowerShell 批处理自定义参数压制工具（bbenc）
+
+为了实现急用版压制教程上位替代，将编码参数配置阶段的效率提高到极致而开发的软件规格脚本。逻辑上根据视频源属性，用户需求，引用程序的命令行格式等规则为前提，构建上游仅 Y4M 管道导出 + 下游深度定制参数的效率工具。
+
+- 主页：[NazoRip](https://nazorip.site/archives/1101/)
+- 主页镜像：[GitHub](https://github.com/iAvoe/Batch-batch-encoder/tree/main)
 
 ---
 
