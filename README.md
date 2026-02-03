@@ -67,9 +67,11 @@
 1. **打理**——[mpv 播放器的安装与设置](https://nazorip.site/archives/1052/)
     - *提问与反馈：教程页留言即可*
 2. **入门**——[QAAC 音频压缩与转码教程](https://www.nazorip.site/archives/44/) 或 [GitHub 副本](https://github.com/iAvoe/QAAC-Tutorial-Standalone/blob/master/%E6%95%99%E7%A8%8B.md)
-    - *提问与反馈：NazoRip 教程页留言或 [GitHub Issues](https://github.com/iAvoe/QAAC-Tutorial-Standalone/issues)*
+    - *提问与反馈：教程页留言即可*
+    - *[GitHub 提问与反馈](https://github.com/iAvoe/QAAC-Tutorial-Standalone/issues)*
 3. **进阶**——[ffprobe 教程](https://nazorip.site/archives/169/) 或 [GitHub 副本](https://github.com/iAvoe/FFprobe-Tutorial-Standalone/blob/master/%E6%95%99%E7%A8%8B.md)
-    - *提问与反馈：NazoRip 教程页留言或 [GitHub Issues](https://github.com/iAvoe/FFprobe-Tutorial-Standalone/issues)*
+    - *提问与反馈：教程页留言即可*
+    - *[GitHub 提问与反馈](https://github.com/iAvoe/FFprobe-Tutorial-Standalone/issues)*
 4. **进阶**——[ffprobe + Excel 绘制码率曲线，帧类型饼图](https://nazorip.site/archives/1068)
     - *提问与反馈：教程页留言即可*
 5. **进阶**——[使用 Excel 绘制逐帧 VMAF 画质图表的数据可视化教程](https://nazorip.site/archives/1458)
