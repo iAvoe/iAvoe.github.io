@@ -19,7 +19,7 @@
     - *[提问与反馈](https://github.com/iAvoe/x264-web-tutorial/issues)*
 2.  **进阶**——[x265 教程网页完整版](https://iavoe.github.io/x265-web-tutorial/HTML/index.html)
     - *[GitHub 项目页](https://github.com/iAvoe/x265-web-tutorial)*
-    - *[GitHub“评论区”](https://github.com/iAvoe/x265-web-tutorial/issues)*
+    - *[提问与反馈](https://github.com/iAvoe/x265-web-tutorial/issues)*
 3.  **进阶**——[AV1 教程网页完整版](https://iavoe.github.io/av1-web-tutorial/HTML/index.html)
     - *[GitHub 项目页](https://github.com/iAvoe/av1-web-tutorial)*
     - *[提问与反馈](https://github.com/iAvoe/av1-web-tutorial/issues)*
