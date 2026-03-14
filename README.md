@@ -62,23 +62,31 @@
 
 ---
 
+## 音频编码器压制教程
+
+1. [QAAC AAC 音频编码器命令行参数教程](https://www.nazorip.site/archives/44/) 或 [GitHub 副本](https://github.com/iAvoe/QAAC-Tutorial-Standalone/blob/master/%E6%95%99%E7%A8%8B.md)
+    - *提问与反馈：教程页留言即可*
+    - *[GitHub 提问与反馈](https://github.com/iAvoe/QAAC-Tutorial-Standalone/issues)*
+2. [Opus OGG 音频编码器命令行参数教程](https://www.nazorip.site/archives/1550) 或 [GitHub 副本](https://github.com/iAvoe/Opus-OGG-Tutorial-Standalone)
+    - *提问与反馈：教程页留言即可*
+    - *[GitHub 提问与反馈](https://github.com/iAvoe/Opus-OGG-Tutorial-Standalone/issues)*
+
+---
+
 ## 其它相关教程
 
 1. **打理**——[mpv 播放器的安装与设置](https://nazorip.site/archives/1052/)
     - *提问与反馈：教程页留言即可*
-2. **入门**——[QAAC 音频压缩与转码教程](https://www.nazorip.site/archives/44/) 或 [GitHub 副本](https://github.com/iAvoe/QAAC-Tutorial-Standalone/blob/master/%E6%95%99%E7%A8%8B.md)
-    - *提问与反馈：教程页留言即可*
-    - *[GitHub 提问与反馈](https://github.com/iAvoe/QAAC-Tutorial-Standalone/issues)*
-3. **进阶**——[ffprobe 教程](https://nazorip.site/archives/169/) 或 [GitHub 副本](https://github.com/iAvoe/FFprobe-Tutorial-Standalone/blob/master/%E6%95%99%E7%A8%8B.md)
+2. **进阶**——[ffprobe 教程](https://nazorip.site/archives/169/) 或 [GitHub 副本](https://github.com/iAvoe/FFprobe-Tutorial-Standalone/blob/master/%E6%95%99%E7%A8%8B.md)
     - *提问与反馈：教程页留言即可*
     - *[GitHub 提问与反馈](https://github.com/iAvoe/FFprobe-Tutorial-Standalone/issues)*
-4. **进阶**——[ffprobe + Excel 绘制码率曲线，帧类型饼图](https://nazorip.site/archives/1068)
+3. **进阶**——[ffprobe + Excel 绘制码率曲线，帧类型饼图](https://nazorip.site/archives/1068)
     - *提问与反馈：教程页留言即可*
-5. **进阶**——[使用 Excel 绘制逐帧 VMAF 画质图表的数据可视化教程](https://nazorip.site/archives/1458)
+4. **进阶**——[使用 Excel 绘制逐帧 VMAF 画质图表的数据可视化教程](https://nazorip.site/archives/1458)
     - *提问与反馈：教程页留言即可*
-6. **进阶**——[交错转逐行与 IVTC 处理](https://iavoe.github.io/deint-ivtc-web-tutorial/HTML/index.html)
+5. **进阶**——[交错转逐行与 IVTC 处理](https://iavoe.github.io/deint-ivtc-web-tutorial/HTML/index.html)
     - *[GitHub 项目页](https://github.com/iAvoe/deint-ivtc-web-tutorial)*
     - *[提问与反馈](https://github.com/iAvoe/deint-ivtc-web-tutorial/issues)*
-7. **进阶**——[图像序列压制教程](https://iavoe.github.io/img-sequence-enc-web-tutorial/HTML/index.html)
+6. **进阶**——[图像序列压制教程](https://iavoe.github.io/img-sequence-enc-web-tutorial/HTML/index.html)
     - *[GitHub 项目页](https://github.com/iAvoe/img-sequence-enc-web-tutorial)*
     - *[提问与反馈](https://github.com/iAvoe/img-sequence-enc-web-tutorial/issues)*
