@@ -52,13 +52,13 @@
 
 ---
 
-## PowerShell 批处理智能压制工具（bbenc）
+## OneColumnEncoder 次时代视频压制工具（1cenc）
 
-一款容易上手的强力效率工具。主打自动根据视频规格，用户需求，电脑硬件等条件，给出 ffmpeg、vspipe（API 自适应）、avs2yuv（AviSynth(+) 自适应）、avs2pipemod、SVFI 源，到 x264、x265、SVT-AV1 编码器参数的定制。附带 VS/AVS 脚本自动生成功能，以及复杂封装命令生成工具。
+一款智能化、自动化、参与操作流程，带领新手入门高级视频压制的图形化 UI/UX 软件。支持自动生成多种视频滤镜与音视频编码参数、VS/AVS 脚本编辑、压制参数 UI 控制与实时 A/B 预览、可编辑压制队列、现代多线程控制、现代进度监视器等强大功能的压制软件，支持多种语言和原生中文。
 
-- **主页**：[NazoRip](https://nazorip.site/archives/1101/)
-    - *[GitHub 项目页](https://github.com/iAvoe/Batch-batch-encoder/tree/main)*
-    - *[提问与反馈](https://github.com/iAvoe/Batch-batch-encoder/issues)*
+- **主页**：[NazoRip](https://nazorip.site/archives/1593)
+    - *[GitHub 项目页](https://https://github.com/iAvoe/OneColumnEncoder)*
+    - *[提问与反馈](https://github.com/iAvoe/OneColumnEncoder/issues)*
 
 ---
 
